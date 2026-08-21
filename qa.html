@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Pocket Jirai · Runtime v5 QA</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#111016;color:#f5f3f7;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.shell{max-width:1280px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:16px}.top h1{margin:4px 0 8px;font-size:30px}.top p{margin:0;color:#bcb9c5;line-height:1.5}.back{display:inline-block;padding:9px 13px;border-radius:999px;background:#f59ac3;color:#29141e;text-decoration:none;font-weight:800;white-space:nowrap}.report,.card{border:1px solid #302b37;background:#18151d;border-radius:18px}.report{padding:14px;margin-bottom:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{background:#211d26;border-radius:12px;padding:10px}.metric span{display:block;font-size:11px;color:#9e99a7}.metric strong{display:block;font-size:18px;margin-top:4px}.cards{display:grid;gap:16px}.card{padding:12px}.card h2{font-size:18px;margin:0 0 10px}.card p{font-size:12px;color:#aaa5b2;margin:0 0 12px}.card img{display:block;width:100%;height:auto;border-radius:12px;background:#fff}.pass{color:#8fe0a6}@media(max-width:720px){.top{flex-direction:column}.report{grid-template-columns:repeat(2,1fr)}.top h1{font-size:25px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><div><div style="color:#f59ac3;font-size:11px;font-weight:800;letter-spacing:.14em">REFERENCE-LOCKED VISUAL QA</div><h1>Runtime v5 QA</h1><p>웹에서 실제로 사용하는 완성 스프라이트를 그대로 모아 놓은 검수 화면입니다.</p></div><a class="back" href="index.html">← Runtime</a></header>
+    <section class="report">
+      <div class="metric"><span>QA</span><strong id="qa">loading</strong></div>
+      <div class="metric"><span>Runtime PNG</span><strong id="count">--</strong></div>
+      <div class="metric"><span>Asset size</span><strong id="size">--</strong></div>
+      <div class="metric"><span>Unique states</span><strong id="unique">--</strong></div>
+    </section>
+    <section class="cards">
+      <article class="card"><h2>16 emotion / pose states</h2><p>모든 이미지는 320×320 고정 캔버스이며, 런타임에서 신체 파츠를 재배치하지 않습니다.</p><img src="qa/runtime-v5/states_contact.jpg" alt="16 states QA contact sheet"></article>
+      <article class="card"><h2>Blink</h2><p>기본 상태와 눈감기 상태의 체형·좌표가 동일한지 확인합니다.</p><img src="qa/runtime-v5/blink_contact.jpg" alt="blink QA contact sheet"></article>
+      <article class="card"><h2>Lip sync 6-step</h2><p>입 모양 역시 완성된 전신 PNG로 bake되어 런타임 좌표 오차가 없습니다.</p><img src="qa/runtime-v5/talk_contact.jpg" alt="lip sync QA contact sheet"></article>
+    </section>
+  </main>
+  <script>
+    fetch('qa/runtime-v5/report.json',{cache:'no-store'}).then(r=>r.json()).then(r=>{
+      document.getElementById('qa').textContent=r.qa_pass?'PASS':'FAIL';
+      document.getElementById('qa').className=r.qa_pass?'pass':'';
+      document.getElementById('count').textContent=r.runtime_png_count;
+      document.getElementById('size').textContent=r.runtime_png_kib+' KiB';
+      document.getElementById('unique').textContent=(r.unique_state_sprites||'--')+'/16';
+    }).catch(()=>document.getElementById('qa').textContent='LOAD ERROR');
+  </script>
+</body>
+</html>
