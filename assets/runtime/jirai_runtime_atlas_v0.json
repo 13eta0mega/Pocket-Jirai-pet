@@ -16,150 +16,150 @@
     "hair_front": [
       8,
       8,
-      331,
-      340
+      339,
+      348
     ],
     "leg_left": [
-      347,
+      355,
       8,
       106,
       272
     ],
     "leg_right": [
-      461,
+      469,
       8,
       104,
       268
     ],
-    "skirt_upperlegs": [
-      573,
+    "twin_tail_right": [
+      581,
       8,
+      121,
+      256
+    ],
+    "twin_tail_left": [
+      710,
+      8,
+      88,
+      256
+    ],
+    "skirt_upperlegs": [
+      8,
+      364,
       314,
       251
     ],
-    "twin_tail_right": [
-      895,
-      8,
-      113,
-      248
-    ],
-    "twin_tail_left": [
-      8,
-      356,
-      80,
-      248
-    ],
     "body_dress": [
-      96,
-      356,
+      330,
+      364,
       340,
       207
     ],
     "face_blank": [
-      444,
-      356,
+      678,
+      364,
       211,
       170
     ],
     "arm_left": [
-      663,
-      356,
+      897,
+      364,
       105,
       162
     ],
     "arm_right": [
-      776,
-      356,
+      8,
+      623,
       89,
       162
     ],
     "eyes_sparkle_pair": [
-      8,
-      612,
+      105,
+      623,
       176,
       105
     ],
     "eyes_half_pair": [
-      192,
-      612,
+      289,
+      623,
       253,
       102
     ],
     "eyes_open_pair": [
-      453,
-      612,
+      550,
+      623,
       234,
       101
     ],
     "bunny_clip_left": [
-      695,
-      612,
+      792,
+      623,
       57,
       96
     ],
     "bunny_clip_right": [
-      760,
-      612,
+      857,
+      623,
       77,
       94
     ],
     "mouth_open": [
-      845,
-      612,
+      8,
+      793,
       80,
       56
     ],
     "mouth_smile_open": [
-      933,
-      612,
+      96,
+      793,
       80,
       53
     ],
     "mouth_wide": [
-      8,
-      725,
+      184,
+      793,
       80,
       40
     ],
     "brows_sad_pair": [
-      96,
-      725,
+      272,
+      793,
       212,
       37
     ],
     "brows_angry_pair": [
-      316,
-      725,
+      492,
+      793,
       245,
       33
     ],
     "eyes_closed_pair": [
-      569,
-      725,
+      745,
+      793,
       216,
       33
     ],
     "mouth_medium": [
-      793,
-      725,
+      8,
+      857,
       80,
       32
     ],
     "brows_neutral_pair": [
-      8,
-      773,
+      96,
+      857,
       259,
       29
     ],
     "mouth_small": [
-      275,
-      773,
+      363,
+      857,
       34,
       19
     ],
     "mouth_closed": [
-      317,
-      773,
+      405,
+      857,
       37,
       12
     ]
@@ -180,7 +180,7 @@
   "packing": {
     "algorithm": "height-sorted-shelf",
     "padding": 8,
-    "used_height": 810,
+    "used_height": 897,
     "overflow_checked": true
   }
 }
