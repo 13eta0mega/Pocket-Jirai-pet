@@ -1,0 +1,39 @@
+{
+  "version": 0,
+  "canvas": [720, 720],
+  "reference": "assets/generated/references/reference_character_bunnyclip_gothic_lolita.png",
+  "reference_transform": {"x": 147, "y": 70, "w": 426, "h": 568, "opacity": 0.0},
+  "parts": {
+    "leg_left": {"x": 292, "y": 447, "scale": 0.78, "rotation": 0, "anchor": [0.5, 0.05], "group": "body"},
+    "leg_right": {"x": 351, "y": 447, "scale": 0.78, "rotation": 0, "anchor": [0.5, 0.05], "group": "body"},
+    "body_dress": {"x": 190, "y": 330, "scale": 1.0, "rotation": 0, "anchor": [0.5, 0.12], "group": "body"},
+    "twin_tail_left": {"x": 184, "y": 110, "scale": 1.05, "rotation": -2, "anchor": [0.72, 0.04], "group": "head"},
+    "twin_tail_right": {"x": 454, "y": 110, "scale": 1.05, "rotation": 2, "anchor": [0.28, 0.04], "group": "head"},
+    "face_blank": {"x": 255, "y": 145, "scale": 1.0, "rotation": 0, "anchor": [0.5, 0.45], "group": "head"},
+    "hair_front": {"x": 190, "y": 90, "scale": 1.0, "rotation": 0, "anchor": [0.5, 0.45], "group": "head"},
+    "eyes": {"x": 250, "y": 215, "scale": 0.92, "rotation": 0, "anchor": [0.5, 0.5], "group": "head"},
+    "brows": {"x": 245, "y": 195, "scale": 0.95, "rotation": 0, "anchor": [0.5, 0.5], "group": "head"},
+    "mouth": {"x": 342, "y": 295, "scale": 1.0, "rotation": 0, "anchor": [0.5, 0.5], "group": "head"},
+    "bunny_clip_left": {"x": 219, "y": 121, "scale": 0.84, "rotation": -4, "anchor": [0.5, 0.5], "group": "head"},
+    "bunny_clip_right": {"x": 435, "y": 121, "scale": 0.84, "rotation": 4, "anchor": [0.5, 0.5], "group": "head"}
+  },
+  "animation": {
+    "head_pivot": [360, 260],
+    "body_pivot": [360, 420],
+    "breath_px": 2.0,
+    "idle_head_deg": 0.55,
+    "tail_sway_deg": 4.0,
+    "blink_min_ms": 2800,
+    "blink_max_ms": 6200,
+    "blink_duration_ms": 320,
+    "mouth_smoothing": 0.025
+  },
+  "qa": {
+    "status": "layout-tuning",
+    "notes": [
+      "Reference overlay can be enabled in rig-lab.html for alignment.",
+      "Face base is temporary and is not firmware-ready.",
+      "Tail top edges are hidden under bunny clips during the prototype stage."
+    ]
+  }
+}
