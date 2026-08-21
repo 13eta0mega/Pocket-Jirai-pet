@@ -1,26 +1,35 @@
 # Pocket-Jirai-pet
 
-Lightweight desk-pet animation runtime targeting **PC + ESP32-S3**.
+Reference-preserving desk-pet animation runtime for **PC + ESP32-S3**.
 
-## Stable Runtime v4
+## Current runtime: v5
 
-The previous runtime paper-doll composition has been retired after visual QA found cutout, coordinate and scale mismatches. Runtime v4 uses a fixed **320×440** sprite canvas for every character state.
+The earlier dynamic cutout/paper-doll renderer was retired after visual QA found alpha, coordinate, scale, and body-proportion errors. Runtime v5 locks the character to the six original reference PNGs supplied for the project and uses a fixed **320×320** sprite canvas.
 
-- 16 pre-baked emotion/pose states
-- Fixed sprite geometry: no runtime arm/leg/skirt/hair coordinates
-- Breathing and small idle motions are whole-sprite transforms only
-- Blink is a pre-baked full character sprite
-- Lip-sync uses six pre-baked full character mouth frames
+- Six original reference PNGs stored in `assets/original/`
+- 16 full pre-baked emotion/pose states
+- Six pre-baked full-sprite lip-sync frames
+- Pre-baked blink frame
+- No runtime arm/leg/skirt/hair/face-part coordinates
+- Only whole-sprite breathing, sway, rotation, bounce, and cross-fade are calculated at runtime
 - Browser targets: 15 / 30 / 60 FPS
-- Embedded asset budget gate: <= 3 MiB
-- GitHub Actions rebuilds and validates runtime assets from the generated source sheets
+- ESP32-S3 asset budget gate: **<= 3 MiB**
+- GitHub Actions rebuilds and validates the runtime automatically
 
-Generated outputs live in `assets/runtime-v4/` and QA contact sheets/reports live in `qa/runtime-v4/`.
+Generated outputs:
+
+- `assets/runtime-v5/`
+- `qa/runtime-v5/states_contact.jpg`
+- `qa/runtime-v5/blink_contact.jpg`
+- `qa/runtime-v5/talk_contact.jpg`
+- `qa/runtime-v5/report.json`
+
+The QA pipeline rejects non-320×320 runtime sprites, empty images, an over-3-MiB asset set, a wrong state count, and duplicate emotion sprite files. It also records SHA-256 hashes of the six original source PNGs.
 
 ## Run
 
-Use GitHub Pages or any static HTTP server and open `index.html`.
+Open `index.html` through GitHub Pages or any static HTTP server.
 
-## ESP32-S3 direction
+## Embedded direction
 
-The browser and firmware should consume the same fixed-canvas state model. The current browser prototype intentionally avoids SVG tracing and dynamic cutout positioning so the original raster character appearance is preserved and the embedded renderer can remain simple.
+PC and ESP32-S3 should consume the same state IDs and fixed-canvas sprite model. This intentionally avoids SVG tracing and dynamic cutout placement so the original raster character appearance remains stable on both targets.

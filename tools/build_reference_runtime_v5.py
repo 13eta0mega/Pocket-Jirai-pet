@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-import json, shutil
+import hashlib, json, shutil
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
@@ -146,9 +146,10 @@ def main() -> None:
         'sad': compose_face(stand,bank,4,4),
         'surprised': compose_face(stand,bank,3,3),
         'embarrassed': compose_face(stand,bank,0,1,.72),
-        'scared': compose_face(stand,bank,3,4),
-        'smug': compose_face(stand,bank,5,0),
-        'confused': compose_face(stand,bank,0,4),
+        'scared': compose_face(stand,bank,4,3),
+        'smug': compose_face(stand,bank,5,1,.62),
+        'confused': compose_face(stand,bank,0,5,.72),
+        'love': compose_face(stand,bank,4,1,.82),
     }
     raw_states=[
         ('neutral','기본',derived['neutral'],'idle'),
@@ -166,14 +167,13 @@ def main() -> None:
         ('scared','겁남',derived['scared'],'shiver'),
         ('smug','의기양양',derived['smug'],'smug_hold'),
         ('confused','갸웃',derived['confused'],'head_tilt'),
-        ('love','좋아!',stand,'heart_bob'),
+        ('love','좋아!',derived['love'],'heart_bob'),
     ]
     manifest_states=[]; qa=[]
     for i,(sid,label,im,motion) in enumerate(raw_states):
         fixed=center_canvas(im); name=f'{i:02d}_{sid}.png'; qsave(fixed,STATES/name); manifest_states.append({'id':sid,'label':label,'src':f'assets/runtime-v5/states/{name}','motion':motion});qa.append((f'{i:02d} {sid}',fixed))
 
     blink=center_canvas(compose_face(stand,bank,1,0)); qsave(blink,OUT/'blink.png')
-
     mouth_specs=[(0,1.0),(1,.48),(1,.68),(1,.88),(7,1.0),(3,.9)]
     talk=[]; talk_paths=[]
     for i,(mi,ms) in enumerate(mouth_specs):
@@ -199,8 +199,18 @@ def main() -> None:
     total=sum(p.stat().st_size for p in pngs)
     if total>3*1024*1024:problems.append(f'budget {total}')
     if len(manifest_states)!=16:problems.append('state count')
+    state_hashes = {}
+    duplicate_groups = {}
+    for entry in manifest_states:
+        path = ROOT / entry['src']
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        state_hashes[entry['id']] = digest
+        duplicate_groups.setdefault(digest, []).append(entry['id'])
+    duplicates = [ids for ids in duplicate_groups.values() if len(ids) > 1]
+    if duplicates: problems.append(f'duplicate state sprites: {duplicates}')
+    source_hashes = {key: hashlib.sha256((ORIGINAL / name).read_bytes()).hexdigest() for key, name in FILES.items()}
     if problems:raise SystemExit('\n'.join(problems))
-    report={'runtime_png_count':len(pngs),'runtime_png_bytes':total,'runtime_png_kib':round(total/1024,1),'budget_bytes':3*1024*1024,'budget_used_percent':round(total/(3*1024*1024)*100,1),'all_canvas_sizes_equal':True,'reference_assets':6,'qa_pass':True}
+    report={'runtime_png_count':len(pngs),'runtime_png_bytes':total,'runtime_png_kib':round(total/1024,1),'budget_bytes':3*1024*1024,'budget_used_percent':round(total/(3*1024*1024)*100,1),'all_canvas_sizes_equal':True,'reference_assets':6,'unique_state_sprites':len(set(state_hashes.values())),'duplicate_state_groups':duplicates,'source_sha256':source_hashes,'qa_pass':True}
     (QA/'report.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(json.dumps(report,indent=2))
 
 if __name__=='__main__':main()
