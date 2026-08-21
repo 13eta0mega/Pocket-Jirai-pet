@@ -1,19 +1,107 @@
-(()=>{'use strict';
-const $=s=>document.querySelector(s);const canvas=$('#avatarCanvas'),ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
-const grid=$('#emotionGrid'),breathT=$('#breathToggle'),blinkT=$('#blinkToggle'),lipT=$('#lipToggle'),debugT=$('#debugToggle'),slider=$('#mouthSlider'),fpsT=$('#fpsTarget');
-const fpsChip=$('#fpsChip'),assetChip=$('#assetChip'),stateChip=$('#stateChip'),title=$('#emotionTitle'),runtimeState=$('#runtimeState'),mouthBar=$('#mouthBar'),mouthValue=$('#mouthValue'),manualValue=$('#manualMouthValue'),qaStatus=$('#qaStatus');
-const S={manifest:null,images:new Map(),state:null,prev:null,changedAt:0,lastDraw:0,frames:[],nextBlink:0,blinkUntil:0,manualMouth:0,mouth:0,cycle:null};
-const clamp=v=>Math.max(0,Math.min(1,v)),smooth=t=>t*t*(3-2*t);
-async function getJSON(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error(`${url} ${r.status}`);return r.json()}
-function loadImage(url){return new Promise((resolve,reject)=>{const im=new Image();im.decoding='async';im.onload=()=>resolve(im);im.onerror=()=>reject(new Error('image '+url));im.src=url})}
-async function preload(urls){await Promise.all([...new Set(urls)].map(async u=>S.images.set(u,await loadImage(u))))}
-function buildButtons(){S.manifest.states.forEach(st=>{const b=document.createElement('button');b.textContent=st.label;b.dataset.id=st.id;b.onclick=()=>setState(st.id);grid.appendChild(b)})}
-function setState(id){const next=S.manifest.states.find(x=>x.id===id)||S.manifest.states[0];if(S.state&&S.state.id===id)return;S.prev=S.state;S.state=next;S.changedAt=performance.now();title.textContent=next.label;stateChip.textContent=next.label;runtimeState.textContent=`${next.motion} · ${fpsT.value} FPS target`;[...grid.children].forEach(b=>b.classList.toggle('active',b.dataset.id===id));scheduleBlink()}
-function scheduleBlink(){const b=S.manifest.blink;S.nextBlink=performance.now()+b.min_interval_ms+Math.random()*(b.max_interval_ms-b.min_interval_ms);S.blinkUntil=0}
-function motion(st,t){let x=0,y=0,rot=0,sx=1,sy=1;const s=Math.sin(t*.0015),q=Math.sin(t*.0048);if(breathT.checked){sy+=s*.006;sx-=s*.002;y-=s*.7}switch(st.motion){case'happy_bob':y+=q*2;break;case'bounce':y+=Math.abs(q)*-8;break;case'tiny_sway':rot+=s*.01;break;case'slow_sway':rot+=s*.006;y+=s*1.5;break;case'weak_sway':rot+=s*.005;y+=2;break;case'micro_shake':x+=Math.sin(t*.04)*1.1;break;case'side_sway':x+=s*2.5;break;case'sad_sink':y+=2+Math.abs(s)*1.5;break;case'startle':sy+=Math.abs(q)*.006;break;case'shy_sway':rot+=s*.007;break;case'shiver':x+=Math.sin(t*.06)*.8;break;case'smug_hold':rot-=.012;break;case'head_tilt':rot-=.03;break;case'heart_bob':y+=q*2;sy+=Math.abs(q)*.003;break}return{x,y,rot,sx,sy}}
-function currentImage(now,t){let src=S.state.src;const blink=S.manifest.blink;if(blinkT.checked&&blink.safe_states.includes(S.state.id)){if(!S.blinkUntil&&now>=S.nextBlink)S.blinkUntil=now+blink.duration_ms;if(S.blinkUntil){if(now<S.blinkUntil)src=blink.src;else scheduleBlink()}}const lip=S.manifest.lip_sync,safe=lip.safe_states.includes(S.state.id);let target=S.manualMouth;if(lipT.checked&&safe)target=clamp(.06+.9*Math.abs(Math.sin(t*.0051)+.22*Math.sin(t*.011)));S.mouth+=(target-S.mouth)*.24;if((lipT.checked||S.manualMouth>.01)&&safe){let idx=0;while(idx<lip.thresholds.length&&S.mouth>=lip.thresholds[idx])idx++;src=lip.frames[Math.min(idx,lip.frames.length-1)]}mouthBar.style.width=`${S.mouth*100}%`;mouthValue.textContent=S.mouth.toFixed(2);return S.images.get(src)}
-function drawSprite(im,st,alpha,t){if(!im)return;const m=motion(st,t),d=S.manifest.display,W=d.width,H=d.height;ctx.save();ctx.globalAlpha*=alpha;ctx.translate(d.x+m.x,d.y+m.y);ctx.rotate(m.rot);ctx.scale(m.sx,m.sy);ctx.drawImage(im,-W/2,-H/2,W,H);if(debugT.checked){ctx.strokeStyle='rgba(245,154,195,.75)';ctx.lineWidth=1;ctx.strokeRect(-W/2,-H/2,W,H);ctx.fillStyle='rgba(255,255,255,.85)';ctx.font='12px monospace';ctx.fillText(`${S.manifest.canvas[0]}x${S.manifest.canvas[1]} fixed sprite`,-W/2+8,-H/2+18)}ctx.restore()}
-function frame(now){requestAnimationFrame(frame);const target=+fpsT.value;if(now-S.lastDraw<1000/target)return;S.lastDraw=now;ctx.clearRect(0,0,720,720);const im=currentImage(now,now),p=clamp((now-S.changedAt)/180);if(S.prev&&p<1){drawSprite(S.images.get(S.prev.src),S.prev,1-smooth(p),now);drawSprite(im,S.state,smooth(p),now)}else drawSprite(im,S.state,1,now);S.frames.push(now);while(S.frames.length&&S.frames[0]<now-1000)S.frames.shift();fpsChip.textContent=`${S.frames.length} FPS`;manualValue.textContent=S.manualMouth.toFixed(2)}
-slider.oninput=()=>{S.manualMouth=+slider.value;if(S.manualMouth>0)lipT.checked=false};$('#cycleBtn').onclick=()=>{clearInterval(S.cycle);let i=S.manifest.states.findIndex(x=>x.id===S.state.id);S.cycle=setInterval(()=>{i=(i+1)%S.manifest.states.length;setState(S.manifest.states[i].id)},1600)};$('#neutralBtn').onclick=()=>{clearInterval(S.cycle);S.manualMouth=0;slider.value=0;lipT.checked=false;setState('neutral')};fpsT.onchange=()=>{if(S.state)runtimeState.textContent=`${S.state.motion} · ${fpsT.value} FPS target`};
-(async()=>{try{S.manifest=await getJSON('assets/runtime-v5/manifest.json');const report=await getJSON('qa/runtime-v5/report.json');const urls=S.manifest.states.map(s=>s.src).concat([S.manifest.blink.src],S.manifest.lip_sync.frames);await preload(urls);assetChip.textContent=`${report.runtime_png_kib} KB`;qaStatus.textContent=report.qa_pass?'PASS':'FAIL';buildButtons();setState('neutral');requestAnimationFrame(frame)}catch(e){console.error(e);runtimeState.textContent='LOAD ERROR';qaStatus.textContent='FAIL'}})();
+(() => {
+  'use strict';
+
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const qaMode = new URLSearchParams(location.search).has('qa');
+  const state = { ready:false, fps:0, renderer:'--', assetLoaded:false, current:'neutral', mic:null, analyser:null, micData:null, errors:[] };
+  const ui = {
+    canvas: $('#rigCanvas'), fx: $('#fxCanvas'), grid: $('#emotionGrid'), fps: $('#fpsChip'), renderer: $('#rendererChip'), asset: $('#assetChip'),
+    emotion: $('#emotionLabel'), motion: $('#motionLabel'), lipTest: $('#lipTest'), micBtn: $('#micBtn'), mouth: $('#mouthSlider'), mouthValue: $('#mouthValue'),
+    breath: $('#breathToggle'), blink: $('#blinkToggle'), mesh: $('#meshToggle'), autoCycle: $('#autoCycleBtn'), neutral: $('#neutralBtn'), status: $('#statusText'), wave: $('#wave')
+  };
+  let config, rig, renderer, last = performance.now(), frames = [], cycleTimer = 0, running = true;
+
+  const recordError = e => {
+    const msg = e instanceof Error ? (e.stack || e.message) : String(e);
+    state.errors.push(msg); console.error(e);
+    if (ui.status) ui.status.textContent='오류: '+msg.split('\n')[0];
+  };
+  window.addEventListener('error', e => recordError(e.error || e.message));
+  window.addEventListener('unhandledrejection', e => recordError(e.reason));
+
+  function buildWave() {
+    for(let i=0;i<28;i++){const bar=document.createElement('i');bar.style.setProperty('--i',i);ui.wave.appendChild(bar);}
+  }
+  function buildEmotionButtons() {
+    for(const [id, def] of Object.entries(JiraiRig.EMOTIONS)){
+      const b=document.createElement('button'); b.type='button'; b.dataset.emotion=id; b.innerHTML=`<span>${def.label}</span><small>${id}</small>`;
+      b.addEventListener('click',()=>setEmotion(id)); ui.grid.appendChild(b);
+    }
+  }
+  function setEmotion(id) {
+    if(!rig || !JiraiRig.EMOTIONS[id])return;
+    rig.applyEmotion(id); state.current=id;
+    ui.emotion.textContent=JiraiRig.EMOTIONS[id].label; ui.motion.textContent=JiraiRig.EMOTIONS[id].gesture;
+    $$('.emotion-grid button').forEach(b=>b.classList.toggle('active',b.dataset.emotion===id));
+  }
+  function updateWave(level) {
+    [...ui.wave.children].forEach((b,i)=>{const q=.25+.75*Math.abs(Math.sin(i*.73+performance.now()*.006));b.style.transform=`scaleY(${.2+level*q*1.15})`;});
+  }
+  async function toggleMic() {
+    if(state.mic){
+      state.mic.getTracks().forEach(t=>t.stop()); state.mic=null; state.analyser=null; rig.setMicActive(false);
+      ui.micBtn.classList.remove('active'); ui.micBtn.textContent='마이크 입력'; return;
+    }
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true},video:false});
+      const ac=new (window.AudioContext||window.webkitAudioContext)(), source=ac.createMediaStreamSource(stream), analyser=ac.createAnalyser();
+      analyser.fftSize=512; analyser.smoothingTimeConstant=.45; source.connect(analyser);
+      state.mic=stream; state.analyser=analyser; state.micData=new Uint8Array(analyser.fftSize); rig.setMicActive(true);
+      ui.lipTest.checked=false; rig.setLipTest(false); ui.micBtn.classList.add('active'); ui.micBtn.textContent='마이크 끄기';
+    }catch(e){recordError(e);}
+  }
+  function updateMic() {
+    if(!state.analyser)return;
+    state.analyser.getByteTimeDomainData(state.micData); let sum=0;
+    for(const v of state.micData){const n=(v-128)/128;sum+=n*n;}
+    const rms=Math.sqrt(sum/state.micData.length), gated=Math.max(0,(rms-.018)*7.5); rig.setMicLevel(Math.min(1,gated));
+  }
+  function tick(now) {
+    if(!running)return; requestAnimationFrame(tick);
+    const dt=Math.min(.04,(now-last)/1000||.016); last=now; updateMic();
+    const p=rig.update(now,dt,qaMode);
+    if(!ui.blink.checked) p.eyeL=p.eyeR=rig.springs.eyeL.value;
+    if(!ui.breath.checked) p.breath=0;
+    renderer.meshVisible=ui.mesh.checked; renderer.render(p,state.current); updateWave(p.mouthOpen);
+    ui.mouthValue.textContent=p.mouthOpen.toFixed(2);
+    frames.push(now); while(frames.length&&frames[0]<now-1000)frames.shift(); state.fps=frames.length; ui.fps.textContent=`${state.fps} FPS`;
+    if(state.ready) ui.status.textContent=`${JiraiRig.EMOTIONS[state.current].label} · Mouth ${p.mouthOpen.toFixed(2)} · ${state.renderer}`;
+    window.__JIRAI_QA_STATE__={...p,emotion:state.current};
+  }
+  function wireUI() {
+    ui.lipTest.addEventListener('change',()=>{rig.setLipTest(ui.lipTest.checked);if(ui.lipTest.checked&&state.mic)toggleMic();});
+    ui.micBtn.addEventListener('click',toggleMic);
+    ui.mouth.addEventListener('input',()=>{rig.setManualMouth(ui.mouth.value);if(+ui.mouth.value>0){ui.lipTest.checked=false;rig.setLipTest(false);}});
+    ui.autoCycle.addEventListener('click',()=>{
+      if(cycleTimer){clearInterval(cycleTimer);cycleTimer=0;ui.autoCycle.textContent='감정 자동 순환';return;}
+      const ids=Object.keys(JiraiRig.EMOTIONS);let i=ids.indexOf(state.current);setEmotion(ids[(++i)%ids.length]);cycleTimer=setInterval(()=>setEmotion(ids[(++i)%ids.length]),2100);ui.autoCycle.textContent='자동 순환 정지';
+    });
+    ui.neutral.addEventListener('click',()=>{
+      if(cycleTimer){clearInterval(cycleTimer);cycleTimer=0;ui.autoCycle.textContent='감정 자동 순환';}
+      ui.mouth.value=0;rig.setManualMouth(0);ui.lipTest.checked=false;rig.setLipTest(false);setEmotion('neutral');
+    });
+  }
+
+  async function boot() {
+    try{
+      buildWave(); buildEmotionButtons(); wireUI();
+      config=await fetch('config/jirai-v11.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`config ${r.status}`);return r.json();});
+      rig=new JiraiRig.MotionController(config); renderer=new JiraiRig.MeshRenderer(ui.canvas,ui.fx,config,qaMode);
+      state.renderer=renderer.fallback?'Canvas2D fallback':'WebGL2 mesh'; ui.renderer.textContent=state.renderer;
+      await renderer.load(config.atlas.src); state.assetLoaded=true; ui.asset.textContent='Asset OK'; ui.asset.classList.add('ok');
+      setEmotion('neutral'); state.ready=true; ui.status.textContent='준비 완료'; requestAnimationFrame(tick);
+    }catch(e){recordError(e);ui.asset.textContent='Asset FAIL';}
+  }
+
+  window.__JIRAI_QA__={
+    get ready(){return state.ready;},
+    setEmotion:id=>setEmotion(id),
+    setMouth:v=>{ui.mouth.value=v;rig.setManualMouth(v);},
+    setLipTest:v=>{ui.lipTest.checked=!!v;rig.setLipTest(!!v);},
+    forceBlink:()=>rig.forceBlink(),
+    snapshot:()=>({ready:state.ready,renderer:state.renderer,assetLoaded:state.assetLoaded,emotion:state.current,fps:state.fps,errors:[...state.errors],params:{...window.__JIRAI_QA_STATE__},buttonCount:ui.grid.children.length}),
+    stop:()=>{running=false;}
+  };
+  boot();
 })();
