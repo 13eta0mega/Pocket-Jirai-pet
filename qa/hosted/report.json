@@ -1,21 +1,14 @@
 {
   "rawGithack": {
-    "url": "https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa=1787317149564",
+    "url": "https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa=1787317850818",
     "status": 200,
     "gotoError": null,
-    "consoleErrors": [
-      "Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin"
-    ],
-    "failed": [
-      {
-        "url": "https://server.ethicalads.io/api/v1/decision/?publisher=githackcom&ad_types=image-v1&div_ids=githack-other-ad&callback=ad_1787317150226_261789&keywords=&campaign_types=paid%7Cpublisher-house%7Ccommunity%7Chouse&format=jsonp&client_version=2.4.0&placement_index=0&url=https%3A%2F%2Fraw.githack.com%2F13eta0mega%2FPocket-Jirai-pet%2FJirai_Ver1.1%2Findex.html",
-        "error": "net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin"
-      }
-    ],
+    "consoleErrors": [],
+    "failed": [],
     "state": {
-      "href": "https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa=1787317149564",
+      "href": "https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa=1787317850818",
       "title": "External Content Notice | rawgit.hack",
-      "bodyText": " rawgit.hack\nStatus Source code Report abuse\n\nOne more step\nThis HTML page is hosted on raw.githubusercontent.com and proxied as-is.\nrawgit.hack does not review third-party content.\n\nYou're going to open: \nOpen the page\nGo to homepage\n\nNot sure about the source? Avoid entering passwords, personal details, or payment information on the page.\n\n© 2013 — 2026 Pavel Puchkin\nSushi icon designed by Linda Yuki Nakanishi from The Noun Project.",
+      "bodyText": " rawgit.hack\nStatus Source code Report abuse\n$300 Free Credits to Build on Google Cloud\nBuild VMs, containers, AI, databases, storage—all in one place.\nads via Carbon\n\nOne more step\nThis HTML page is hosted on raw.githubusercontent.com and proxied as-is.\nrawgit.hack does not review third-party content.\n\nYou're going to open: \nOpen the page\nGo to homepage\n\nNot sure about the source? Avoid entering passwords, personal details, or payment information on the page.\n\n© 2013 — 2026 Pavel Puchkin\nSushi icon designed by Linda Yuki Nakanishi from The Noun Project.",
       "ready": false,
       "snapshot": null,
       "bodyChildren": 5,
@@ -23,15 +16,18 @@
     }
   },
   "githubPagesRoot": {
-    "url": "https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa=1787317149564",
+    "url": "https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa=1787317850818",
     "status": 200,
     "gotoError": null,
-    "consoleErrors": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 503 ()",
+      "Error: image assets/runtime-v5/talk/mouth_1.png\n    at im.onerror (https://13eta0mega.github.io/Pocket-Jirai-pet/src/app.js:8:152)"
+    ],
     "failed": [],
     "state": {
-      "href": "https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa=1787317149564",
+      "href": "https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa=1787317850818",
       "title": "Pocket Jirai Pet · Reference Runtime v5",
-      "bodyText": "POCKET-JIRAI-PET · REFERENCE-LOCKED RUNTIME V5\nPocket Jirai Pet\n\n최초 레퍼런스 6장의 체형과 캐릭터성을 기준으로 고정한 PC / ESP32-S3 검증 런타임\n\n22 FPS\n271 KB\n기본\nVisual QA\n기본\nidle · 30 FPS target\nMouthOpenY\n0.00\n감정 16종\npre-baked full sprites\n기본\n행복\n신남\n장난\n울망\n느긋\n아픔\n화남\n삐짐\n슬픔\n놀람\n부끄러움\n겁남\n의기양양\n갸웃\n좋아!\n동작\nreference-safe runtime\n호흡\n자동 눈깜빡임\n립싱크 테스트\nQA 가이드\n수동 MouthOpenY\n0.00\n렌더 목표\n60 FPS · PC\n30 FPS · ESP 목표\n15 FPS · 저전력\nNative sprite\n320 × 320\nReference originals\n6\nRuntime part coords\n0\nAsset QA\nPASS\n16종 자동 순환\n기본으로 복귀\nv5 수정 기준\n원본 6장은 형태를 다시 그리지 않고 그대로 사용합니다. 추가 감정은 원본 정면 캐릭터의 얼굴 특징만 오프라인에서 합성한 뒤 완성 PNG로 저장합니다. 브라우저에서는 팔·다리·얼굴 파츠를 따로 배치하지 않습니다.",
+      "bodyText": "POCKET-JIRAI-PET · REFERENCE-LOCKED RUNTIME V5\nPocket Jirai Pet\n\n최초 레퍼런스 6장의 체형과 캐릭터성을 기준으로 고정한 PC / ESP32-S3 검증 런타임\n\n-- FPS\nloading\n기본\nVisual QA\n기본\nLOAD ERROR\nMouthOpenY\n0.00\n감정 16종\npre-baked full sprites\n동작\nreference-safe runtime\n호흡\n자동 눈깜빡임\n립싱크 테스트\nQA 가이드\n수동 MouthOpenY\n0.00\n렌더 목표\n60 FPS · PC\n30 FPS · ESP 목표\n15 FPS · 저전력\nNative sprite\n320 × 320\nReference originals\n6\nRuntime part coords\n0\nAsset QA\nFAIL\n16종 자동 순환\n기본으로 복귀\nv5 수정 기준\n원본 6장은 형태를 다시 그리지 않고 그대로 사용합니다. 추가 감정은 원본 정면 캐릭터의 얼굴 특징만 오프라인에서 합성한 뒤 완성 PNG로 저장합니다. 브라우저에서는 팔·다리·얼굴 파츠를 따로 배치하지 않습니다.",
       "ready": false,
       "snapshot": null,
       "bodyChildren": 2,
@@ -39,60 +35,30 @@
     }
   },
   "githubPagesV11": {
-    "url": "https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.1/?hostqa=1787317149564",
+    "url": "https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.1/?hostqa=1787317850818",
     "status": 200,
     "gotoError": null,
-    "consoleErrors": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 503 ()",
+      "EncodingError: The source image cannot be decoded."
+    ],
     "failed": [],
     "state": {
-      "href": "https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.1/?hostqa=1787317149564",
+      "href": "https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.1/?hostqa=1787317850818",
       "title": "Pocket Jirai Pet · Jirai Ver1.1 Parts Rig",
-      "bodyText": "POCKET JIRAI PET · JIRAI VER1.1\nJirai Parts Rig\n\nJirai_Character_Asset의 눈·입·팔·다리 파츠를 직접 스왑/회전하고 스프링 모션으로 연결하는 레이어드 런타임\n\n61 FPS\nLayered atlas rig\nAsset + Parts OK\n기본\nsettle\n기본 · base / neutral / straight · Layered atlas rig\nLip Sync\n0.00\n감정 표현\n16 state · atlas part transition\n기본\nneutral\n행복\nhappy\n신남\nexcited\n장난\nteasing\n울망\npleading\n느긋\nrelaxed\n아픔\nsick\n화남\nangry\n삐짐\nannoyed\n슬픔\nsad\n놀람\nsurprised\n부끄러움\nembarrassed\n겁남\nscared\n의기양양\nsmug\n갸웃\nconfused\n좋아!\nlove\n립싱크\n실제 입 파츠 3단계 + 감정 입\n테스트 립싱크\n마이크 입력\n수동 MouthOpenY\nIdle / QA\n실제 파츠 리깅\n숨쉬기\n눈 깜빡임\n파츠 상태 표시\n감정 자동 순환\n기본으로 복귀\nVer1.2 parts renderer\n완성 캐릭터 한 장에 메쉬만 거는 방식에서 변경했습니다. 기본 캐릭터는 머리/몸통 기준 레이어로만 쓰고, 눈·감은 눈·입·팔·다리 파츠는 Jirai_Character_Asset 아틀라스에서 직접 가져와 독립적으로 스왑·회전·보간합니다. 눈깜빡임과 립싱크도 전용 파츠를 사용합니다.",
-      "ready": true,
+      "bodyText": "POCKET JIRAI PET · JIRAI VER1.1\nJirai Parts Rig\n\nJirai_Character_Asset의 눈·입·팔·다리 파츠를 직접 스왑/회전하고 스프링 모션으로 연결하는 레이어드 런타임\n\n-- FPS\nLayered atlas rig\nAsset FAIL\n기본\nsettle\n오류: The source image cannot be decoded.\nLip Sync\n0.00\n감정 표현\n16 state · atlas part transition\n기본\nneutral\n행복\nhappy\n신남\nexcited\n장난\nteasing\n울망\npleading\n느긋\nrelaxed\n아픔\nsick\n화남\nangry\n삐짐\nannoyed\n슬픔\nsad\n놀람\nsurprised\n부끄러움\nembarrassed\n겁남\nscared\n의기양양\nsmug\n갸웃\nconfused\n좋아!\nlove\n립싱크\n실제 입 파츠 3단계 + 감정 입\n테스트 립싱크\n마이크 입력\n수동 MouthOpenY\nIdle / QA\n실제 파츠 리깅\n숨쉬기\n눈 깜빡임\n파츠 상태 표시\n감정 자동 순환\n기본으로 복귀\nVer1.2 parts renderer\n완성 캐릭터 한 장에 메쉬만 거는 방식에서 변경했습니다. 기본 캐릭터는 머리/몸통 기준 레이어로만 쓰고, 눈·감은 눈·입·팔·다리 파츠는 Jirai_Character_Asset 아틀라스에서 직접 가져와 독립적으로 스왑·회전·보간합니다. 눈깜빡임과 립싱크도 전용 파츠를 사용합니다.",
+      "ready": false,
       "snapshot": {
-        "ready": true,
+        "ready": false,
         "renderer": "Layered atlas rig",
-        "assetLoaded": true,
+        "assetLoaded": false,
         "emotion": "neutral",
-        "fps": 61,
-        "errors": [],
-        "params": {
-          "headAngle": 0,
-          "headTurn": 0,
-          "bodyLean": 0,
-          "bodySquash": 0,
-          "armL": 0,
-          "armR": 0,
-          "legL": 0,
-          "legR": 0,
-          "eyeL": 1,
-          "eyeR": 1,
-          "browMood": 0,
-          "mouthOpen": 0,
-          "energy": 0.12,
-          "blush": 0,
-          "tears": 0,
-          "sick": 0,
-          "fear": 0,
-          "love": 0,
-          "anger": 0,
-          "sparkle": 0,
-          "breath": -0.8907810664238222,
-          "globalBob": -0.12238487524110621,
-          "globalX": 0,
-          "previousEmotion": "neutral",
-          "emotion": "neutral",
-          "transition": 1
-        },
-        "parts": {
-          "eye": "base",
-          "mouth": "neutral",
-          "arm": "straight",
-          "leg": "normal",
-          "previous": "neutral",
-          "emotion": "neutral",
-          "transition": 1
-        },
+        "fps": 0,
+        "errors": [
+          "The source image cannot be decoded."
+        ],
+        "params": {},
+        "parts": {},
         "buttonCount": 16,
         "mesh": {
           "inverted": 0,
@@ -107,8 +73,8 @@
       },
       "bodyChildren": 3,
       "canvas": {
-        "w": 630,
-        "h": 630
+        "w": 300,
+        "h": 150
       }
     }
   }
