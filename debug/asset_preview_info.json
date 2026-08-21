@@ -2,7 +2,132 @@
   "source": "src/Jirai_Character_Asset.png",
   "width": 1254,
   "height": 1254,
-  "preview_width": 64,
-  "preview_height": 64,
-  "preview_bytes": 1297
+  "tiles": [
+    {
+      "name": "tile_0_0",
+      "source_rect": [
+        0,
+        0,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 2109
+    },
+    {
+      "name": "tile_0_1",
+      "source_rect": [
+        418,
+        0,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1868
+    },
+    {
+      "name": "tile_0_2",
+      "source_rect": [
+        836,
+        0,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1364
+    },
+    {
+      "name": "tile_1_0",
+      "source_rect": [
+        0,
+        418,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1851
+    },
+    {
+      "name": "tile_1_1",
+      "source_rect": [
+        418,
+        418,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1697
+    },
+    {
+      "name": "tile_1_2",
+      "source_rect": [
+        836,
+        418,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1839
+    },
+    {
+      "name": "tile_2_0",
+      "source_rect": [
+        0,
+        836,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 1889
+    },
+    {
+      "name": "tile_2_1",
+      "source_rect": [
+        418,
+        836,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 2237
+    },
+    {
+      "name": "tile_2_2",
+      "source_rect": [
+        836,
+        836,
+        418,
+        418
+      ],
+      "preview": [
+        96,
+        96
+      ],
+      "bytes": 2454
+    }
+  ]
 }
