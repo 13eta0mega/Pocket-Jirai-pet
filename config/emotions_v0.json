@@ -1,0 +1,182 @@
+{
+  "version": 0,
+  "transition_ms": 240,
+  "states": {
+    "neutral": {
+      "eye": "eyes_open_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_closed",
+      "mouth_open_y": 0.0,
+      "head_rotation_deg": 0,
+      "body_y": 0,
+      "body_scale_y": 1.0,
+      "breath": 1.0,
+      "special": null
+    },
+    "happy": {
+      "eye": "eyes_closed_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_smile_open",
+      "mouth_open_y": 0.45,
+      "head_rotation_deg": 0,
+      "body_y": -2,
+      "body_scale_y": 1.015,
+      "breath": 1.1,
+      "special": "happy_bob"
+    },
+    "excited": {
+      "eye": "eyes_sparkle_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_wide",
+      "mouth_open_y": 0.8,
+      "head_rotation_deg": 0,
+      "body_y": -4,
+      "body_scale_y": 1.025,
+      "breath": 1.2,
+      "special": "bounce"
+    },
+    "teasing": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_small",
+      "mouth_open_y": 0.2,
+      "head_rotation_deg": -4,
+      "body_y": 0,
+      "body_scale_y": 1.0,
+      "breath": 0.9,
+      "special": "wink_hold"
+    },
+    "pleading": {
+      "eye": "eyes_sparkle_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_small",
+      "mouth_open_y": 0.12,
+      "head_rotation_deg": 0,
+      "body_y": 3,
+      "body_scale_y": 0.99,
+      "breath": 0.7,
+      "special": "tiny_sway"
+    },
+    "relaxed": {
+      "eye": "eyes_closed_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_closed",
+      "mouth_open_y": 0.0,
+      "head_rotation_deg": -3,
+      "body_y": 2,
+      "body_scale_y": 0.995,
+      "breath": 0.55,
+      "special": "slow_sway"
+    },
+    "sick": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_medium",
+      "mouth_open_y": 0.25,
+      "head_rotation_deg": 2,
+      "body_y": 3,
+      "body_scale_y": 0.99,
+      "breath": 0.45,
+      "special": "weak_sway"
+    },
+    "angry": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_angry_pair",
+      "mouth": "mouth_closed",
+      "mouth_open_y": 0.0,
+      "head_rotation_deg": -1,
+      "body_y": 1,
+      "body_scale_y": 1.01,
+      "breath": 0.9,
+      "special": "micro_shake"
+    },
+    "annoyed": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_angry_pair",
+      "mouth": "mouth_small",
+      "mouth_open_y": 0.08,
+      "head_rotation_deg": 4,
+      "body_y": 1,
+      "body_scale_y": 1.0,
+      "breath": 0.85,
+      "special": "side_sway"
+    },
+    "sad": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_closed",
+      "mouth_open_y": 0.0,
+      "head_rotation_deg": 2,
+      "body_y": 4,
+      "body_scale_y": 0.985,
+      "breath": 0.65,
+      "special": "sad_sink"
+    },
+    "surprised": {
+      "eye": "eyes_open_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_wide",
+      "mouth_open_y": 0.85,
+      "head_rotation_deg": 0,
+      "body_y": -3,
+      "body_scale_y": 1.02,
+      "breath": 0.8,
+      "special": "startle"
+    },
+    "embarrassed": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_small",
+      "mouth_open_y": 0.1,
+      "head_rotation_deg": -3,
+      "body_y": 2,
+      "body_scale_y": 1.0,
+      "breath": 0.85,
+      "special": "shy_sway"
+    },
+    "scared": {
+      "eye": "eyes_open_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_medium",
+      "mouth_open_y": 0.35,
+      "head_rotation_deg": -1,
+      "body_y": 2,
+      "body_scale_y": 1.0,
+      "breath": 1.05,
+      "special": "shiver"
+    },
+    "smug": {
+      "eye": "eyes_half_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_smile_open",
+      "mouth_open_y": 0.25,
+      "head_rotation_deg": -4,
+      "body_y": -1,
+      "body_scale_y": 1.0,
+      "breath": 0.9,
+      "special": "smug_hold"
+    },
+    "confused": {
+      "eye": "eyes_open_pair",
+      "brow": "brows_sad_pair",
+      "mouth": "mouth_small",
+      "mouth_open_y": 0.08,
+      "head_rotation_deg": 6,
+      "body_y": 0,
+      "body_scale_y": 1.0,
+      "breath": 0.9,
+      "special": "head_tilt"
+    },
+    "love": {
+      "eye": "eyes_sparkle_pair",
+      "brow": "brows_neutral_pair",
+      "mouth": "mouth_smile_open",
+      "mouth_open_y": 0.55,
+      "head_rotation_deg": 0,
+      "body_y": -3,
+      "body_scale_y": 1.02,
+      "breath": 1.1,
+      "special": "heart_bob"
+    }
+  }
+}
