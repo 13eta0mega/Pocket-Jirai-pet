@@ -118,7 +118,12 @@ def main() -> None:
     def face_crop(box):
         return border_white_alpha(face.crop(box))
 
-    save("hair_front.png", part_crop((600, 65, 980, 410)), 340)
+    # Hair is split into front hair + two tails so ESP/PC can animate the tails
+    # independently without storing full animation frames.
+    save("hair_front.png", part_crop((620, 55, 990, 420)), 340)
+    save("twin_tail_left.png", part_crop((58, 145, 155, 385)), 250)
+    save("twin_tail_right.png", part_crop((495, 145, 600, 385)), 250)
+
     save("body_dress.png", part_crop((120, 435, 545, 690)), 340)
     save("skirt_upperlegs.png", part_crop((575, 445, 940, 725)), 340)
     save("arm_left.png", part_crop((1000, 380, 1135, 595)), 220)
@@ -205,7 +210,7 @@ def main() -> None:
             "status": "prototype",
             "known_issues": [
                 "face blank still needs final manual cleanup",
-                "hair/twin-tail rig anchors are not finalized",
+                "twin-tail top edges need final cleanup under bunny clips",
                 "mouth and eye placement must be tuned on the assembled model",
             ],
         },
