@@ -25,6 +25,14 @@ const shot=await page.locator('#stageWrap').screenshot({type:'jpeg',quality:42})
 const b64=shot.toString('base64');
 await fs.mkdir('qa/jirai-v11',{recursive:true});
 for(let i=0,n=0;i<b64.length;i+=3800,n++) await fs.writeFile(`qa/jirai-v11/preview_${String(n).padStart(2,'0')}.txt`,b64.slice(i,i+3800));
+const tiny=await page.evaluate(()=>{
+  const rig=document.querySelector('#rigCanvas'), fx=document.querySelector('#fxCanvas');
+  const c=document.createElement('canvas'); c.width=192; c.height=192;
+  const x=c.getContext('2d'); x.fillStyle='#25182b'; x.fillRect(0,0,192,192);
+  x.drawImage(rig,0,0,192,192); x.drawImage(fx,0,0,192,192);
+  return c.toDataURL('image/jpeg',0.46).split(',')[1];
+});
+await fs.writeFile('qa/jirai-v11/tiny_preview.b64.txt',tiny);
 const diffs=Object.fromEntries(Object.entries(results.samples).map(([id,s])=>[id,
   Math.abs((s.params?.headAngle||0)-(results.initial.params?.headAngle||0))+
   Math.abs((s.params?.armL||0)-(results.initial.params?.armL||0))+
