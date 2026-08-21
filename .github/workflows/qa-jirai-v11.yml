@@ -11,6 +11,7 @@ on:
       - 'src/Jirai_Character_Asset.png'
       - 'config/jirai-v11.json'
       - 'tools/qa_browser.mjs'
+      - 'tools/qa_hosted.mjs'
       - '.github/workflows/qa-jirai-v11.yml'
   workflow_dispatch:
 
@@ -34,16 +35,20 @@ jobs:
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/jirai-http.log 2>&1 &
           for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
-      - name: Run interaction and render QA
+      - name: Run local interaction and render QA
         run: node tools/qa_browser.mjs
-      - name: Commit QA report and textual preview
+      - name: Run externally hosted page diagnostic
+        continue-on-error: true
+        run: node tools/qa_hosted.mjs
+      - name: Commit QA reports and textual preview
         if: always()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add qa/jirai-v11 || true
+          git add qa/jirai-v11 qa/hosted || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Update Jirai Ver1.1 browser QA [skip ci]'
+          git pull --rebase origin Jirai_Ver1.1 || true
           git push
 
-# QA revision: atlas-mouth + articulated-limb motion v1.1.1
+# QA revision: local WebGL rig plus externally hosted-page verification.
