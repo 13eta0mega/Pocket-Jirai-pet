@@ -1,46 +1,7 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#120f18">
-  <title>Pocket Jirai Pet · Jirai Ver1.1</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <main class="app-shell">
-    <header class="topbar">
-      <div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.1</div><h1>Jirai Motion Rig</h1><p>단일 캐릭터 에셋을 GPU 메쉬로 변형하는 Live2D-like 브라우저 런타임</p></div>
-      <div class="chips"><span id="fpsChip">-- FPS</span><span id="rendererChip">Renderer --</span><span id="assetChip">Asset loading</span></div>
-    </header>
-
-    <section class="workspace">
-      <section class="stage-card">
-        <div class="stage-head"><div><strong id="emotionLabel">기본</strong><span id="motionLabel">settle</span></div><small id="statusText">로딩 중</small></div>
-        <div id="stageWrap" class="stage-wrap">
-          <canvas id="rigCanvas" aria-label="Jirai character"></canvas>
-          <canvas id="fxCanvas" aria-hidden="true"></canvas>
-          <div class="stage-vignette"></div>
-        </div>
-        <div class="mouth-meter"><span>Lip Sync</span><div id="wave" class="wave"></div><output id="mouthValue">0.00</output></div>
-      </section>
-
-      <aside class="controls">
-        <section class="panel emotion-panel"><div class="section-title"><strong>감정 표현</strong><span>16 state · spring transition</span></div><div id="emotionGrid" class="emotion-grid"></div></section>
-        <section class="panel"><div class="section-title"><strong>립싱크</strong><span>테스트 / 마이크 / 수동</span></div>
-          <div class="toggle-grid"><label><input id="lipTest" type="checkbox"> 테스트 립싱크</label><button id="micBtn" type="button" class="mini">마이크 입력</button></div>
-          <label class="range-row"><span>수동 MouthOpenY</span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label>
-        </section>
-        <section class="panel"><div class="section-title"><strong>Idle / QA</strong><span>브라우저 실시간</span></div>
-          <div class="toggle-grid checks"><label><input id="breathToggle" type="checkbox" checked> 숨쉬기</label><label><input id="blinkToggle" type="checkbox" checked> 눈 깜빡임</label><label><input id="meshToggle" type="checkbox"> 메쉬 표시</label></div>
-        </section>
-        <section class="actions"><button id="autoCycleBtn" type="button">감정 자동 순환</button><button id="neutralBtn" type="button" class="secondary">기본으로 복귀</button></section>
-      </aside>
-    </section>
-
-    <section class="tech-note"><strong>Ver1.1 renderer</strong><span>표정 스프라이트를 통째로 교체하지 않고 약 330개의 GPU 메쉬 제어점으로 머리·눈·입·몸·팔·다리·머리카락을 국소 변형합니다. 감정 스왑은 각 파라미터의 스프링 보간과 제스처 엔벨로프로 연결됩니다.</span></section>
-  </main>
-  <script src="src/rig-engine.js"></script>
-  <script src="src/app.js"></script>
-</body>
-</html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#120f18"><title>Pocket Jirai Pet · Jirai Ver1.1 Parts Rig</title><link rel="stylesheet" href="styles.css"></head>
+<body><main class="app-shell"><header class="topbar"><div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.1</div><h1>Jirai Parts Rig</h1><p>Jirai_Character_Asset의 눈·입·팔·다리 파츠를 직접 스왑/회전하고 스프링 모션으로 연결하는 레이어드 런타임</p></div><div class="chips"><span id="fpsChip">-- FPS</span><span id="rendererChip">Renderer --</span><span id="assetChip">Asset loading</span></div></header>
+<section class="workspace"><section class="stage-card"><div class="stage-head"><div><strong id="emotionLabel">기본</strong><span id="motionLabel">settle</span></div><small id="statusText">로딩 중</small></div><div id="stageWrap" class="stage-wrap"><canvas id="rigCanvas" aria-label="Jirai character"></canvas><canvas id="fxCanvas" aria-hidden="true"></canvas><div class="stage-vignette"></div></div><div class="mouth-meter"><span>Lip Sync</span><div id="wave" class="wave"></div><output id="mouthValue">0.00</output></div></section>
+<aside class="controls"><section class="panel emotion-panel"><div class="section-title"><strong>감정 표현</strong><span>16 state · atlas part transition</span></div><div id="emotionGrid" class="emotion-grid"></div></section><section class="panel"><div class="section-title"><strong>립싱크</strong><span>실제 입 파츠 3단계 + 감정 입</span></div><div class="toggle-grid"><label><input id="lipTest" type="checkbox"> 테스트 립싱크</label><button id="micBtn" type="button" class="mini">마이크 입력</button></div><label class="range-row"><span>수동 MouthOpenY</span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label></section><section class="panel"><div class="section-title"><strong>Idle / QA</strong><span>실제 파츠 리깅</span></div><div class="toggle-grid checks"><label><input id="breathToggle" type="checkbox" checked> 숨쉬기</label><label><input id="blinkToggle" type="checkbox" checked> 눈 깜빡임</label><label><input id="meshToggle" type="checkbox"> 파츠 상태 표시</label></div></section><section class="actions"><button id="autoCycleBtn" type="button">감정 자동 순환</button><button id="neutralBtn" type="button" class="secondary">기본으로 복귀</button></section></aside></section>
+<section class="tech-note"><strong>Ver1.2 parts renderer</strong><span>완성 캐릭터 한 장에 메쉬만 거는 방식에서 변경했습니다. 기본 캐릭터는 머리/몸통 기준 레이어로만 쓰고, 눈·감은 눈·입·팔·다리 파츠는 Jirai_Character_Asset 아틀라스에서 직접 가져와 독립적으로 스왑·회전·보간합니다. 눈깜빡임과 립싱크도 전용 파츠를 사용합니다.</span></section></main><script src="src/rig-engine.js"></script><script src="src/app.js"></script></body></html>
