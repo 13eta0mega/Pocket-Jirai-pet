@@ -3,54 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#111016">
-  <title>Pocket Jirai Pet · Reference Runtime v5</title>
+  <meta name="theme-color" content="#120f18">
+  <title>Pocket Jirai Pet · Jirai Ver1.1</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="shell">
+  <main class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">POCKET-JIRAI-PET · REFERENCE-LOCKED RUNTIME V5</div>
-        <h1>Pocket Jirai Pet</h1>
-        <p>최초 레퍼런스 6장의 체형과 캐릭터성을 기준으로 고정한 PC / ESP32-S3 검증 런타임</p>
-      </div>
-      <div class="chips"><span id="fpsChip">-- FPS</span><span id="assetChip">loading</span><span id="stateChip">기본</span></div>
+      <div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.1</div><h1>Jirai Motion Rig</h1><p>단일 캐릭터 에셋을 GPU 메쉬로 변형하는 Live2D-like 브라우저 런타임</p></div>
+      <div class="chips"><span id="fpsChip">-- FPS</span><span id="rendererChip">Renderer --</span><span id="assetChip">Asset loading</span></div>
     </header>
 
-    <section class="layout">
-      <section class="viewer-card">
-        <div class="viewer-head"><strong id="emotionTitle">기본</strong><span id="runtimeState">reference sprite · loading</span></div>
-        <div class="canvas-wrap"><canvas id="avatarCanvas" width="720" height="720"></canvas></div>
-        <div class="meters"><div class="meter"><span>MouthOpenY</span><div class="meter-track"><i id="mouthBar"></i></div><output id="mouthValue">0.00</output></div></div>
+    <section class="workspace">
+      <section class="stage-card">
+        <div class="stage-head"><div><strong id="emotionLabel">기본</strong><span id="motionLabel">settle</span></div><small id="statusText">로딩 중</small></div>
+        <div id="stageWrap" class="stage-wrap">
+          <canvas id="rigCanvas" aria-label="Jirai character"></canvas>
+          <canvas id="fxCanvas" aria-hidden="true"></canvas>
+          <div class="stage-vignette"></div>
+        </div>
+        <div class="mouth-meter"><span>Lip Sync</span><div id="wave" class="wave"></div><output id="mouthValue">0.00</output></div>
       </section>
 
-      <aside class="control-card">
-        <section><div class="section-head"><strong>감정 16종</strong><span>pre-baked full sprites</span></div><div id="emotionGrid" class="emotion-grid"></div></section>
-        <section>
-          <div class="section-head"><strong>동작</strong><span>reference-safe runtime</span></div>
-          <div class="switch-grid">
-            <label><input id="breathToggle" type="checkbox" checked> 호흡</label>
-            <label><input id="blinkToggle" type="checkbox" checked> 자동 눈깜빡임</label>
-            <label><input id="lipToggle" type="checkbox"> 립싱크 테스트</label>
-            <label><input id="debugToggle" type="checkbox"> QA 가이드</label>
-          </div>
-          <label class="slider-row"><span>수동 MouthOpenY</span><output id="manualMouthValue">0.00</output><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label>
-          <label class="select-row"><span>렌더 목표</span><select id="fpsTarget"><option value="60">60 FPS · PC</option><option value="30" selected>30 FPS · ESP 목표</option><option value="15">15 FPS · 저전력</option></select></label>
+      <aside class="controls">
+        <section class="panel emotion-panel"><div class="section-title"><strong>감정 표현</strong><span>16 state · spring transition</span></div><div id="emotionGrid" class="emotion-grid"></div></section>
+        <section class="panel"><div class="section-title"><strong>립싱크</strong><span>테스트 / 마이크 / 수동</span></div>
+          <div class="toggle-grid"><label><input id="lipTest" type="checkbox"> 테스트 립싱크</label><button id="micBtn" type="button" class="mini">마이크 입력</button></div>
+          <label class="range-row"><span>수동 MouthOpenY</span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label>
         </section>
-        <section class="stats">
-          <div><span>Native sprite</span><strong>320 × 320</strong></div>
-          <div><span>Reference originals</span><strong>6</strong></div>
-          <div><span>Runtime part coords</span><strong>0</strong></div>
-          <div><span>Asset QA</span><strong id="qaStatus">loading</strong></div>
+        <section class="panel"><div class="section-title"><strong>Idle / QA</strong><span>브라우저 실시간</span></div>
+          <div class="toggle-grid checks"><label><input id="breathToggle" type="checkbox" checked> 숨쉬기</label><label><input id="blinkToggle" type="checkbox" checked> 눈 깜빡임</label><label><input id="meshToggle" type="checkbox"> 메쉬 표시</label></div>
         </section>
-        <section class="actions"><button id="cycleBtn">16종 자동 순환</button><button id="neutralBtn" class="secondary">기본으로 복귀</button></section>
+        <section class="actions"><button id="autoCycleBtn" type="button">감정 자동 순환</button><button id="neutralBtn" type="button" class="secondary">기본으로 복귀</button></section>
       </aside>
     </section>
 
-    <section class="qa-note"><strong>v5 수정 기준</strong><span>원본 6장은 형태를 다시 그리지 않고 그대로 사용합니다. 추가 감정은 원본 정면 캐릭터의 얼굴 특징만 오프라인에서 합성한 뒤 완성 PNG로 저장합니다. 브라우저에서는 팔·다리·얼굴 파츠를 따로 배치하지 않습니다.</span></section>
+    <section class="tech-note"><strong>Ver1.1 renderer</strong><span>표정 스프라이트를 통째로 교체하지 않고 약 330개의 GPU 메쉬 제어점으로 머리·눈·입·몸·팔·다리·머리카락을 국소 변형합니다. 감정 스왑은 각 파라미터의 스프링 보간과 제스처 엔벨로프로 연결됩니다.</span></section>
   </main>
+  <script src="src/rig-engine.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>
