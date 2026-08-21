@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'tools/build_runtime_assets.py'
+      - 'tools/repack_runtime_atlas.py'
       - 'tools/requirements.txt'
       - 'assets/generated/**'
       - 'config/runtime_asset_plan.json'
@@ -29,18 +30,31 @@ jobs:
       - name: Install dependencies
         run: pip install -r tools/requirements.txt
 
-      - name: Build atlas and runtime parts
+      - name: Build runtime parts
         run: python tools/build_runtime_assets.py
+
+      - name: Repack and validate atlas bounds
+        run: python tools/repack_runtime_atlas.py
 
       - name: Show runtime size
         run: |
           du -ah assets/runtime | sort -h
           python - <<'PY'
+          import json
           from pathlib import Path
-          total = sum(p.stat().st_size for p in Path('assets/runtime').rglob('*') if p.is_file())
+
+          root = Path('assets/runtime')
+          total = sum(p.stat().st_size for p in root.rglob('*') if p.is_file())
           print(f'Runtime assets total: {total} bytes ({total/1024:.1f} KiB)')
           if total > 3 * 1024 * 1024:
               raise SystemExit('Runtime asset budget exceeded: 3 MiB')
+
+          manifest = json.loads((root / 'jirai_runtime_atlas_v0.json').read_text())
+          width, height = manifest['size']
+          for name, (x, y, w, h) in manifest['rects'].items():
+              if x < 0 or y < 0 or x + w > width or y + h > height:
+                  raise SystemExit(f'Atlas rect out of bounds: {name} -> {(x,y,w,h)}')
+          print('Atlas bounds QA: PASS')
           PY
 
       - name: Commit generated runtime assets
