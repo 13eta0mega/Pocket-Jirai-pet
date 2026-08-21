@@ -1,0 +1,151 @@
+{
+  "version": 4,
+  "renderer": "full-sprite-fixed-canvas",
+  "canvas": [
+    320,
+    440
+  ],
+  "display": {
+    "width": 430,
+    "height": 591,
+    "x": 360,
+    "y": 370
+  },
+  "states": [
+    {
+      "id": "neutral",
+      "label": "기본",
+      "src": "assets/runtime-v4/states/00_neutral.png",
+      "motion": "idle"
+    },
+    {
+      "id": "happy",
+      "label": "행복",
+      "src": "assets/runtime-v4/states/01_happy.png",
+      "motion": "happy_bob"
+    },
+    {
+      "id": "excited",
+      "label": "신남",
+      "src": "assets/runtime-v4/states/02_excited.png",
+      "motion": "bounce"
+    },
+    {
+      "id": "teasing",
+      "label": "장난",
+      "src": "assets/runtime-v4/states/03_teasing.png",
+      "motion": "tiny_sway"
+    },
+    {
+      "id": "pleading",
+      "label": "울망",
+      "src": "assets/runtime-v4/states/04_pleading.png",
+      "motion": "tiny_sway"
+    },
+    {
+      "id": "relaxed",
+      "label": "느긋",
+      "src": "assets/runtime-v4/states/05_relaxed.png",
+      "motion": "slow_sway"
+    },
+    {
+      "id": "sick",
+      "label": "힘빠짐",
+      "src": "assets/runtime-v4/states/06_sick.png",
+      "motion": "weak_sway"
+    },
+    {
+      "id": "angry",
+      "label": "화남",
+      "src": "assets/runtime-v4/states/07_angry.png",
+      "motion": "micro_shake"
+    },
+    {
+      "id": "annoyed",
+      "label": "삐짐",
+      "src": "assets/runtime-v4/states/08_annoyed.png",
+      "motion": "side_sway"
+    },
+    {
+      "id": "sad",
+      "label": "슬픔",
+      "src": "assets/runtime-v4/states/09_sad.png",
+      "motion": "sad_sink"
+    },
+    {
+      "id": "surprised",
+      "label": "놀람",
+      "src": "assets/runtime-v4/states/10_surprised.png",
+      "motion": "startle"
+    },
+    {
+      "id": "embarrassed",
+      "label": "부끄러움",
+      "src": "assets/runtime-v4/states/11_embarrassed.png",
+      "motion": "shy_sway"
+    },
+    {
+      "id": "scared",
+      "label": "겁남",
+      "src": "assets/runtime-v4/states/12_scared.png",
+      "motion": "shiver"
+    },
+    {
+      "id": "smug",
+      "label": "의기양양",
+      "src": "assets/runtime-v4/states/13_smug.png",
+      "motion": "smug_hold"
+    },
+    {
+      "id": "confused",
+      "label": "갸웃",
+      "src": "assets/runtime-v4/states/14_confused.png",
+      "motion": "head_tilt"
+    },
+    {
+      "id": "love",
+      "label": "좋아!",
+      "src": "assets/runtime-v4/states/15_love.png",
+      "motion": "heart_bob"
+    }
+  ],
+  "blink": {
+    "src": "assets/runtime-v4/blink.png",
+    "safe_states": [
+      "neutral"
+    ],
+    "min_interval_ms": 2800,
+    "max_interval_ms": 6200,
+    "duration_ms": 150
+  },
+  "lip_sync": {
+    "frames": [
+      "assets/runtime-v4/talk/mouth_0.png",
+      "assets/runtime-v4/talk/mouth_1.png",
+      "assets/runtime-v4/talk/mouth_2.png",
+      "assets/runtime-v4/talk/mouth_3.png",
+      "assets/runtime-v4/talk/mouth_4.png",
+      "assets/runtime-v4/talk/mouth_5.png"
+    ],
+    "safe_states": [
+      "neutral"
+    ],
+    "thresholds": [
+      0.08,
+      0.18,
+      0.34,
+      0.52,
+      0.72
+    ],
+    "note": "Pre-baked full sprites; no runtime mouth coordinate compositing."
+  },
+  "qa": {
+    "status": "stable-prototype",
+    "rules": [
+      "Every runtime state is exactly 320x440.",
+      "Runtime never rescales sprites based on their alpha bounding box.",
+      "No independent arm/leg/skirt/head-part positioning is used.",
+      "Blink and lip sync use pre-baked full sprites."
+    ]
+  }
+}
