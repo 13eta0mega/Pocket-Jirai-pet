@@ -61,6 +61,18 @@ def main() -> None:
         "used_height": used_height,
         "overflow_checked": True,
     }
+    manifest["qa"] = {
+        "status": "layout-tuning",
+        "known_issues": [
+            "face blank still needs final manual cleanup",
+            "eye, brow and mouth placement still need visual tuning against the reference overlay",
+            "bunny clip extraction is still provisional",
+        ],
+        "resolved": [
+            "atlas overflow is bounds-checked",
+            "twin-tail hair masks no longer keep the white clip/ear artifacts",
+        ],
+    }
     MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     print(f"Packed {len(sprites)} parts into {ATLAS_WIDTH}x{ATLAS_HEIGHT}; used height={used_height}")
