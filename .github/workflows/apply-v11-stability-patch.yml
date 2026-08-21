@@ -1,0 +1,36 @@
+name: Apply Jirai Ver1.1 Stability Patch
+
+on:
+  push:
+    branches: [Jirai_Ver1.1]
+    paths:
+      - 'tools/apply_v11_stability_patch.py'
+      - '.github/workflows/apply-v11-stability-patch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply stability patch
+        run: python3 tools/apply_v11_stability_patch.py
+      - name: Syntax check
+        run: |
+          node --check src/rig-engine.js
+          node --check tools/qa_browser.mjs
+      - name: Commit patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/rig-engine.js tools/qa_browser.mjs
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Stabilize Jirai Ver1.1 spring solver and QA'
+          git push
