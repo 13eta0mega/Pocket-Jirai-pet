@@ -2,7 +2,7 @@
   "version": 0,
   "canvas": [720, 720],
   "reference": "assets/generated/references/reference_character_bunnyclip_gothic_lolita.png",
-  "reference_transform": {"x": 147, "y": 70, "w": 426, "h": 568, "opacity": 0.0},
+  "reference_transform": {"x": 0, "y": 0, "w": 720, "h": 720, "opacity": 0.0},
   "parts": {
     "leg_left": {"x": 292, "y": 447, "scale": 0.78, "rotation": 0, "anchor": [0.5, 0.05], "group": "body"},
     "leg_right": {"x": 351, "y": 447, "scale": 0.78, "rotation": 0, "anchor": [0.5, 0.05], "group": "body"},
