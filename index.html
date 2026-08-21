@@ -2,61 +2,66 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title>Pocket Jirai Pet</title>
+  <meta name="theme-color" content="#111016">
+  <title>Pocket Jirai Pet · Stable Runtime v4</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app-shell">
+  <main class="shell">
     <header class="topbar">
       <div>
-        <div class="eyebrow">POCKET-JIRAI-PET · RASTER RIG</div>
+        <div class="eyebrow">POCKET-JIRAI-PET · STABLE RUNTIME V4</div>
         <h1>Pocket Jirai Pet</h1>
-        <p>PC / ESP32-S3 공통화를 목표로 한 경량 PNG cutout 애니메이션 프로토타입</p>
+        <p>런타임 파츠 배치를 제거하고 모든 상태를 동일한 320×440 좌표계로 사전 합성한 PC / ESP32-S3 검증 버전</p>
       </div>
-      <div class="status-chips">
+      <div class="chips">
         <span id="fpsChip">-- FPS</span>
-        <span id="modeChip">RIG</span>
-        <span id="assetChip">~380 KB</span>
-        <a href="rig-lab.html" style="border:1px solid #493945;background:#1c171e;border-radius:999px;padding:8px 12px;font-size:12px;color:#ffd4e7;text-decoration:none">Atlas Rig Lab v3</a>
+        <span id="assetChip">loading</span>
+        <span id="stateChip">기본</span>
       </div>
     </header>
 
     <section class="layout">
       <section class="viewer-card">
-        <div class="viewer-toolbar"><strong id="emotionLabel">기본</strong><span id="stateLabel">idle · blink · breath</span></div>
-        <div class="canvas-frame"><canvas id="avatarCanvas" width="720" height="720"></canvas><div class="ground"></div></div>
-        <div class="timeline"><div class="wave" id="wave"></div><span id="mouthReadout">Mouth 0.00</span></div>
+        <div class="viewer-head"><strong id="emotionTitle">기본</strong><span id="runtimeState">fixed sprite · loading</span></div>
+        <div class="canvas-wrap"><canvas id="avatarCanvas" width="720" height="720"></canvas></div>
+        <div class="meters">
+          <div class="meter"><span>MouthOpenY</span><div class="meter-track"><i id="mouthBar"></i></div><output id="mouthValue">0.00</output></div>
+        </div>
       </section>
 
-      <aside class="panel-card">
-        <section class="panel-section"><div class="section-head"><strong>감정 16종</strong><span>cross-fade 240 ms</span></div><div class="emotion-grid" id="emotionGrid"></div></section>
-        <section class="panel-section">
-          <div class="section-head"><strong>애니메이션</strong><span>PC prototype</span></div>
+      <aside class="control-card">
+        <section>
+          <div class="section-head"><strong>감정 16종</strong><span>pre-baked full sprites</span></div>
+          <div id="emotionGrid" class="emotion-grid"></div>
+        </section>
+
+        <section>
+          <div class="section-head"><strong>동작</strong><span>safe runtime only</span></div>
           <div class="switch-grid">
+            <label><input id="breathToggle" type="checkbox" checked> 호흡</label>
             <label><input id="blinkToggle" type="checkbox" checked> 자동 눈깜빡임</label>
-            <label><input id="breathToggle" type="checkbox" checked> 호흡 / idle sway</label>
-            <label><input id="lipToggle" type="checkbox"> 테스트 립싱크</label>
-            <label><input id="pixelToggle" type="checkbox"> ESP 미리보기</label>
+            <label><input id="lipToggle" type="checkbox"> 립싱크 테스트</label>
+            <label><input id="debugToggle" type="checkbox"> QA 가이드</label>
           </div>
-          <label class="slider-row"><span>수동 MouthOpenY</span><output id="mouthValue">0.00</output><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label>
-          <label class="select-row"><span>렌더 목표</span><select id="fpsTarget"><option value="60">60 FPS (PC)</option><option value="30" selected>30 FPS (ESP 목표)</option><option value="15">15 FPS (저전력)</option></select></label>
+          <label class="slider-row"><span>수동 MouthOpenY</span><output id="manualMouthValue">0.00</output><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label>
+          <label class="select-row"><span>렌더 목표</span><select id="fpsTarget"><option value="60">60 FPS · PC</option><option value="30" selected>30 FPS · ESP 목표</option><option value="15">15 FPS · 저전력</option></select></label>
         </section>
-        <section class="panel-section stats">
-          <div><span>렌더 방식</span><strong>Canvas 2D + PNG cutout</strong></div>
-          <div><span>리그</span><strong>Base + Eyes + Mouth</strong></div>
-          <div><span>Runtime v3</span><strong>1024×1024 atlas</strong></div>
-          <div><span>ESP 목표</span><strong>&lt; 3 MB / 15–30 FPS</strong></div>
+
+        <section class="stats">
+          <div><span>Native sprite</span><strong>320 × 440</strong></div>
+          <div><span>Runtime 방식</span><strong>Full sprite</strong></div>
+          <div><span>Part coordinates</span><strong>0</strong></div>
+          <div><span>Asset QA</span><strong id="qaStatus">loading</strong></div>
         </section>
-        <section class="panel-section actions"><button id="cycleBtn">16종 자동 순환</button><button id="qaBtn" class="secondary">Blink/Lip QA</button><button id="resetBtn" class="secondary">초기화</button></section>
+
+        <section class="actions"><button id="cycleBtn">16종 자동 순환</button><button id="neutralBtn" class="secondary">기본으로 복귀</button></section>
       </aside>
     </section>
 
-    <section class="notes-card">
-      <div><strong>Main preview</strong><p>안정적인 기존 raster preview입니다. 현재 표시를 유지한 채 atlas 기반 리그를 별도 Rig Lab에서 검증합니다.</p></div>
-      <div><strong>Atlas Rig Lab v3</strong><p>GitHub Actions가 생성한 1024×1024 런타임 atlas를 직접 사용합니다. 트윈테일 독립 모션, 16감정, blink, breath, lip-sync, 15/30/60 FPS QA를 수행합니다.</p></div>
-    </section>
+    <section class="qa-note"><strong>v4 수정 기준</strong><span>팔·다리·치마·머리를 런타임에서 따로 배치하지 않습니다. 표정, 포즈, 립싱크, 눈깜빡임 모두 검수된 완성 스프라이트만 교체합니다.</span></section>
   </main>
   <script src="src/app.js"></script>
 </body>

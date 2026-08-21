@@ -1,18 +1,15 @@
-name: Build runtime assets
+name: Build stable runtime v4
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - 'tools/build_runtime_assets.py'
-      - 'tools/refine_runtime_parts.py'
-      - 'tools/repack_runtime_atlas.py'
-      - 'tools/generate_firmware_tables.py'
+      - 'tools/build_stable_runtime_v4.py'
       - 'tools/requirements.txt'
-      - 'assets/generated/**'
-      - 'config/runtime_asset_plan.json'
-      - 'config/emotions_v0.json'
+      - 'assets/generated/poses/**'
+      - 'assets/generated/expressions/**'
+      - 'assets/generated/sprites/**'
       - '.github/workflows/build-runtime-assets.yml'
 
 permissions:
@@ -33,47 +30,34 @@ jobs:
       - name: Install dependencies
         run: pip install -r tools/requirements.txt
 
-      - name: Build runtime parts
-        run: python tools/build_runtime_assets.py
+      - name: Build fixed-canvas runtime
+        run: python tools/build_stable_runtime_v4.py
 
-      - name: Refine hair and twin-tail masks
-        run: python tools/refine_runtime_parts.py
-
-      - name: Repack and validate atlas bounds
-        run: python tools/repack_runtime_atlas.py
-
-      - name: Generate ESP32-friendly tables
-        run: python tools/generate_firmware_tables.py
-
-      - name: Show runtime size
+      - name: Validate 3 MiB budget and outputs
         run: |
-          du -ah assets/runtime | sort -h
+          cat qa/runtime-v4/report.json
           python - <<'PY'
           import json
           from pathlib import Path
-
-          root = Path('assets/runtime')
-          total = sum(p.stat().st_size for p in root.rglob('*') if p.is_file())
-          print(f'Runtime assets total: {total} bytes ({total/1024:.1f} KiB)')
-          if total > 3 * 1024 * 1024:
-              raise SystemExit('Runtime asset budget exceeded: 3 MiB')
-
-          manifest = json.loads((root / 'jirai_runtime_atlas_v0.json').read_text())
-          width, height = manifest['size']
-          for name, (x, y, w, h) in manifest['rects'].items():
-              if x < 0 or y < 0 or x + w > width or y + h > height:
-                  raise SystemExit(f'Atlas rect out of bounds: {name} -> {(x,y,w,h)}')
-          print('Atlas bounds QA: PASS')
+          report = json.loads(Path('qa/runtime-v4/report.json').read_text())
+          if not report['qa_pass']:
+              raise SystemExit('Runtime QA failed')
+          if report['runtime_png_bytes'] > 3 * 1024 * 1024:
+              raise SystemExit('Runtime asset budget exceeded')
+          manifest = json.loads(Path('assets/runtime-v4/manifest.json').read_text())
+          if len(manifest['states']) != 16:
+              raise SystemExit('Expected exactly 16 states')
+          print('Stable runtime QA: PASS')
           PY
 
-      - name: Commit generated runtime outputs
+      - name: Commit generated stable runtime
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/runtime firmware/generated
+          git add assets/runtime-v4 qa/runtime-v4
           if git diff --cached --quiet; then
-            echo 'No runtime output changes.'
+            echo 'No runtime changes.'
           else
-            git commit -m 'Build runtime atlas and firmware tables [skip ci]'
+            git commit -m 'Build stable full-sprite runtime v4 [skip ci]'
             git push
           fi
