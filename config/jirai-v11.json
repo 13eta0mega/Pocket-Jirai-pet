@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.0",
   "canvas": [720, 720],
   "atlas": {
     "src": "src/Jirai_Character_Asset.png",
@@ -7,36 +7,75 @@
     "height": 1254,
     "characterCrop": [6, 10, 320, 474],
     "parts": {
-      "mouthSmall": [748, 651, 29, 29],
-      "mouthMedium": [804, 651, 38, 43],
-      "mouthLarge": [685, 651, 43, 53]
+      "eyeClosedL": [791, 450, 52, 23],
+      "eyeClosedR": [879, 449, 53, 20],
+      "eyeHalfL": [792, 497, 43, 20],
+      "eyeHalfR": [889, 496, 43, 19],
+      "eyeSparkleL": [306, 556, 66, 70],
+      "eyeSparkleR": [400, 558, 60, 78],
+      "eyeWideL": [400, 558, 60, 78],
+      "eyeWideR": [502, 558, 60, 78],
+      "mouthNeutral": [113, 683, 46, 16],
+      "mouthSoft": [195, 680, 33, 16],
+      "mouthFlat": [485, 677, 51, 17],
+      "mouthFrown": [195, 680, 33, 16],
+      "mouthO": [424, 670, 25, 34],
+      "mouthHappy": [502, 730, 43, 33],
+      "mouthHappyOpen": [595, 727, 36, 32],
+      "mouthLipSmall": [1038, 685, 12, 10],
+      "mouthLipMedium": [429, 734, 40, 24],
+      "mouthLipLarge": [351, 724, 37, 39],
+      "armStraightL": [532, 908, 74, 136],
+      "armStraightR": [716, 908, 68, 140],
+      "armBentL": [196, 924, 98, 116],
+      "armBentR": [316, 928, 86, 116],
+      "legL": [16, 976, 72, 236],
+      "legR": [110, 974, 76, 238]
     }
   },
-  "display": {
-    "heightRatio": 0.82,
-    "maxHeight": 590,
-    "centerXRatio": 0.5,
-    "topRatio": 0.085
-  },
+  "display": {"heightRatio": 0.82, "maxHeight": 590, "centerXRatio": 0.5, "topRatio": 0.085},
+  "layers": {"headCutY": 224,"bodyPolygon": [[104,205],[216,205],[230,246],[232,292],[251,328],[237,351],[83,351],[69,328],[88,292],[90,246]]},
   "face": {
-    "leftEye": [0.37, 0.285],
-    "rightEye": [0.63, 0.285],
-    "mouth": [0.5, 0.405],
-    "leftCheek": [0.33, 0.355],
-    "rightCheek": [0.67, 0.355],
-    "browY": 0.225
+    "leftEye": [118, 137], "rightEye": [202, 137], "mouth": [160, 192],
+    "leftCheek": [110, 176], "rightCheek": [210, 176],
+    "browLeft": [118, 102], "browRight": [202, 102],
+    "baseEyeL": [87, 108, 62, 62], "baseEyeR": [171, 108, 62, 62],
+    "baseBrowL": [91, 88, 54, 26], "baseBrowR": [175, 88, 54, 26],
+    "baseMouth": [132, 174, 56, 36],
+    "cleanMasks": [[118,137,34,35],[202,137,34,35],[118,101,31,15],[202,101,31,15],[160,191,34,23]]
   },
-  "mesh": {
-    "xStops": [0, 0.07, 0.14, 0.22, 0.3, 0.38, 0.45, 0.5, 0.55, 0.62, 0.7, 0.78, 0.86, 0.93, 1],
-    "yStops": [0, 0.045, 0.09, 0.135, 0.18, 0.225, 0.27, 0.31, 0.35, 0.39, 0.43, 0.47, 0.515, 0.56, 0.61, 0.665, 0.72, 0.78, 0.84, 0.9, 0.955, 1]
+  "expressions": {
+    "eyes": {
+      "closedL": {"key":"eyeClosedL","w":56,"h":25,"dy":2},
+      "closedR": {"key":"eyeClosedR","w":56,"h":23,"dy":2},
+      "halfL": {"key":"eyeHalfL","w":56,"h":26},
+      "halfR": {"key":"eyeHalfR","w":56,"h":25},
+      "sparkleL": {"key":"eyeSparkleL","w":58,"h":61},
+      "sparkleR": {"key":"eyeSparkleR","w":58,"h":61},
+      "wideL": {"key":"eyeWideL","w":58,"h":70},
+      "wideR": {"key":"eyeWideR","w":58,"h":70}
+    },
+    "mouths": {
+      "neutral": {"key":"mouthNeutral","w":42,"h":15},
+      "soft": {"key":"mouthSoft","w":34,"h":16},
+      "flat": {"key":"mouthFlat","w":38,"h":14},
+      "frown": {"key":"mouthFrown","w":34,"h":16},
+      "o": {"key":"mouthO","w":24,"h":32},
+      "happy": {"key":"mouthHappy","w":38,"h":29},
+      "happyOpen": {"key":"mouthHappyOpen","w":38,"h":34},
+      "lipSmall": {"key":"mouthLipSmall","w":17,"h":14},
+      "lipMedium": {"key":"mouthLipMedium","w":31,"h":19},
+      "lipLarge": {"key":"mouthLipLarge","w":36,"h":38}
+    }
   },
-  "idle": {
-    "blinkMinMs": 2500,
-    "blinkMaxMs": 6000,
-    "blinkDurationMs": 245,
-    "doubleBlinkChance": 0.16,
-    "headTurnMinMs": 4300,
-    "headTurnMaxMs": 8500,
-    "breathHz": 0.23
-  }
+  "rig": {
+    "neck": [160, 216], "shoulderL": [94, 240], "shoulderR": [226, 240], "hipL": [137, 335], "hipR": [183, 335],
+    "arms": {
+      "straight": {"left":"armStraightL","right":"armStraightR","widthL":57,"heightL":105,"widthR":53,"heightR":108,"angleL":8,"angleR":-8,"anchorY":0.07},
+      "bent": {"left":"armBentL","right":"armBentR","widthL":78,"heightL":93,"widthR":69,"heightR":93,"angleL":14,"angleR":-14,"anchorY":0.10,"dyL":2,"dyR":2}
+    },
+    "legs": {"left":"legL","right":"legR","widthL":45,"heightL":148,"widthR":46,"heightR":148,"angleL":1,"angleR":-1,"anchorY":0.04}
+  },
+  "motion": {"transitionMs": 420},
+  "idle": {"blinkMinMs":2500,"blinkMaxMs":6000,"blinkDurationMs":245,"doubleBlinkChance":0.16,"headTurnMinMs":4300,"headTurnMaxMs":8500,"breathHz":0.23}
 }

@@ -1,63 +1,17 @@
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
-
-const browser = await chromium.launch({headless:true,args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
-const page = await browser.newPage({viewport:{width:1100,height:900},deviceScaleFactor:1});
-const consoleErrors=[];
-page.on('console',m=>{ if(m.type()==='error') consoleErrors.push(m.text()); });
-page.on('pageerror',e=>consoleErrors.push(e.message));
-await page.goto('http://127.0.0.1:4173/?qa=1',{waitUntil:'networkidle'});
-await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
-const results={started:new Date().toISOString(),samples:{},errors:consoleErrors};
-results.initial=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-for(const id of ['happy','excited','angry','pleading','surprised','love']){
-  await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
-  await page.waitForTimeout(850);
-  results.samples[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-}
-await page.evaluate(()=>{window.__JIRAI_QA__.setLipTest(false);window.__JIRAI_QA__.setMouth(.92)});
-await page.waitForTimeout(350);
-results.mouth=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-await page.evaluate(()=>window.__JIRAI_QA__.forceBlink());
-await page.waitForTimeout(95);
-results.blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-const shot=await page.locator('#stageWrap').screenshot({type:'jpeg',quality:42});
-const b64=shot.toString('base64');
-await fs.mkdir('qa/jirai-v11',{recursive:true});
-for(let i=0,n=0;i<b64.length;i+=3800,n++) await fs.writeFile(`qa/jirai-v11/preview_${String(n).padStart(2,'0')}.txt`,b64.slice(i,i+3800));
-const tiny=await page.evaluate(()=>{
-  const rig=document.querySelector('#rigCanvas'), fx=document.querySelector('#fxCanvas');
-  const c=document.createElement('canvas'); c.width=192; c.height=192;
-  const x=c.getContext('2d'); x.fillStyle='#25182b'; x.fillRect(0,0,192,192);
-  x.drawImage(rig,0,0,192,192); x.drawImage(fx,0,0,192,192);
-  return c.toDataURL('image/jpeg',0.46).split(',')[1];
-});
-await fs.writeFile('qa/jirai-v11/tiny_preview.b64.txt',tiny);
-const diffs=Object.fromEntries(Object.entries(results.samples).map(([id,s])=>[id,
-  Math.abs((s.params?.headAngle||0)-(results.initial.params?.headAngle||0))+
-  Math.abs((s.params?.armL||0)-(results.initial.params?.armL||0))+
-  Math.abs((s.params?.mouthForm||0)-(results.initial.params?.mouthForm||0))
-]));
-const allSnapshots=[results.initial,...Object.values(results.samples),results.mouth,results.blink];
-const allFinite=allSnapshots.every(s=>Object.values(s.params||{}).filter(v=>typeof v==='number').every(v=>Number.isFinite(v)&&Math.abs(v)<100));
-const meshSamples=[results.initial,...Object.values(results.samples),results.mouth];
-const meshHealthy=meshSamples.every(s=>(s.mesh?.inverted??999)===0&&(s.mesh?.degenerate??999)<4&&(s.mesh?.minArea??0)>.02);
-const checks={
-  ready:results.initial.ready===true,
-  asset:results.initial.assetLoaded===true,
-  renderer:/WebGL2|Canvas2D/.test(results.initial.renderer),
-  buttons:results.initial.buttonCount===16,
-  emotionTransitions:Object.values(diffs).every(v=>v>.08),
-  mouth:(results.mouth.params?.mouthOpen||0)>.55,
-  blink:Math.min(results.blink.params?.eyeL??1,results.blink.params?.eyeR??1)<.65,
-  finiteParameters:allFinite,
-  meshNoFoldover:meshHealthy,
-  atlasMouth:results.mouth.mouthSprite!=='base',
-  steadyFps:Math.max(...Object.values(results.samples).map(s=>s.fps||0))>=25,
-  consoleErrors:consoleErrors.length===0
-};
-results.differences=diffs; results.checks=checks; results.pass=Object.values(checks).every(Boolean);
-await fs.writeFile('qa/jirai-v11/report.json',JSON.stringify(results,null,2));
-console.log(JSON.stringify(results,null,2));
-await browser.close();
-if(!results.pass)process.exit(1);
+const browser=await chromium.launch({headless:true,args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
+const page=await browser.newPage({viewport:{width:1100,height:900},deviceScaleFactor:1});
+const errors=[];page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:4173/?qa=1',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
+const result={started:new Date().toISOString(),samples:{},errors};result.initial=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+const ids=['neutral','happy','excited','teasing','pleading','relaxed','angry','sad','surprised','embarrassed','scared','smug','confused','love'];
+for(const id of ids){await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);await page.waitForTimeout(720);result.samples[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());}
+await page.evaluate(()=>{window.__JIRAI_QA__.setEmotion('neutral');window.__JIRAI_QA__.setLipTest(false);window.__JIRAI_QA__.setMouth(.95)});await page.waitForTimeout(300);result.mouth=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+await page.evaluate(()=>{window.__JIRAI_QA__.setMouth(0);window.__JIRAI_QA__.forceBlink()});await page.waitForTimeout(105);result.blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));await page.waitForTimeout(500);await page.locator('#stageWrap').evaluate(el=>{el.style.width='360px';el.style.height='360px'});await page.waitForTimeout(100);const neutral=await page.locator('#stageWrap').screenshot({type:'jpeg',quality:35});
+await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('excited'));await page.waitForTimeout(700);const excited=await page.locator('#stageWrap').screenshot({type:'jpeg',quality:35});
+await fs.mkdir('qa/jirai-v11',{recursive:true});for(const[name,buf]of[['neutral',neutral],['excited',excited]]){const b64=buf.toString('base64');for(let i=0,n=0;i<b64.length;i+=3800,n++)await fs.writeFile(`qa/jirai-v11/${name}_${String(n).padStart(2,'0')}.txt`,b64.slice(i,i+3800));}
+const sig=s=>`${s.parts?.eye}|${s.parts?.mouth}|${s.parts?.arm}`;const unique=new Set(Object.values(result.samples).map(sig));const finite=[result.initial,...Object.values(result.samples),result.mouth,result.blink].every(s=>Object.values(s.params||{}).filter(v=>typeof v==='number').every(Number.isFinite));
+result.checks={ready:result.initial.ready===true,asset:result.initial.assetLoaded===true,renderer:/Layered atlas rig/.test(result.initial.renderer),buttons:result.initial.buttonCount===16,semanticPartDiversity:unique.size>=8,excitedUsesBentArms:result.samples.excited.armPose==='bent',neutralUsesStraightArms:result.samples.neutral.armPose==='straight',emotionEyesDiffer:result.samples.pleading.eyeSprite!==result.samples.neutral.eyeSprite&&result.samples.surprised.eyeSprite!==result.samples.neutral.eyeSprite,emotionMouthsDiffer:result.samples.happy.mouthSprite!==result.samples.neutral.mouthSprite&&result.samples.sad.mouthSprite!==result.samples.happy.mouthSprite,lipUsesAtlasPart:/lip/.test(result.mouth.mouthSprite||''),blinkUsesClosedPart:result.blink.eyeSprite==='closed',finiteParameters:finite,fps:Math.max(...Object.values(result.samples).map(s=>s.fps||0))>=25,consoleErrors:errors.length===0};
+result.uniquePartSignatures=[...unique];result.pass=Object.values(result.checks).every(Boolean);await fs.writeFile('qa/jirai-v11/report.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));await browser.close();if(!result.pass)process.exit(1);
