@@ -1,0 +1,10 @@
+{
+  "runtime_png_count": 23,
+  "runtime_png_bytes": 276800,
+  "runtime_png_kib": 270.3,
+  "budget_bytes": 3145728,
+  "budget_used_percent": 8.8,
+  "all_canvas_sizes_equal": true,
+  "reference_assets": 6,
+  "qa_pass": true
+}
