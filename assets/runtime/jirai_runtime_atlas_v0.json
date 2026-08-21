@@ -94,62 +94,74 @@
     "hair_front": [
       8,
       505,
-      340,
-      296
+      331,
+      340
     ],
     "leg_left": [
-      356,
+      347,
       505,
       106,
       272
     ],
     "leg_right": [
-      470,
+      461,
       505,
       104,
       268
     ],
     "mouth_closed": [
-      582,
+      573,
       505,
       37,
       12
     ],
     "mouth_medium": [
-      627,
+      618,
       505,
       80,
       32
     ],
     "mouth_open": [
-      715,
+      706,
       505,
       80,
       56
     ],
     "mouth_small": [
-      803,
+      794,
       505,
       34,
       19
     ],
     "mouth_smile_open": [
-      845,
+      836,
       505,
       80,
       53
     ],
     "mouth_wide": [
-      933,
+      924,
       505,
       80,
       40
     ],
     "skirt_upperlegs": [
       8,
-      809,
+      853,
       314,
       251
+    ],
+    "twin_tail_left": [
+      330,
+      853,
+      80,
+      248
+    ],
+    "twin_tail_right": [
+      418,
+      853,
+      113,
+      248
     ]
   },
   "source_map": {
@@ -161,7 +173,7 @@
     "status": "prototype",
     "known_issues": [
       "face blank still needs final manual cleanup",
-      "hair/twin-tail rig anchors are not finalized",
+      "twin-tail top edges need final cleanup under bunny clips",
       "mouth and eye placement must be tuned on the assembled model"
     ]
   }
