@@ -32,6 +32,8 @@ const diffs=Object.fromEntries(Object.entries(results.samples).map(([id,s])=>[id
 ]));
 const allSnapshots=[results.initial,...Object.values(results.samples),results.mouth,results.blink];
 const allFinite=allSnapshots.every(s=>Object.values(s.params||{}).filter(v=>typeof v==='number').every(v=>Number.isFinite(v)&&Math.abs(v)<100));
+const meshSamples=[results.initial,...Object.values(results.samples),results.mouth];
+const meshHealthy=meshSamples.every(s=>(s.mesh?.inverted??999)===0&&(s.mesh?.degenerate??999)<4&&(s.mesh?.minArea??0)>.02);
 const checks={
   ready:results.initial.ready===true,
   asset:results.initial.assetLoaded===true,
@@ -41,6 +43,8 @@ const checks={
   mouth:(results.mouth.params?.mouthOpen||0)>.55,
   blink:Math.min(results.blink.params?.eyeL??1,results.blink.params?.eyeR??1)<.65,
   finiteParameters:allFinite,
+  meshNoFoldover:meshHealthy,
+  atlasMouth:results.mouth.mouthSprite!=='base',
   steadyFps:Math.max(...Object.values(results.samples).map(s=>s.fps||0))>=25,
   consoleErrors:consoleErrors.length===0
 };

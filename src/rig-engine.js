@@ -321,11 +321,31 @@
       const browBand=bell(v,f.browY,.055);
       if(browBand>0){ const side=u<.5?-1:1, inner=1-clamp(Math.abs(u-.5)/.24); y += p.browMood*side*(u-.5)*-13*browBand + (-p.browMood)*inner*2.4*browBand; }
       const mx=f.mouth[0], my=f.mouth[1], mi=bell(u,mx,.15)*bell(v,my,.075);
-      if(mi>0){ const side=Math.sign(v-my)||1; y += side*p.mouthOpen*L.h*.024*mi; const corner=clamp(Math.abs(u-mx)/.12); y -= p.mouthForm*corner*L.h*.009*mi; x += (u-mx)*p.mouthOpen*L.w*.015*mi; }
-      const armBand=band(v,.47,.73,.09), lArm=smooth((.37-u)/.3)*armBand, rArm=smooth((u-.63)/.3)*armBand;
-      y -= p.armL*L.h*.07*lArm + p.armR*L.h*.07*rArm; x -= p.armL*L.w*.025*lArm; x += p.armR*L.w*.025*rArm;
-      const legBand=smooth((v-.73)/.2), lLeg=smooth((.53-u)/.28)*legBand, rLeg=smooth((u-.47)/.28)*legBand;
-      y -= (p.legL*lLeg+p.legR*rLeg)*L.h*.028; x -= p.legL*lLeg*L.w*.026; x += p.legR*rLeg*L.w*.026;
+      if(mi>0){
+        // When a mapped atlas mouth is active, gently collapse the painted neutral mouth
+        // underneath it. This prevents a doubled mouth while keeping the surrounding skin stable.
+        const spriteMix=smooth((p.mouthOpen-.08)/.28);
+        if(spriteMix>0){
+          const mcx=L.x+mx*L.w, mcy=L.y+my*L.h;
+          x=lerp(x,mcx,mi*spriteMix*.12);
+          y=lerp(y,mcy,mi*spriteMix*.48);
+        }
+        const side=Math.sign(v-my)||1;
+        y += side*p.mouthOpen*L.h*.010*mi*(1-spriteMix*.7);
+        const corner=clamp(Math.abs(u-mx)/.12);
+        y -= p.mouthForm*corner*L.h*.009*mi;
+        x += (u-mx)*p.mouthOpen*L.w*.006*mi;
+      }
+
+      // Limb motion uses soft local rotations around anatomical pivots instead of simple
+      // translations. The feathered masks preserve dress/torso continuity while giving the
+      // hands and feet visibly larger arcs, closer to layered Live2D motion.
+      const armBand=band(v,.455,.745,.085), lArm=smooth((.39-u)/.29)*armBand, rArm=smooth((u-.61)/.29)*armBand;
+      if(lArm>.001){ const q=rotate(x,y,L.x+L.w*.315,L.y+L.h*.49,-p.armL*.48*lArm); x=q[0]-p.armL*L.w*.008*lArm; y=q[1]-p.armL*L.h*.012*lArm; }
+      if(rArm>.001){ const q=rotate(x,y,L.x+L.w*.685,L.y+L.h*.49,p.armR*.48*rArm); x=q[0]+p.armR*L.w*.008*rArm; y=q[1]-p.armR*L.h*.012*rArm; }
+      const legBand=smooth((v-.70)/.22), lLeg=smooth((.53-u)/.25)*legBand, rLeg=smooth((u-.47)/.25)*legBand;
+      if(lLeg>.001){ const q=rotate(x,y,L.x+L.w*.44,L.y+L.h*.735,p.legL*.23*lLeg); x=q[0]-p.legL*L.w*.012*lLeg; y=q[1]; }
+      if(rLeg>.001){ const q=rotate(x,y,L.x+L.w*.56,L.y+L.h*.735,-p.legR*.23*rLeg); x=q[0]+p.legR*L.w*.012*rLeg; y=q[1]; }
       return { x,y };
     }
     updateMesh(p,w,h) {
@@ -340,9 +360,35 @@
       this.drawFX(p,emotionId,w,h);
     }
     facePoint(u,v,p){ return this.deformPoint(u,v,p,this.lastLayout); }
+    meshHealth(){
+      let inverted=0, degenerate=0, minArea=Infinity, sum=0, count=0;
+      for(let i=0;i<this.indices.length;i+=3){
+        const a=this.vertices[this.indices[i]], b=this.vertices[this.indices[i+1]], c=this.vertices[this.indices[i+2]];
+        const area=((b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x))*.5;
+        const aa=Math.abs(area); minArea=Math.min(minArea,aa); sum+=aa; count++;
+        if(area>=0) inverted++; if(aa<.04) degenerate++;
+      }
+      return {inverted,degenerate,minArea:Number.isFinite(minArea)?minArea:0,meanArea:count?sum/count:0};
+    }
+    drawAtlasMouth(c,p,scale){
+      const parts=this.config.atlas.parts||{};
+      if(!this.image||p.mouthOpen<.12){ this.lastMouthSprite='base'; return; }
+      let key='mouthSmall';
+      if(p.mouthOpen>.72) key='mouthLarge'; else if(p.mouthOpen>.4) key='mouthMedium';
+      const src=parts[key]; if(!src){ this.lastMouthSprite='base'; return; }
+      const q=this.facePoint(this.config.face.mouth[0],this.config.face.mouth[1],p);
+      const [sx,sy,sw,sh]=src;
+      const grow=.96+p.mouthOpen*.13;
+      const dw=sw*scale*grow, dh=sh*scale*grow;
+      c.save(); c.translate(q.x,q.y); c.rotate((p.headAngle+p.bodyLean*.18)*Math.PI/180); c.scale(1-Math.abs(p.headTurn)*.11,1);
+      c.globalAlpha=clamp((p.mouthOpen-.08)/.18);
+      c.drawImage(this.image,sx,sy,sw,sh,-dw/2,-dh*.48,dw,dh);
+      c.restore(); this.lastMouthSprite=key;
+    }
     drawFX(p,emotionId,w,h){
       const c=this.fx; c.clearRect(0,0,w,h); if(!this.lastLayout)return;
       const f=this.config.face, lp=this.facePoint(f.leftCheek[0],f.leftCheek[1],p), rp=this.facePoint(f.rightCheek[0],f.rightCheek[1],p), scale=this.lastLayout.h/474;
+      this.drawAtlasMouth(c,p,scale);
       if(p.blush>.02){ c.save(); c.globalAlpha=clamp(p.blush)*.28; for(const q of [lp,rp]){const g=c.createRadialGradient(q.x,q.y,0,q.x,q.y,16*scale);g.addColorStop(0,'rgba(255,91,145,.9)');g.addColorStop(1,'rgba(255,91,145,0)');c.fillStyle=g;c.beginPath();c.arc(q.x,q.y,16*scale,0,TAU);c.fill();} c.restore(); }
       if(p.tears>.04){ c.save(); c.fillStyle=`rgba(125,205,255,${.18+.55*p.tears})`; const le=this.facePoint(f.leftEye[0],f.leftEye[1]+.045,p), re=this.facePoint(f.rightEye[0],f.rightEye[1]+.045,p); for(const q of [le,re]){c.beginPath();c.ellipse(q.x,q.y+7*scale,4*scale,10*scale,.1,0,TAU);c.fill();} c.restore(); }
       if(p.sick>.03){ const q=this.facePoint(.5,.31,p); c.save(); const g=c.createRadialGradient(q.x,q.y,0,q.x,q.y,90*scale);g.addColorStop(0,`rgba(125,210,132,${.12*p.sick})`);g.addColorStop(1,'rgba(125,210,132,0)');c.fillStyle=g;c.beginPath();c.arc(q.x,q.y,90*scale,0,TAU);c.fill();c.restore(); }

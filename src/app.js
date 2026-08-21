@@ -100,7 +100,7 @@
     setMouth:v=>{ui.mouth.value=v;rig.setManualMouth(v);},
     setLipTest:v=>{ui.lipTest.checked=!!v;rig.setLipTest(!!v);},
     forceBlink:()=>rig.forceBlink(),
-    snapshot:()=>({ready:state.ready,renderer:state.renderer,assetLoaded:state.assetLoaded,emotion:state.current,fps:state.fps,errors:[...state.errors],params:{...window.__JIRAI_QA_STATE__},buttonCount:ui.grid.children.length}),
+    snapshot:()=>({ready:state.ready,renderer:state.renderer,assetLoaded:state.assetLoaded,emotion:state.current,fps:state.fps,errors:[...state.errors],params:{...window.__JIRAI_QA_STATE__},buttonCount:ui.grid.children.length,mesh:renderer?.meshHealth?.()||null,mouthSprite:renderer?.lastMouthSprite||'base'}),
     stop:()=>{running=false;}
   };
   boot();
