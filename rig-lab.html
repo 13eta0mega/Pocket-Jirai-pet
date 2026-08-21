@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Pocket Jirai · Atlas Rig Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="rig-lab.css">
+</head>
+<body>
+  <main class="app-shell rig-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">POCKET-JIRAI-PET · ATLAS RIG LAB V3</div>
+        <h1>PC / ESP32-S3 공통 Rig QA</h1>
+        <p>생성 시트가 아니라 1024×1024 런타임 atlas를 직접 렌더링합니다.</p>
+      </div>
+      <div class="status-chips">
+        <span id="fpsChip">-- FPS</span>
+        <span id="atlasChip">Atlas loading</span>
+        <a class="chip-link" href="index.html">Main preview</a>
+      </div>
+    </header>
+
+    <section class="layout rig-layout">
+      <section class="viewer-card">
+        <div class="viewer-toolbar">
+          <strong id="emotionLabel">기본</strong>
+          <span id="stateLabel">atlas · idle · blink · breath</span>
+        </div>
+        <div class="canvas-frame rig-frame">
+          <canvas id="rigCanvas" width="720" height="720"></canvas>
+          <div class="ground"></div>
+        </div>
+        <div class="timeline">
+          <div class="wave" id="wave"></div>
+          <span id="mouthReadout">Mouth 0.00</span>
+        </div>
+      </section>
+
+      <aside class="panel-card">
+        <section class="panel-section">
+          <div class="section-head"><strong>감정 16종</strong><span>parameter state</span></div>
+          <div class="emotion-grid" id="emotionGrid"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-head"><strong>Runtime QA</strong><span>same data for MCU</span></div>
+          <div class="switch-grid">
+            <label><input id="blinkToggle" type="checkbox" checked> 자동 눈깜빡임</label>
+            <label><input id="breathToggle" type="checkbox" checked> 호흡 / sway</label>
+            <label><input id="lipToggle" type="checkbox"> 테스트 립싱크</label>
+            <label><input id="guideToggle" type="checkbox"> 파츠 bounds</label>
+            <label><input id="referenceToggle" type="checkbox"> Reference overlay</label>
+            <label><input id="pixelToggle" type="checkbox"> ESP scanline</label>
+          </div>
+
+          <label class="slider-row">
+            <span>MouthOpenY</span><output id="mouthValue">0.00</output>
+            <input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0">
+          </label>
+          <label class="slider-row">
+            <span>Reference opacity</span><output id="referenceValue">0.25</output>
+            <input id="referenceSlider" type="range" min="0" max="0.8" step="0.05" value="0.25">
+          </label>
+          <label class="select-row"><span>렌더 목표</span>
+            <select id="fpsTarget">
+              <option value="60">60 FPS (PC)</option>
+              <option value="30" selected>30 FPS (ESP 목표)</option>
+              <option value="15">15 FPS (저전력)</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="panel-section stats" id="runtimeStats">
+          <div><span>Atlas</span><strong>loading…</strong></div>
+          <div><span>Parts</span><strong>loading…</strong></div>
+          <div><span>Firmware</span><strong>QA only</strong></div>
+        </section>
+
+        <section class="panel-section actions">
+          <button id="cycleBtn">16종 자동 순환</button>
+          <button id="qaBtn" class="secondary">Blink/Lip QA</button>
+          <button id="resetBtn" class="secondary">초기화</button>
+        </section>
+      </aside>
+    </section>
+
+    <section class="notes-card">
+      <div><strong>현재 단계</strong><p>대형 생성 PNG를 매 프레임 그리지 않고, 빌드된 atlas의 작은 rect만 사용합니다. 트윈테일은 독립 파츠라서 별도 회전 애니메이션이 가능합니다.</p></div>
+      <div><strong>QA 제한</strong><p>얼굴 blank와 트윈테일 상단 경계는 아직 최종 정리 전입니다. 이 페이지에서 위치·모션·FPS 구조를 먼저 검증합니다.</p></div>
+    </section>
+  </main>
+  <script src="src/rig-lab.js"></script>
+</body>
+</html>
