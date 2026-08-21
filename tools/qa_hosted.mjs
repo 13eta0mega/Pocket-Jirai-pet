@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
 
+const stamp=Date.now();
 const targets = [
-  ['rawGithack','https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa='+Date.now()],
-  ['githubPages','https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa='+Date.now()]
+  ['rawGithack','https://raw.githack.com/13eta0mega/Pocket-Jirai-pet/Jirai_Ver1.1/index.html?hostqa='+stamp],
+  ['githubPagesRoot','https://13eta0mega.github.io/Pocket-Jirai-pet/?hostqa='+stamp],
+  ['githubPagesV11','https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.1/?hostqa='+stamp]
 ];
 const browser = await chromium.launch({headless:true,args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
 const reports={};
