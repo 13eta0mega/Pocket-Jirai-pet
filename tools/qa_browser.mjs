@@ -30,6 +30,8 @@ const diffs=Object.fromEntries(Object.entries(results.samples).map(([id,s])=>[id
   Math.abs((s.params?.armL||0)-(results.initial.params?.armL||0))+
   Math.abs((s.params?.mouthForm||0)-(results.initial.params?.mouthForm||0))
 ]));
+const allSnapshots=[results.initial,...Object.values(results.samples),results.mouth,results.blink];
+const allFinite=allSnapshots.every(s=>Object.values(s.params||{}).filter(v=>typeof v==='number').every(v=>Number.isFinite(v)&&Math.abs(v)<100));
 const checks={
   ready:results.initial.ready===true,
   asset:results.initial.assetLoaded===true,
@@ -38,6 +40,8 @@ const checks={
   emotionTransitions:Object.values(diffs).every(v=>v>.08),
   mouth:(results.mouth.params?.mouthOpen||0)>.55,
   blink:Math.min(results.blink.params?.eyeL??1,results.blink.params?.eyeR??1)<.65,
+  finiteParameters:allFinite,
+  steadyFps:Math.max(...Object.values(results.samples).map(s=>s.fps||0))>=25,
   consoleErrors:consoleErrors.length===0
 };
 results.differences=diffs; results.checks=checks; results.pass=Object.values(checks).every(Boolean);
