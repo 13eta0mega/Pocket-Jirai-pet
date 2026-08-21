@@ -1,15 +1,13 @@
-name: Build stable runtime v4
+name: Build reference runtime v5
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - 'tools/build_stable_runtime_v4.py'
+      - 'tools/build_reference_runtime_v5.py'
       - 'tools/requirements.txt'
-      - 'assets/generated/poses/**'
-      - 'assets/generated/expressions/**'
-      - 'assets/generated/sprites/**'
+      - 'assets/generated/expressions/expression_sheet_cute_gothic_bunny_girl_01.png'
       - '.github/workflows/build-runtime-assets.yml'
 
 permissions:
@@ -19,45 +17,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install dependencies
         run: pip install -r tools/requirements.txt
-
-      - name: Build fixed-canvas runtime
-        run: python tools/build_stable_runtime_v4.py
-
-      - name: Validate 3 MiB budget and outputs
+      - name: Sync the six original user-reference sprites
         run: |
-          cat qa/runtime-v4/report.json
+          mkdir -p assets/original
+          BASE='https://raw.githubusercontent.com/13eta0mega/jirai-live2d/main/assets/source'
+          for f in jirai_stand.png jirai_jump.png jirai_peace.png jirai_uruuru.png jirai_gorogoro.png jirai_haku.png; do
+            curl -fsSL "$BASE/$f" -o "assets/original/$f"
+          done
+      - name: Build reference-locked fixed-canvas runtime
+        run: python tools/build_reference_runtime_v5.py
+      - name: Validate strict runtime QA
+        run: |
+          cat qa/runtime-v5/report.json
           python - <<'PY'
           import json
           from pathlib import Path
-          report = json.loads(Path('qa/runtime-v4/report.json').read_text())
-          if not report['qa_pass']:
-              raise SystemExit('Runtime QA failed')
-          if report['runtime_png_bytes'] > 3 * 1024 * 1024:
-              raise SystemExit('Runtime asset budget exceeded')
-          manifest = json.loads(Path('assets/runtime-v4/manifest.json').read_text())
-          if len(manifest['states']) != 16:
-              raise SystemExit('Expected exactly 16 states')
-          print('Stable runtime QA: PASS')
+          r=json.loads(Path('qa/runtime-v5/report.json').read_text())
+          if not r['qa_pass']: raise SystemExit('Runtime QA failed')
+          if r['runtime_png_bytes'] > 3*1024*1024: raise SystemExit('3 MiB budget exceeded')
+          m=json.loads(Path('assets/runtime-v5/manifest.json').read_text())
+          if len(m['states']) != 16: raise SystemExit('Expected 16 states')
+          if m['canvas'] != [320,320]: raise SystemExit('Unexpected runtime canvas')
+          print('Reference runtime v5 QA: PASS')
           PY
-
-      - name: Commit generated stable runtime
+      - name: Commit original sources and generated runtime
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/runtime-v4 qa/runtime-v4
+          git add assets/original assets/runtime-v5 qa/runtime-v5
           if git diff --cached --quiet; then
             echo 'No runtime changes.'
           else
-            git commit -m 'Build stable full-sprite runtime v4 [skip ci]'
+            git commit -m 'Build reference-locked runtime v5 [skip ci]'
             git push
           fi
