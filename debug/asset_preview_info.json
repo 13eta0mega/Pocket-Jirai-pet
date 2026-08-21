@@ -2,132 +2,104 @@
   "source": "src/Jirai_Character_Asset.png",
   "width": 1254,
   "height": 1254,
-  "tiles": [
-    {
-      "name": "tile_0_0",
+  "regions": {
+    "main": {
       "source_rect": [
         0,
         0,
-        418,
-        418
+        332,
+        500
       ],
       "preview": [
-        96,
-        96
+        146,
+        220
       ],
-      "bytes": 2109
+      "jpeg_bytes": 8823,
+      "chunks": 4
     },
-    {
-      "name": "tile_0_1",
+    "top_center": {
       "source_rect": [
-        418,
+        320,
         0,
-        418,
-        418
+        590,
+        430
       ],
       "preview": [
-        96,
-        96
+        220,
+        160
       ],
-      "bytes": 1868
+      "jpeg_bytes": 8006,
+      "chunks": 3
     },
-    {
-      "name": "tile_0_2",
+    "top_right": {
       "source_rect": [
-        836,
+        890,
         0,
-        418,
-        418
+        364,
+        430
       ],
       "preview": [
-        96,
-        96
+        186,
+        220
       ],
-      "bytes": 1364
+      "jpeg_bytes": 8898,
+      "chunks": 4
     },
-    {
-      "name": "tile_1_0",
-      "source_rect": [
-        0,
-        418,
-        418,
-        418
-      ],
-      "preview": [
-        96,
-        96
-      ],
-      "bytes": 1851
-    },
-    {
-      "name": "tile_1_1",
-      "source_rect": [
-        418,
-        418,
-        418,
-        418
-      ],
-      "preview": [
-        96,
-        96
-      ],
-      "bytes": 1697
-    },
-    {
-      "name": "tile_1_2",
-      "source_rect": [
-        836,
-        418,
-        418,
-        418
-      ],
-      "preview": [
-        96,
-        96
-      ],
-      "bytes": 1839
-    },
-    {
-      "name": "tile_2_0",
+    "mid_left": {
       "source_rect": [
         0,
-        836,
-        418,
-        418
+        400,
+        630,
+        380
       ],
       "preview": [
-        96,
-        96
+        220,
+        133
       ],
-      "bytes": 1889
+      "jpeg_bytes": 8373,
+      "chunks": 3
     },
-    {
-      "name": "tile_2_1",
+    "mid_right": {
       "source_rect": [
-        418,
-        836,
-        418,
-        418
+        620,
+        400,
+        634,
+        380
       ],
       "preview": [
-        96,
-        96
+        220,
+        132
       ],
-      "bytes": 2237
+      "jpeg_bytes": 6491,
+      "chunks": 3
     },
-    {
-      "name": "tile_2_2",
+    "bottom_left": {
       "source_rect": [
-        836,
-        836,
-        418,
-        418
+        0,
+        760,
+        630,
+        494
       ],
       "preview": [
-        96,
-        96
+        220,
+        173
       ],
-      "bytes": 2454
+      "jpeg_bytes": 11054,
+      "chunks": 4
+    },
+    "bottom_right": {
+      "source_rect": [
+        620,
+        760,
+        634,
+        494
+      ],
+      "preview": [
+        220,
+        171
+      ],
+      "jpeg_bytes": 9701,
+      "chunks": 4
     }
-  ]
+  }
 }
