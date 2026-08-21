@@ -1,10 +1,20 @@
 {
   "runtime_png_count": 23,
-  "runtime_png_bytes": 276800,
-  "runtime_png_kib": 270.3,
+  "runtime_png_bytes": 277478,
+  "runtime_png_kib": 271.0,
   "budget_bytes": 3145728,
   "budget_used_percent": 8.8,
   "all_canvas_sizes_equal": true,
   "reference_assets": 6,
+  "unique_state_sprites": 16,
+  "duplicate_state_groups": [],
+  "source_sha256": {
+    "stand": "4fb752db26e69d92bf7757fa499b1b89178eb5018125d6fad8424abf2a90b13d",
+    "jump": "dd22b41becd30b463fcc2180d45425c076bdde6393c69cbc7950bed3f06cf3dc",
+    "peace": "db23293188bf6fbebb6f6b855f3bc017f64ed297bd310d98562e0d808ad946b6",
+    "uruuru": "0607644ff3a952d8e81ff7d75fd7818d8ab0096961d7ceb6b38aaa4e976d5dd6",
+    "gorogoro": "bd51eb2e42e4cf2f71c2421ad22257e4389f7e682f0497a997b8f4517aeea7b5",
+    "haku": "0217b1ecb9162a3a1213662b095be5aa2a6ce58f93fea71792d6f65193d6bbeb"
+  },
   "qa_pass": true
 }
