@@ -19,115 +19,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install Pillow
-        run: pip install pillow
-      - name: Analyze asset and create compact preview
+      - run: pip install pillow
+      - name: Create tiny preview
         run: |
           python - <<'PY'
           from PIL import Image
           from pathlib import Path
-          import json, base64, io, math
-
-          src = Path('src/Jirai_Character_Asset.png')
-          out = Path('debug')
-          out.mkdir(exist_ok=True)
-          im = Image.open(src).convert('RGBA')
-          w, h = im.size
-          pix = im.load()
-
-          # Basic statistics and transparent/near-white foreground masks.
-          alpha_nonzero = 0
-          alpha_partial = 0
-          near_white = 0
-          for y in range(h):
-            for x in range(w):
-              r,g,b,a = pix[x,y]
-              if a:
-                alpha_nonzero += 1
-              if 0 < a < 255:
-                alpha_partial += 1
-              if r > 245 and g > 245 and b > 245 and a > 0:
-                near_white += 1
-
-          # Foreground mask: use alpha where useful, otherwise color-key near white.
-          has_transparency = alpha_nonzero < w*h or alpha_partial > 0
-          mask = bytearray(w*h)
-          for y in range(h):
-            for x in range(w):
-              r,g,b,a = pix[x,y]
-              fg = (a > 12) if has_transparency else (a > 12 and not (r > 246 and g > 246 and b > 246))
-              mask[y*w+x] = 1 if fg else 0
-
-          # Connected components on a downsampled mask for robust sheet-region detection.
-          scale = max(1, math.ceil(max(w,h)/900))
-          dw = (w + scale - 1)//scale
-          dh = (h + scale - 1)//scale
-          small = bytearray(dw*dh)
-          for sy in range(dh):
-            y0, y1 = sy*scale, min(h, (sy+1)*scale)
-            for sx in range(dw):
-              x0, x1 = sx*scale, min(w, (sx+1)*scale)
-              hit = 0
-              for yy in range(y0,y1):
-                off=yy*w
-                for xx in range(x0,x1):
-                  if mask[off+xx]:
-                    hit=1; break
-                if hit: break
-              small[sy*dw+sx]=hit
-
-          seen=bytearray(dw*dh)
-          comps=[]
-          for sy in range(dh):
-            for sx in range(dw):
-              idx=sy*dw+sx
-              if not small[idx] or seen[idx]: continue
-              stack=[(sx,sy)]; seen[idx]=1
-              minx=maxx=sx; miny=maxy=sy; n=0
-              while stack:
-                x,y=stack.pop(); n+=1
-                minx=min(minx,x); maxx=max(maxx,x); miny=min(miny,y); maxy=max(maxy,y)
-                for nx,ny in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):
-                  if 0<=nx<dw and 0<=ny<dh:
-                    ii=ny*dw+nx
-                    if small[ii] and not seen[ii]:
-                      seen[ii]=1; stack.append((nx,ny))
-              x=minx*scale; y=miny*scale
-              x2=min(w,(maxx+1)*scale); y2=min(h,(maxy+1)*scale)
-              area=(x2-x)*(y2-y)
-              if area >= max(64, (w*h)//30000):
-                comps.append({'x':x,'y':y,'w':x2-x,'h':y2-y,'area':area,'pixels_ds':n})
-          comps.sort(key=lambda c: c['area'], reverse=True)
-
-          # Small JPEG preview -> base64 text so ChatGPT connector can retrieve it as UTF-8.
-          preview = im.convert('RGB')
-          preview.thumbnail((320,320), Image.Resampling.LANCZOS)
-          bio=io.BytesIO(); preview.save(bio,'JPEG',quality=72,optimize=True)
+          import base64, io, json
+          src=Path('src/Jirai_Character_Asset.png')
+          out=Path('debug'); out.mkdir(exist_ok=True)
+          im=Image.open(src).convert('RGBA')
+          w,h=im.size
+          p=im.convert('RGB'); p.thumbnail((128,128),Image.Resampling.LANCZOS)
+          bio=io.BytesIO(); p.save(bio,'JPEG',quality=52,optimize=True)
           (out/'asset_preview.b64.txt').write_text(base64.b64encode(bio.getvalue()).decode('ascii'))
-
-          data={
-            'source':'src/Jirai_Character_Asset.png',
-            'width':w,'height':h,
-            'mode':'RGBA',
-            'has_transparency':has_transparency,
-            'alpha_nonzero_ratio':round(alpha_nonzero/(w*h),6),
-            'alpha_partial_ratio':round(alpha_partial/(w*h),6),
-            'near_white_ratio':round(near_white/(w*h),6),
-            'component_detection_scale':scale,
-            'component_count':len(comps),
-            'components':comps[:120]
-          }
-          (out/'asset_analysis.json').write_text(json.dumps(data,indent=2),encoding='utf-8')
-          print(json.dumps(data,indent=2))
+          info={'source':str(src),'width':w,'height':h,'preview_width':p.width,'preview_height':p.height,'preview_bytes':len(bio.getvalue())}
+          (out/'asset_preview_info.json').write_text(json.dumps(info,indent=2))
+          print(info)
           PY
-      - name: Commit analysis output
+      - name: Commit debug preview
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add debug/asset_analysis.json debug/asset_preview.b64.txt
-          if git diff --cached --quiet; then
-            echo 'No analysis changes.'
-          else
-            git commit -m 'Analyze Jirai character asset [skip ci]'
-            git push
-          fi
+          git add debug/asset_preview.b64.txt debug/asset_preview_info.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Refresh tiny asset preview [skip ci]'
+          git push
