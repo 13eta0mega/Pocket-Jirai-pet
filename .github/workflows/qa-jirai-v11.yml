@@ -46,4 +46,4 @@ jobs:
           git commit -m 'Update Jirai Ver1.1 browser QA [skip ci]'
           git push
 
-# Triggered after the stability solver patch so QA validates the patched runtime.
+# QA revision: atlas-mouth + articulated-limb motion v1.1.1
