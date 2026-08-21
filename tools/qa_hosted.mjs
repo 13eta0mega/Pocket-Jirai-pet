@@ -39,4 +39,4 @@ await fs.writeFile('qa/hosted/report.json',JSON.stringify(reports,null,2));
 console.log(JSON.stringify(reports,null,2));
 await browser.close();
 
-// Hosted QA refresh: parts-rig publish
+// Hosted QA refresh: semantic atlas parts v1.2.1 published
