@@ -13,155 +13,155 @@
   ],
   "firmware_ready": false,
   "rects": {
-    "arm_left": [
-      8,
-      8,
-      105,
-      162
-    ],
-    "arm_right": [
-      121,
-      8,
-      89,
-      162
-    ],
-    "body_dress": [
-      218,
-      8,
-      340,
-      207
-    ],
-    "brows_angry_pair": [
-      566,
-      8,
-      245,
-      33
-    ],
-    "brows_neutral_pair": [
-      8,
-      223,
-      259,
-      29
-    ],
-    "brows_sad_pair": [
-      275,
-      223,
-      212,
-      37
-    ],
-    "bunny_clip_left": [
-      495,
-      223,
-      57,
-      96
-    ],
-    "bunny_clip_right": [
-      560,
-      223,
-      77,
-      94
-    ],
-    "eyes_closed_pair": [
-      645,
-      223,
-      216,
-      33
-    ],
-    "eyes_half_pair": [
-      8,
-      327,
-      253,
-      102
-    ],
-    "eyes_open_pair": [
-      269,
-      327,
-      234,
-      101
-    ],
-    "eyes_sparkle_pair": [
-      511,
-      327,
-      176,
-      105
-    ],
-    "face_blank": [
-      695,
-      327,
-      211,
-      170
-    ],
     "hair_front": [
       8,
-      505,
+      8,
       331,
       340
     ],
     "leg_left": [
       347,
-      505,
+      8,
       106,
       272
     ],
     "leg_right": [
       461,
-      505,
+      8,
       104,
       268
     ],
-    "mouth_closed": [
+    "skirt_upperlegs": [
       573,
-      505,
-      37,
-      12
+      8,
+      314,
+      251
     ],
-    "mouth_medium": [
-      618,
-      505,
+    "twin_tail_right": [
+      895,
+      8,
+      113,
+      248
+    ],
+    "twin_tail_left": [
+      8,
+      356,
       80,
-      32
+      248
+    ],
+    "body_dress": [
+      96,
+      356,
+      340,
+      207
+    ],
+    "face_blank": [
+      444,
+      356,
+      211,
+      170
+    ],
+    "arm_left": [
+      663,
+      356,
+      105,
+      162
+    ],
+    "arm_right": [
+      776,
+      356,
+      89,
+      162
+    ],
+    "eyes_sparkle_pair": [
+      8,
+      612,
+      176,
+      105
+    ],
+    "eyes_half_pair": [
+      192,
+      612,
+      253,
+      102
+    ],
+    "eyes_open_pair": [
+      453,
+      612,
+      234,
+      101
+    ],
+    "bunny_clip_left": [
+      695,
+      612,
+      57,
+      96
+    ],
+    "bunny_clip_right": [
+      760,
+      612,
+      77,
+      94
     ],
     "mouth_open": [
-      706,
-      505,
+      845,
+      612,
       80,
       56
     ],
-    "mouth_small": [
-      794,
-      505,
-      34,
-      19
-    ],
     "mouth_smile_open": [
-      836,
-      505,
+      933,
+      612,
       80,
       53
     ],
     "mouth_wide": [
-      924,
-      505,
+      8,
+      725,
       80,
       40
     ],
-    "skirt_upperlegs": [
-      8,
-      853,
-      314,
-      251
+    "brows_sad_pair": [
+      96,
+      725,
+      212,
+      37
     ],
-    "twin_tail_left": [
-      330,
-      853,
+    "brows_angry_pair": [
+      316,
+      725,
+      245,
+      33
+    ],
+    "eyes_closed_pair": [
+      569,
+      725,
+      216,
+      33
+    ],
+    "mouth_medium": [
+      793,
+      725,
       80,
-      248
+      32
     ],
-    "twin_tail_right": [
-      418,
-      853,
-      113,
-      248
+    "brows_neutral_pair": [
+      8,
+      773,
+      259,
+      29
+    ],
+    "mouth_small": [
+      275,
+      773,
+      34,
+      19
+    ],
+    "mouth_closed": [
+      317,
+      773,
+      37,
+      12
     ]
   },
   "source_map": {
@@ -176,5 +176,11 @@
       "twin-tail top edges need final cleanup under bunny clips",
       "mouth and eye placement must be tuned on the assembled model"
     ]
+  },
+  "packing": {
+    "algorithm": "height-sorted-shelf",
+    "padding": 8,
+    "used_height": 810,
+    "overflow_checked": true
   }
 }
