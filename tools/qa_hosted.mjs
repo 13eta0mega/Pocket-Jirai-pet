@@ -38,3 +38,5 @@ await fs.mkdir('qa/hosted',{recursive:true});
 await fs.writeFile('qa/hosted/report.json',JSON.stringify(reports,null,2));
 console.log(JSON.stringify(reports,null,2));
 await browser.close();
+
+// Hosted QA refresh: parts-rig publish
