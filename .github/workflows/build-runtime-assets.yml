@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'tools/build_runtime_assets.py'
+      - 'tools/refine_runtime_parts.py'
       - 'tools/repack_runtime_atlas.py'
       - 'tools/generate_firmware_tables.py'
       - 'tools/requirements.txt'
@@ -34,6 +35,9 @@ jobs:
 
       - name: Build runtime parts
         run: python tools/build_runtime_assets.py
+
+      - name: Refine hair and twin-tail masks
+        run: python tools/refine_runtime_parts.py
 
       - name: Repack and validate atlas bounds
         run: python tools/repack_runtime_atlas.py
