@@ -1,0 +1,56 @@
+name: Build runtime assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_runtime_assets.py'
+      - 'tools/requirements.txt'
+      - 'assets/generated/**'
+      - 'config/runtime_asset_plan.json'
+      - '.github/workflows/build-runtime-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Build atlas and runtime parts
+        run: python tools/build_runtime_assets.py
+
+      - name: Show runtime size
+        run: |
+          du -ah assets/runtime | sort -h
+          python - <<'PY'
+          from pathlib import Path
+          total = sum(p.stat().st_size for p in Path('assets/runtime').rglob('*') if p.is_file())
+          print(f'Runtime assets total: {total} bytes ({total/1024:.1f} KiB)')
+          if total > 3 * 1024 * 1024:
+              raise SystemExit('Runtime asset budget exceeded: 3 MiB')
+          PY
+
+      - name: Commit generated runtime assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/runtime
+          if git diff --cached --quiet; then
+            echo 'No runtime asset changes.'
+          else
+            git commit -m 'Build runtime atlas [skip ci]'
+            git push
+          fi
