@@ -7,9 +7,11 @@ on:
     paths:
       - 'tools/build_runtime_assets.py'
       - 'tools/repack_runtime_atlas.py'
+      - 'tools/generate_firmware_tables.py'
       - 'tools/requirements.txt'
       - 'assets/generated/**'
       - 'config/runtime_asset_plan.json'
+      - 'config/emotions_v0.json'
       - '.github/workflows/build-runtime-assets.yml'
 
 permissions:
@@ -36,6 +38,9 @@ jobs:
       - name: Repack and validate atlas bounds
         run: python tools/repack_runtime_atlas.py
 
+      - name: Generate ESP32-friendly tables
+        run: python tools/generate_firmware_tables.py
+
       - name: Show runtime size
         run: |
           du -ah assets/runtime | sort -h
@@ -57,14 +62,14 @@ jobs:
           print('Atlas bounds QA: PASS')
           PY
 
-      - name: Commit generated runtime assets
+      - name: Commit generated runtime outputs
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/runtime
+          git add assets/runtime firmware/generated
           if git diff --cached --quiet; then
-            echo 'No runtime asset changes.'
+            echo 'No runtime output changes.'
           else
-            git commit -m 'Build runtime atlas [skip ci]'
+            git commit -m 'Build runtime atlas and firmware tables [skip ci]'
             git push
           fi
