@@ -51,4 +51,4 @@ jobs:
           git pull --rebase origin Jirai_Ver1.1 || true
           git push
 
-# QA revision: local WebGL rig plus externally hosted-page verification.
+# QA revision: semantic atlas parts 1.2.1; validates real eyes, blink, mouth and limbs.
