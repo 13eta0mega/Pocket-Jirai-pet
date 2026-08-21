@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: '22'
       - name: Prepare QA directory
-        run: mkdir -p qa/jirai-v12
+        run: |
+          rm -rf qa/jirai-v12
+          mkdir -p qa/jirai-v12
       - name: Install Playwright Chromium
         id: install
         run: |
@@ -36,7 +38,7 @@ jobs:
         id: browser
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/jirai-http.log 2>&1 &
-          cat > /tmp/qa-v12.mjs <<'EOF'
+          cat > qa/jirai-v12/runner.mjs <<'EOF'
           import { chromium } from 'playwright';
           import fs from 'node:fs';
           const browser = await chromium.launch({headless:true});
@@ -90,14 +92,16 @@ jobs:
           console.log(JSON.stringify({checks,pass:report.pass},null,2));
           EOF
           set +e
-          node /tmp/qa-v12.mjs > qa/jirai-v12/browser.log 2>&1
+          node qa/jirai-v12/runner.mjs > qa/jirai-v12/browser.log 2>&1
           rc=$?
           cat qa/jirai-v12/browser.log
+          rm -f qa/jirai-v12/runner.mjs
           exit $rc
       - name: Publish QA report to branch
         if: always()
         run: |
           mkdir -p qa/jirai-v12
+          rm -f qa/jirai-v12/runner.mjs
           if [ ! -f qa/jirai-v12/report.json ]; then
             printf '%s\n' '{"stage":"browser-not-complete","install":"${{ steps.install.outcome }}","browser":"${{ steps.browser.outcome }}","pass":false}' > qa/jirai-v12/report.json
           fi
