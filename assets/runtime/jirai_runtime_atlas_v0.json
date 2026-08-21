@@ -170,11 +170,15 @@
     "mouth": "assets/generated/sprites/sprite_sheet_cute_expressions_and_blush_02.png"
   },
   "qa": {
-    "status": "prototype",
+    "status": "layout-tuning",
     "known_issues": [
       "face blank still needs final manual cleanup",
-      "twin-tail top edges need final cleanup under bunny clips",
-      "mouth and eye placement must be tuned on the assembled model"
+      "eye, brow and mouth placement still need visual tuning against the reference overlay",
+      "bunny clip extraction is still provisional"
+    ],
+    "resolved": [
+      "atlas overflow is bounds-checked",
+      "twin-tail hair masks no longer keep the white clip/ear artifacts"
     ]
   },
   "packing": {
