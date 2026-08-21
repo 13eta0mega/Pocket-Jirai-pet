@@ -1,0 +1,88 @@
+name: QA Jirai Ver1.2
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run browser QA
+        run: |
+          mkdir -p qa/jirai-v12
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/jirai-http.log 2>&1 &
+          cat > /tmp/qa-v12.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+          const browser = await chromium.launch({headless:true});
+          const page = await browser.newPage({viewport:{width:1280,height:1100},deviceScaleFactor:1});
+          const consoleErrors=[];
+          page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
+          page.on('pageerror',e=>consoleErrors.push(String(e)));
+          await page.goto('http://127.0.0.1:8765/?qa=1&emotion=neutral',{waitUntil:'networkidle'});
+          await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
+          await page.waitForTimeout(500);
+          const neutral=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.screenshot({path:'qa/jirai-v12/neutral.png',fullPage:true});
+          const emotions=['neutral','happy','excited','teasing','pleading','relaxed','sick','angry','annoyed','sad','surprised','embarrassed','scared','smug','confused','love'];
+          const samples={};
+          for(const id of emotions){
+            await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
+            await page.waitForTimeout(520);
+            samples[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          }
+          await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
+          await page.waitForTimeout(450);
+          const lip={};
+          for(const v of [0.15,0.55,0.95]){
+            await page.evaluate(v=>window.__JIRAI_QA__.setMouth(v),v);
+            await page.waitForTimeout(180);
+            lip[String(v)]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          }
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
+          await page.waitForTimeout(100);
+          await page.evaluate(()=>window.__JIRAI_QA__.forceBlink());
+          await page.waitForTimeout(75);
+          const blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.screenshot({path:'qa/jirai-v12/blink.png',fullPage:true});
+          const checks={
+            ready:neutral.ready===true,
+            assetLoaded:neutral.assetLoaded===true,
+            emotionButtons:neutral.buttonCount===16,
+            activeParts:neutral.mesh?.activeParts===58,
+            renderer:neutral.renderer==='Sprite parts + micro-mesh',
+            lipSmall:lip['0.15'].mouthSprite==='M03',
+            lipMedium:['M04','M05'].includes(lip['0.55'].mouthSprite),
+            lipLarge:lip['0.95'].mouthSprite==='M05',
+            blinkUsesClosedPart:String(blink.eyeSprite).includes('E03/E04'),
+            allEmotionPartsDiffer:new Set(emotions.map(id=>`${samples[id].parts.eyes}|${samples[id].parts.mouth}|${samples[id].parts.arms}|${samples[id].parts.legs}`)).size>=10,
+            noConsoleErrors:consoleErrors.length===0
+          };
+          const report={started:new Date().toISOString(),checks,neutral,lip,blink,samples,consoleErrors,pass:Object.values(checks).every(Boolean)};
+          fs.writeFileSync('qa/jirai-v12/report.json',JSON.stringify(report,null,2));
+          await browser.close();
+          if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1)}
+          console.log(JSON.stringify({checks,pass:report.pass},null,2));
+          EOF
+          node /tmp/qa-v12.mjs
+      - name: Upload QA artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jirai-v12-qa
+          path: qa/jirai-v12
+          if-no-files-found: error
