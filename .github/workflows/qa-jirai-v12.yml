@@ -19,15 +19,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare QA directory
+        run: mkdir -p qa/jirai-v12
       - name: Install Playwright Chromium
         id: install
         run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
+          set +e
+          {
+            npm install --no-save playwright@1.55.0
+            npx playwright install --with-deps chromium
+          } > qa/jirai-v12/install.log 2>&1
+          rc=$?
+          cat qa/jirai-v12/install.log
+          exit $rc
       - name: Run browser QA
         id: browser
         run: |
-          mkdir -p qa/jirai-v12
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/jirai-http.log 2>&1 &
           cat > /tmp/qa-v12.mjs <<'EOF'
           import { chromium } from 'playwright';
@@ -82,13 +89,17 @@ jobs:
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1)}
           console.log(JSON.stringify({checks,pass:report.pass},null,2));
           EOF
-          node /tmp/qa-v12.mjs
+          set +e
+          node /tmp/qa-v12.mjs > qa/jirai-v12/browser.log 2>&1
+          rc=$?
+          cat qa/jirai-v12/browser.log
+          exit $rc
       - name: Publish QA report to branch
         if: always()
         run: |
           mkdir -p qa/jirai-v12
           if [ ! -f qa/jirai-v12/report.json ]; then
-            printf '%s\n' '{"stage":"browser-not-complete","pass":false,"message":"Workflow ran, but browser QA did not produce a report. Inspect the workflow log."}' > qa/jirai-v12/report.json
+            printf '%s\n' '{"stage":"browser-not-complete","install":"${{ steps.install.outcome }}","browser":"${{ steps.browser.outcome }}","pass":false}' > qa/jirai-v12/report.json
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
