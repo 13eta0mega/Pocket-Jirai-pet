@@ -36,7 +36,7 @@
   const EMOTIONS = {
     neutral:     {label:'기본', parts:{eye:'base', mouth:'neutral', arm:'straight'}, pose:{}, gesture:'settle'},
     happy:       {label:'행복', parts:{eye:'happyClosed', mouth:'happy', arm:'straight'}, pose:{headAngle:-1.8,armL:-.16,armR:.16,browMood:-.05,blush:.18,energy:.42,sparkle:.14}, gesture:'happy'},
-    excited:     {label:'신남', parts:{eye:'wide', mouth:'happyOpen', arm:'bent'}, pose:{headAngle:1.4,armL:-.72,armR:.72,legL:.10,legR:-.18,energy:1,sparkle:.75}, gesture:'bounce'},
+    excited:     {label:'신남', parts:{eye:'sparkle', mouth:'happyOpen', arm:'bent'}, pose:{headAngle:1.4,armL:-.72,armR:.72,legL:.10,legR:-.18,energy:1,sparkle:.75}, gesture:'bounce'},
     teasing:     {label:'장난', parts:{eye:'wink', mouth:'happyOpen', arm:'bent'}, pose:{headAngle:-5.5,headTurn:.14,armL:-.14,armR:.52,bodyLean:-1.5,blush:.08,energy:.6}, gesture:'tease'},
     pleading:    {label:'울망', parts:{eye:'sparkle', mouth:'frown', arm:'bent'}, pose:{headAngle:3.8,browMood:-1,armL:-.20,armR:.20,bodySquash:.025,tears:.88,energy:.08}, gesture:'plead'},
     relaxed:     {label:'느긋', parts:{eye:'half', mouth:'soft', arm:'straight'}, pose:{headAngle:-2.5,headTurn:-.08,bodyLean:1.1,armL:.08,armR:-.08,energy:.04}, gesture:'slow'},
@@ -81,7 +81,8 @@
     setMicActive(v){ this.micActive=!!v; }
     forceBlink(){ this.blinkStart=performance.now(); this.doubleBlinkPending=false; }
     scheduleBlink(now){ const i=this.config.idle; this.nextBlink=now+lerp(i.blinkMinMs,i.blinkMaxMs,this.rand()); }
-    updateBlink(now){
+    updateBlink(now,qa=false){
+      if(qa && this.blinkStart<0){this.blinkL=this.blinkR=1;return;}
       if(this.blinkStart<0 && now>=this.nextBlink){ this.blinkStart=now; this.doubleBlinkPending=this.rand()<this.config.idle.doubleBlinkChance; }
       if(this.blinkStart<0){ this.blinkL=this.blinkR=1; return; }
       const d=this.config.idle.blinkDurationMs, q=(now-this.blinkStart)/d;
@@ -133,7 +134,7 @@
       }
     }
     update(now,dt,qa=false){
-      this.updateBlink(now); this.updateIdle(now,dt,qa);
+      this.updateBlink(now,qa); this.updateIdle(now,dt,qa);
       const sec=now/1000, g=this.gesture(now), out={};
       for(const [k,s] of Object.entries(this.springs))out[k]=s.step(dt);
       const lip=this.lipTarget(sec); this.springs.mouthOpen.set(Math.max(EMOTIONS[this.emotion].pose.mouthOpen||0,lip)); out.mouthOpen=this.springs.mouthOpen.step(dt);
@@ -184,7 +185,7 @@
     atlasPart(key){return this.config.atlas.parts[key];}
     drawAtlas(ctx,key,x,y,targetW,targetH,opts={}){const r=this.atlasPart(key);if(!r||!this.image)return;const[sx,sy,sw,sh]=r;let dw=targetW,dh=targetH;if(dw==null&&dh==null){dw=sw;dh=sh;}else if(dw==null)dw=dh*sw/sh;else if(dh==null)dh=dw*sh/sw;ctx.save();ctx.translate(x,y);ctx.rotate((opts.angle||0)*Math.PI/180);ctx.scale(opts.flipX?-1:1,opts.flipY?-1:1);ctx.globalAlpha=opts.alpha??1;const ax=opts.anchorX??.5,ay=opts.anchorY??.5;ctx.drawImage(this.image,sx,sy,sw,sh,-dw*ax,-dh*ay,dw,dh);ctx.restore();}
     drawCanvasSprite(ctx,sprite,x,y,w,h,opts={}){ctx.save();ctx.translate(x,y);ctx.rotate((opts.angle||0)*Math.PI/180);ctx.scale(opts.flipX?-1:1,1);ctx.globalAlpha=opts.alpha??1;const ax=opts.anchorX??.5,ay=opts.anchorY??.5;ctx.drawImage(sprite,-w*ax,-h*ay,w,h);ctx.restore();}
-    eyeSpec(style,side){const E=this.config.expressions.eyes;if(style==='base')return{base:true};if(style==='wink')return side==='L'?{base:true}:E.closedR;if(style==='confused')return side==='L'?{base:true}:E.halfR;if(style==='happyClosed'||style==='softClosed')return side==='L'?E.closedL:E.closedR;if(style==='half'||style==='angry')return side==='L'?E.halfL:E.halfR;if(style==='sparkle')return side==='L'?E.sparkleL:E.sparkleR;if(style==='wide')return side==='L'?E.wideL:E.wideR;return{base:true};}
+    eyeSpec(style,side){const E=this.config.expressions.eyes;if(style==='base')return{base:true};if(style==='wink')return side==='L'?{base:true}:E.closedR;if(style==='confused')return side==='L'?{base:true}:E.halfR;if(style==='happyClosed'||style==='softClosed')return side==='L'?E.closedL:E.closedR;if(style==='half')return side==='L'?E.halfL:E.halfR;if(style==='angry')return side==='L'?E.angryL:E.angryR;if(style==='sparkle')return side==='L'?E.sparkleL:E.sparkleR;if(style==='wide')return side==='L'?E.wideL:E.wideR;return{base:true};}
     drawEye(ctx,style,side,alpha,blink){const f=this.config.face,center=side==='L'?f.leftEye:f.rightEye,openSpec=this.eyeSpec(style,side),closedSpec=side==='L'?this.config.expressions.eyes.closedL:this.config.expressions.eyes.closedR;const drawSpec=(spec,a)=>{if(a<=.005)return;if(spec.base){const s=side==='L'?this.baseFeatures.eyeL:this.baseFeatures.eyeR,rect=side==='L'?f.baseEyeL:f.baseEyeR;this.drawCanvasSprite(ctx,s,center[0],center[1],rect[2],rect[3],{alpha:a});}else this.drawAtlas(ctx,spec.key,center[0]+(spec.dx||0),center[1]+(spec.dy||0),spec.w,spec.h,{alpha:a,flipX:!!spec.flipX});};const close=clamp(1-blink);drawSpec(openSpec,alpha*(1-close));drawSpec(closedSpec,alpha*close);this.lastEyeSprite=close>.55?'closed':style;}
     drawBrows(ctx,p,alpha=1){const f=this.config.face,m=p.browMood||0,l=f.baseBrowL,r=f.baseBrowR;this.drawCanvasSprite(ctx,this.baseFeatures.browL,f.browLeft[0],f.browLeft[1],l[2],l[3],{angle:-m*13,alpha});this.drawCanvasSprite(ctx,this.baseFeatures.browR,f.browRight[0],f.browRight[1],r[2],r[3],{angle:m*13,alpha});}
     mouthSpec(style){return this.config.expressions.mouths[style]||this.config.expressions.mouths.neutral;}
