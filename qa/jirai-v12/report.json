@@ -1,5 +1,5 @@
 {
-  "started": "2026-08-22T01:38:25.660Z",
+  "started": "2026-08-22T01:49:26.584Z",
   "stage": "browser-complete",
   "checks": {
     "ready": true,
@@ -35,8 +35,8 @@
       "energy": 0.1,
       "blush": 0,
       "globalX": 0,
-      "globalBob": 0.153801905376218,
-      "breath": 0.9997194617171515,
+      "globalBob": 0.15136367746262056,
+      "breath": 0.9968169502506204,
       "blinkOpen": 1,
       "mouthOpen": 0,
       "transition": 1,
@@ -60,7 +60,16 @@
       "cleanedParts": [
         "A05"
       ],
-      "cleanedCount": 1
+      "cleanedCount": 1,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      }
     },
     "mouthSprite": "M01",
     "eyeSprite": "E01/E02",
@@ -75,19 +84,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -4.979497768372363e-8,
-        "headTurn": -5.0906823595646277e-17,
-        "bodyLean": -2.1456524505478025e-16,
-        "bodySquash": -2.94273932420404e-29,
-        "armL": -1.4731514830885515e-70,
-        "armR": 1.4731514830885515e-70,
-        "legL": -7.365755704634543e-71,
-        "legR": 7.365755704634543e-71,
-        "energy": 0.10000001543644539,
-        "blush": 1.369362082293376e-8,
+        "headAngle": -4.97948445299816e-8,
+        "headTurn": -9.994458584928471e-17,
+        "bodyLean": -1.2635200077875481e-16,
+        "bodySquash": -1.7216812000045036e-29,
+        "armL": -6.155230677804091e-71,
+        "armR": 6.155230677804091e-71,
+        "legL": -3.077614527230242e-71,
+        "legR": 3.077614527230242e-71,
+        "energy": 0.10000001543640635,
+        "blush": 1.3693586093610252e-8,
         "globalX": 0,
-        "globalBob": -0.11624829310377943,
-        "breath": 0.8186696349707491,
+        "globalBob": -0.13846359026777028,
+        "breath": 0.6755088782702073,
         "blinkOpen": 1,
         "mouthOpen": 0.15,
         "transition": 1,
@@ -111,7 +120,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M03",
       "eyeSprite": "E01/E02",
@@ -125,19 +143,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -1.056251815034942e-10,
-        "headTurn": -3.027964372340439e-18,
-        "bodyLean": 3.912660540573576e-18,
-        "bodySquash": 9.010742607846424e-32,
-        "armL": 8.98895925569539e-73,
-        "armR": -8.98895925569539e-73,
-        "legL": 4.4944799029177707e-73,
-        "legR": -4.4944799029177707e-73,
-        "energy": 0.10000000003274395,
-        "blush": 2.9047041490118863e-11,
+        "headAngle": -1.056208539434023e-10,
+        "headTurn": -1.6890081599244216e-18,
+        "bodyLean": 3.077393473613648e-18,
+        "bodySquash": 6.952141546326988e-32,
+        "armL": 7.830632954874693e-73,
+        "armR": -7.830632954874693e-73,
+        "legL": 3.915316177214832e-73,
+        "legR": -3.915316177214832e-73,
+        "energy": 0.10000000003274255,
+        "blush": 2.9045799861268503e-11,
         "globalX": 0,
-        "globalBob": -0.14137528208349992,
-        "breath": 0.6485780694541483,
+        "globalBob": -0.15395266823025017,
+        "breath": 0.4691066057874251,
         "blinkOpen": 1,
         "mouthOpen": 0.55,
         "transition": 1,
@@ -161,7 +179,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M04",
       "eyeSprite": "E01/E02",
@@ -175,19 +202,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 1.823005194855752e-12,
-        "headTurn": 1.32062659618862e-20,
-        "bodyLean": 7.088625615671218e-20,
-        "bodySquash": 4.848507713993441e-34,
-        "armL": 4.899651724767555e-74,
-        "armR": -4.899651724767555e-74,
-        "legL": 2.449825290956036e-74,
-        "legR": -2.449825290956036e-74,
-        "energy": 0.09999999999943487,
-        "blush": -5.013269370266023e-13,
+        "headAngle": 1.827304750686643e-12,
+        "headTurn": 9.414405352317594e-21,
+        "bodyLean": 4.171242618987102e-20,
+        "bodySquash": 2.192172782298448e-34,
+        "armL": 2.0444006626994875e-74,
+        "armR": -2.0444006626994875e-74,
+        "legL": 1.0222000604943748e-74,
+        "legR": -1.0222000604943748e-74,
+        "energy": 0.09999999999943354,
+        "blush": -5.0250916889347e-13,
         "globalX": 0,
-        "globalBob": -0.15517101922926668,
-        "breath": 0.43694622499059566,
+        "globalBob": -0.157097858478733,
+        "breath": 0.23274881186429222,
         "blinkOpen": 1,
         "mouthOpen": 0.95,
         "transition": 1,
@@ -211,7 +238,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M05",
       "eyeSprite": "E01/E02",
@@ -226,19 +262,19 @@
     "fps": 61,
     "errors": [],
     "params": {
-      "headAngle": -4.1016522584901055e-15,
-      "headTurn": 3.451575818568499e-23,
-      "bodyLean": -1.3187446323205666e-21,
-      "bodySquash": -4.4459708510831156e-36,
-      "armL": -3.089813196610595e-76,
-      "armR": 3.089813196610595e-76,
-      "legL": -1.544906679597248e-76,
-      "legR": 1.544906679597248e-76,
-      "energy": 0.10000000000000127,
-      "blush": 1.1279530422273714e-15,
+      "headAngle": -4.101660990187085e-15,
+      "headTurn": 1.1347633738766021e-23,
+      "bodyLean": -1.0346218298728896e-21,
+      "bodySquash": -2.8239045404776422e-36,
+      "armL": -2.6506945782797626e-76,
+      "armR": 2.6506945782797626e-76,
+      "legL": -1.325347183983207e-76,
+      "legR": 1.325347183983207e-76,
+      "energy": 0.10000000000000128,
+      "blush": 1.127956335417159e-15,
       "globalX": 0,
-      "globalBob": -0.15651441689765377,
-      "breath": 0.19751772926503774,
+      "globalBob": -0.1476384733949486,
+      "breath": -0.018609720554090065,
       "blinkOpen": 0,
       "mouthOpen": 0,
       "transition": 1,
@@ -262,7 +298,16 @@
       "cleanedParts": [
         "A05"
       ],
-      "cleanedCount": 1
+      "cleanedCount": 1,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      }
     },
     "mouthSprite": "M01",
     "eyeSprite": "E01/E02 -> E03/E04",
@@ -274,7 +319,7 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "neutral",
-      "fps": 57,
+      "fps": 56,
       "errors": [],
       "params": {
         "headAngle": 0,
@@ -288,8 +333,8 @@
         "energy": 0.1,
         "blush": 0,
         "globalX": 0,
-        "globalBob": 0.025913654410554984,
-        "breath": 0.46824074562872153,
+        "globalBob": 0.003913890006132902,
+        "breath": 0.3542035548779363,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -313,7 +358,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M01",
       "eyeSprite": "E01/E02",
@@ -327,19 +381,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -1.500000465107293,
+        "headAngle": -1.5000001477269838,
         "headTurn": 0,
         "bodyLean": 0,
         "bodySquash": 0,
-        "armL": -4.000113993812327,
-        "armR": 4.000113993812327,
+        "armL": -4.000076625929035,
+        "armR": 4.000076625929035,
         "legL": 0,
         "legR": 0,
-        "energy": 0.450000108525035,
-        "blush": 0.2500000775178821,
+        "energy": 0.45000003446962955,
+        "blush": 0.2500000246211639,
         "globalX": 0,
-        "globalBob": -0.7518326197739733,
-        "breath": -0.24728989684712974,
+        "globalBob": -0.8257210458985972,
+        "breath": -0.3662543833105416,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -363,7 +417,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M02",
       "eyeSprite": "E03/E04",
@@ -374,22 +437,22 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "excited",
-      "fps": 60,
+      "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 1.5000002936821808,
+        "headAngle": 1.500000930214312,
         "headTurn": 0,
         "bodyLean": 0,
-        "bodySquash": -0.011055101851470265,
-        "armL": -6.000038233713625,
-        "armR": 6.000038233713625,
-        "legL": -5.39086815748251,
-        "legR": 5.39086815748251,
-        "energy": 1.0000000538418468,
-        "blush": -2.4473492341104808e-8,
+        "bodySquash": -0.010090728963731007,
+        "armL": -6.000056996957375,
+        "armR": 6.000056996957375,
+        "legL": -5.166248948117399,
+        "legR": 5.166248948117399,
+        "energy": 1.0000001705394044,
+        "blush": -7.751783654744951e-8,
         "globalX": 0,
-        "globalBob": -6.864387890675563,
-        "breath": -0.8344110268103223,
+        "globalBob": -6.311875765837792,
+        "breath": -0.8862637319063176,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -413,7 +476,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M05",
       "eyeSprite": "E11/E12",
@@ -424,22 +496,22 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "teasing",
-      "fps": 57,
+      "fps": 55,
       "errors": [],
       "params": {
-        "headAngle": -4.0000001517853825,
-        "headTurn": 0.08000000220778734,
-        "bodyLean": -3.8178320797669967,
+        "headAngle": -4.00000080044757,
+        "headTurn": 0.08000001164287368,
+        "bodyLean": -3.865638574050603,
         "bodySquash": 0,
-        "armL": 0.00007641987882345364,
-        "armR": 2.908414150474722,
-        "legL": 0.000038209930143412914,
-        "legR": -0.000038209930143412914,
-        "energy": 0.5499999875811957,
-        "blush": 2.3475331396859194e-16,
+        "armL": 0.00011590425844099412,
+        "armR": 2.984843998610982,
+        "legL": 0.000057952116020093005,
+        "legR": -0.000057952116020093005,
+        "energy": 0.5499999345088348,
+        "blush": 3.1747065667961596e-16,
         "globalX": 0,
-        "globalBob": -0.16978900108315226,
-        "breath": -0.8991414259468595,
+        "globalBob": -0.11494614096786851,
+        "breath": -0.8246714941546505,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -463,7 +535,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M08",
       "eyeSprite": "E01/E04",
@@ -477,19 +558,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 3.500002335122192,
-        "headTurn": -2.4907967721406414e-8,
-        "bodyLean": 1.0000856648549663,
+        "headAngle": 3.500000734189282,
+        "headTurn": -7.83135001371361e-9,
+        "bodyLean": 1.0000573502179229,
         "bodySquash": 0,
-        "armL": 1.199999932285575,
-        "armR": 1.1999999319755705,
-        "legL": 7.750109278110174e-11,
-        "legR": -7.750109278110174e-11,
-        "energy": 0.11999986611957758,
-        "blush": 0.15000004670245584,
+        "armL": 1.1987725583489774,
+        "armR": 1.1987725580389805,
+        "legL": 7.749924536901765e-11,
+        "legR": -7.749924536901765e-11,
+        "energy": 0.11999995790639775,
+        "blush": 0.15000001468379762,
         "globalX": 0,
-        "globalBob": 0.7284488478629247,
-        "breath": -0.39283023641435816,
+        "globalBob": 0.7475692170015059,
+        "breath": -0.2303527415632822,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -513,7 +594,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M07",
       "eyeSprite": "E09/E10",
@@ -527,19 +617,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -2.500001852734243,
-        "headTurn": -0.050000015439477935,
-        "bodyLean": 1.200005688406097,
+        "headAngle": -2.500001860378379,
+        "headTurn": -0.05000001550317908,
+        "bodyLean": 1.2000056996889081,
         "bodySquash": 0,
-        "armL": -9.277582351392594e-15,
-        "armR": 9.277582351392594e-15,
-        "legL": -4.638790225363388e-15,
-        "legR": 4.638790225363388e-15,
-        "energy": 0.049999978384673065,
-        "blush": -4.63183628873356e-8,
+        "armL": -1.3256451974709269e-14,
+        "armR": 1.3256451974709269e-14,
+        "legL": -6.628224715794904e-15,
+        "legR": 6.628224715794904e-15,
+        "energy": 0.04999997829549148,
+        "blush": -4.650946629246962e-8,
         "globalX": 0,
-        "globalBob": 0.12245919346955171,
-        "breath": 0.32745801877115516,
+        "globalBob": 0.1301707456717325,
+        "breath": 0.4633702759114224,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -563,7 +653,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M02",
       "eyeSprite": "E05/E06",
@@ -577,19 +676,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 4.500000689391499,
-        "headTurn": 4.924223694841328e-9,
-        "bodyLean": 3.1193579187689418,
-        "bodySquash": 0.020000001969693117,
-        "armL": 8.992855457452385e-21,
-        "armR": -8.992855457452385e-21,
-        "legL": 4.496423228301465e-21,
-        "legR": -4.496423228301465e-21,
-        "energy": 0.019999997045447603,
-        "blush": -2.7275992702222124e-14,
+        "headAngle": 4.500002170499609,
+        "headTurn": 1.550356733484571e-8,
+        "bodyLean": 3.104169547316598,
+        "bodySquash": 0.020000006201430574,
+        "armL": 2.9400175393181513e-20,
+        "armR": -2.9400175393181513e-20,
+        "legL": 1.4700079710009856e-20,
+        "legR": -1.4700079710009856e-20,
+        "energy": 0.019999990697841412,
+        "blush": -2.727599272075333e-14,
         "globalX": 0,
-        "globalBob": 1.3122829865429673,
-        "breath": 0.8775146901972971,
+        "globalBob": 1.303048912514544,
+        "breath": 0.9387468497189023,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -613,7 +712,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M07",
       "eyeSprite": "E05/E06",
@@ -627,19 +735,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -1.0000017123766616,
-        "headTurn": 9.142523408202094e-15,
-        "bodyLean": -2.000119930004589,
-        "bodySquash": -6.226825221166719e-9,
-        "armL": 9.584362959682064e-25,
-        "armR": -9.584362959682064e-25,
-        "legL": 4.792180676446161e-25,
-        "legR": -4.792180676446161e-25,
-        "energy": 0.850000258413393,
-        "blush": -1.2611501439622665e-20,
-        "globalX": -0.8692715068891737,
-        "globalBob": 0.18270799508933167,
-        "breath": 0.9771988032500951,
+        "headAngle": -1.0000005384284776,
+        "headTurn": 9.092189611595387e-15,
+        "bodyLean": -2.000080290989644,
+        "bodySquash": -1.9579227284811894e-9,
+        "armL": 9.568824353111561e-25,
+        "armR": -9.568824353111561e-25,
+        "legL": 4.78441137519854e-25,
+        "legR": -4.78441137519854e-25,
+        "energy": 0.8500000812539388,
+        "blush": -8.005116660480441e-21,
+        "globalX": -0.8192080428510365,
+        "globalBob": 0.09146608630060303,
+        "breath": 0.9266630505710057,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -663,7 +771,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M07",
       "eyeSprite": "E07/E08",
@@ -677,19 +794,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -5.000000389224281,
-        "headTurn": -0.08000000778446563,
-        "bodyLean": 0.25832385287610604,
-        "bodySquash": -3.636799026962942e-15,
-        "armL": -4.426423106073306e-30,
-        "armR": 4.426423106073306e-30,
-        "legL": -2.213210754102854e-30,
-        "legR": 2.213210754102854e-30,
-        "energy": 0.11999992896690204,
-        "blush": -2.097214032133014e-27,
+        "headAngle": -5.000000391603203,
+        "headTurn": -0.08000000783205326,
+        "bodyLean": 0.25824838617003065,
+        "bodySquash": -1.961519063695762e-15,
+        "armL": -4.426675646967375e-30,
+        "armR": 4.426675646967375e-30,
+        "legL": -2.2133370263713128e-30,
+        "legR": 2.2133370263713128e-30,
+        "energy": 0.11999992853259536,
+        "blush": -1.539667544930916e-27,
         "globalX": 0,
-        "globalBob": -0.07223009091988687,
-        "breath": 0.5806461183107006,
+        "globalBob": -0.09953542977935281,
+        "breath": 0.43339359804853733,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -713,7 +830,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M07",
       "eyeSprite": "E05/E06",
@@ -727,19 +853,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 5.00000310067337,
-        "headTurn": 2.4805378251432e-8,
-        "bodyLean": 1.3999971502105335,
-        "bodySquash": -1.6778629571364657e-21,
-        "armL": -8.114241825729052e-35,
-        "armR": 8.114241825729052e-35,
-        "legL": -4.057120444604043e-35,
-        "legR": 4.057120444604043e-35,
-        "energy": 0.02999997209380077,
-        "blush": 8.74913295068343e-35,
+        "headAngle": 5.00000097894112,
+        "headTurn": 7.831524250540604e-9,
+        "bodyLean": 1.3999980884361949,
+        "bodySquash": -6.580726140392321e-22,
+        "armL": -6.387470784633794e-35,
+        "armR": 6.387470784633794e-35,
+        "legL": -3.1937349535240694e-35,
+        "legR": 3.1937349535240694e-35,
+        "energy": 0.029999991189454792,
+        "blush": -1.3217790169768345e-34,
         "globalX": 0,
-        "globalBob": 1.6261450935682014,
-        "breath": -0.0945711953523083,
+        "globalBob": 1.6254712201321806,
+        "breath": -0.2849228999095247,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -763,7 +889,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M07",
       "eyeSprite": "E09/E10",
@@ -777,19 +912,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -4.924105866848084e-7,
-        "headTurn": 1.4587566562007948e-14,
-        "bodyLean": -0.00002681897208245718,
-        "bodySquash": -0.020000001969649645,
+        "headAngle": -0.0000015503558242595799,
+        "headTurn": 1.454740095765866e-14,
+        "bodyLean": -0.00003989783561560293,
+        "bodySquash": -0.020000006201430574,
         "armL": 4.898587196589413e-16,
         "armR": 4.898587196589413e-16,
-        "legL": 3.977770989620867e-40,
-        "legR": -3.977770989620867e-40,
-        "energy": 0.8500000807556188,
-        "blush": 1.932043826519546e-40,
+        "legL": 3.968686018786434e-40,
+        "legR": -3.968686018786434e-40,
+        "energy": 0.850000254258637,
+        "blush": 9.295677735326613e-41,
         "globalX": 0,
-        "globalBob": -0.4331465492850296,
-        "breath": -0.7391149809216777,
+        "globalBob": -0.37940231737863517,
+        "breath": -0.8431745659506115,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -813,7 +948,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M06",
       "eyeSprite": "E11/E12",
@@ -827,19 +971,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 3.00000093018896,
-        "headTurn": 0.060000018603797424,
-        "bodyLean": 0.680006197479538,
-        "bodySquash": 6.2012621622364965e-9,
-        "armL": 4.8080652118695896e-45,
-        "armR": -4.8080652118695896e-45,
-        "legL": 2.404032637250426e-45,
-        "legR": -2.404032637250426e-45,
-        "energy": 0.1799997922577449,
-        "blush": 1.0000003100632906,
+        "headAngle": 3.0000009340855245,
+        "headTurn": 0.06000001868172872,
+        "bodyLean": 0.6817701424594829,
+        "bodySquash": 6.227239260180859e-9,
+        "armL": 4.477109134654748e-45,
+        "armR": -4.477109134654748e-45,
+        "legL": 2.2385544491191915e-45,
+        "legR": -2.2385544491191915e-45,
+        "energy": 0.17999979138751213,
+        "blush": 1.0000003113621452,
         "globalX": 0,
-        "globalBob": -0.05061230204878194,
-        "breath": -0.9996923465716059,
+        "globalBob": -0.009065172692321615,
+        "breath": -0.9856848779035048,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -863,7 +1007,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M03",
       "eyeSprite": "E03/E04",
@@ -877,19 +1030,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 1.9999999021107284,
-        "headTurn": -5.873378118154686e-9,
-        "bodyLean": 3.1258833063242983e-15,
-        "bodySquash": 0.025000002447249068,
-        "armL": -1.0791859986338218e-49,
-        "armR": 1.0791859986338218e-49,
-        "legL": -5.395928770255047e-50,
-        "legR": 5.395928770255047e-50,
-        "energy": 0.7200000528603794,
-        "blush": -9.788963530257842e-8,
-        "globalX": 0.18639809683353895,
-        "globalBob": 0.2325925165038119,
-        "breath": -0.7568116440399345,
+        "headAngle": 1.9999999021063959,
+        "headTurn": -5.87363813135563e-9,
+        "bodyLean": 3.12595831274337e-15,
+        "bodySquash": 0.02500000244735743,
+        "armL": -7.150078322985062e-50,
+        "armR": 7.150078322985062e-50,
+        "legL": -3.5750383023125463e-50,
+        "legR": 3.5750383023125463e-50,
+        "energy": 0.7200000528627194,
+        "blush": -9.789396885592696e-8,
+        "globalX": 0.25010876954866146,
+        "globalBob": 0.30690370448300475,
+        "breath": -0.6164357682510143,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -913,7 +1066,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M06",
       "eyeSprite": "E11/E12",
@@ -927,19 +1089,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -4.500002023719567,
-        "headTurn": 0.08000002490730458,
-        "bodyLean": -1.6669561214495294,
-        "bodySquash": -7.783531539168866e-9,
-        "armL": 1.8067749016253406e-56,
-        "armR": -1.8067749016253406e-56,
-        "legL": 9.033810278687935e-57,
-        "legR": -9.033810278687935e-57,
-        "energy": 0.2199998443293765,
-        "blush": -1.8234198479423925e-13,
+        "headAngle": -4.5000020154651175,
+        "headTurn": 0.08000002480571138,
+        "bodyLean": -1.667375355662592,
+        "bodySquash": -7.751783667358958e-9,
+        "armL": -1.2775794796684778e-55,
+        "armR": 1.2775794796684778e-55,
+        "legL": -6.3879003859562555e-56,
+        "legR": 6.3879003859562555e-56,
+        "energy": 0.21999984496433392,
+        "blush": -1.8184248125998708e-13,
         "globalX": 0,
-        "globalBob": 0.20693721824740272,
-        "breath": -0.14382424929110266,
+        "globalBob": 0.21148969505213366,
+        "breath": 0.05000585727378314,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -963,7 +1125,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M02",
       "eyeSprite": "E05/E06",
@@ -977,19 +1148,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": 7.000001119015752,
-        "headTurn": -0.05000001264974211,
-        "bodyLean": 0.14589955828687726,
-        "bodySquash": -4.54599878679848e-15,
-        "armL": 1.2261155146352536e-59,
-        "armR": -1.2261155146352536e-59,
-        "legL": 6.130576404310237e-60,
-        "legR": -6.130576404310237e-60,
-        "energy": 0.19999999805379268,
-        "blush": -5.3366658625572916e-20,
+        "headAngle": 7.000001119015756,
+        "headTurn": -0.050000012649742145,
+        "bodyLean": 0.14533864862076826,
+        "bodySquash": -4.5334789692638735e-15,
+        "armL": 8.601854741558377e-60,
+        "armR": -8.601854741558377e-60,
+        "legL": 4.300926497311455e-60,
+        "legR": -4.300926497311455e-60,
+        "energy": 0.1999999980537929,
+        "blush": -5.3244680695626346e-20,
         "globalX": 0,
-        "globalBob": 0.1649657818038654,
-        "breath": 0.5588467458579067,
+        "globalBob": 0.13567191472610157,
+        "breath": 0.7084827326892225,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1013,7 +1184,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M01",
       "eyeSprite": "E01/E06",
@@ -1027,19 +1207,19 @@
       "fps": 61,
       "errors": [],
       "params": {
-        "headAngle": -2.0000028021452585,
-        "headTurn": 1.556746163591642e-8,
-        "bodyLean": 1.551997090312814e-11,
-        "bodySquash": -2.1019351328561e-21,
-        "armL": 1.1229223789095097,
-        "armR": 1.1229223789095097,
-        "legL": -3.1433193258298844e-65,
-        "legR": 3.1433193258298844e-65,
-        "energy": 0.7200001619018431,
-        "blush": 0.550000171242338,
+        "headAngle": -2.0000008810463563,
+        "headTurn": 4.894695516353998e-9,
+        "bodyLean": 4.094833280111966e-11,
+        "bodySquash": -1.3311171355222853e-21,
+        "armL": 1.1056822776278976,
+        "armR": 1.1056822776278976,
+        "legL": -4.753394253324902e-66,
+        "legR": 4.753394253324902e-66,
+        "energy": 0.7200000509049636,
+        "blush": 0.5500000538417906,
         "globalX": 0,
-        "globalBob": -2.571360738841841,
-        "breath": 0.9654307891482945,
+        "globalBob": -2.6303748311202395,
+        "breath": 0.9989297633500102,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1063,7 +1243,16 @@
         "cleanedParts": [
           "A05"
         ],
-        "cleanedCount": 1
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
       },
       "mouthSprite": "M02",
       "eyeSprite": "E13/E14",
