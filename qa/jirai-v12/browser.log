@@ -5,6 +5,8 @@
     "emotionButtons": true,
     "activeParts": true,
     "renderer": true,
+    "a05Cleanup": true,
+    "excitedUsesRaisedArms": true,
     "lipSmall": true,
     "lipMedium": true,
     "lipLarge": true,
