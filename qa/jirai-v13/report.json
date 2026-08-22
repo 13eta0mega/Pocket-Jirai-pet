@@ -1,13 +1,17 @@
 {
-  "started": "2026-08-22T05:41:56.461Z",
+  "started": "2026-08-22T05:44:32.265Z",
   "checks": {
     "ready": true,
     "assetLoaded": true,
-    "configV13": false,
-    "activeParts72": false,
+    "configV13": true,
+    "activeParts77": true,
     "lipVisemes7": true,
     "browProfiles16": true,
-    "explicitLayerMode": false,
+    "explicitLayerMode": true,
+    "integratedBodies5": true,
+    "linkedFootChain": true,
+    "faceStackTightened": true,
+    "integratedBodyMapping": true,
     "oneRaisedSideCorrect": true,
     "reviewedEmotionMouths": true,
     "reviewedEmotionArms": true,
@@ -28,49 +32,49 @@
   "lipSamples": [
     {
       "input": 0.08,
-      "mouthOpen": 0.07815021371104282,
+      "mouthOpen": 0.07815182152170984,
       "mouthOpenRaw": 0.08,
       "sprite": "M09",
       "index": 0
     },
     {
       "input": 0.21,
-      "mouthOpen": 0.20695662334809842,
+      "mouthOpen": 0.206959751980876,
       "mouthOpenRaw": 0.21,
       "sprite": "M10",
       "index": 1
     },
     {
       "input": 0.34,
-      "mouthOpen": 0.3369264011824114,
+      "mouthOpen": 0.3369291449309045,
       "mouthOpenRaw": 0.34,
       "sprite": "M11",
       "index": 2
     },
     {
       "input": 0.5,
-      "mouthOpen": 0.49623263605360013,
+      "mouthOpen": 0.49623269944031156,
       "mouthOpenRaw": 0.5,
       "sprite": "M12",
       "index": 3
     },
     {
       "input": 0.65,
-      "mouthOpen": 0.6464476308411357,
+      "mouthOpen": 0.6464476323055103,
       "mouthOpenRaw": 0.65,
       "sprite": "M13",
       "index": 4
     },
     {
       "input": 0.8,
-      "mouthOpen": 0.7964525977003766,
+      "mouthOpen": 0.7964556810910451,
       "mouthOpenRaw": 0.8,
       "sprite": "M14",
       "index": 5
     },
     {
       "input": 0.98,
-      "mouthOpen": 0.9757596455165473,
+      "mouthOpen": 0.9757597167497506,
       "mouthOpenRaw": 0.98,
       "sprite": "M15",
       "index": 6
@@ -78,14 +82,14 @@
   ],
   "transientLip": {
     "attack": {
-      "mouthOpen": 0.2507597996677759,
+      "mouthOpen": 0.25141102970093054,
       "mouthOpenRaw": 1,
       "sprite": "M09"
     },
     "release": {
-      "mouthOpen": 0.6929539517964257,
+      "mouthOpen": 0.7566896470761844,
       "mouthOpenRaw": 0,
-      "sprite": "M13"
+      "sprite": "M14"
     }
   },
   "browModel": {
@@ -105,7 +109,8 @@
           "angle": 0,
           "scale": 1
         }
-      }
+      },
+      "bodySprite": "TB01"
     },
     "happy": {
       "brows": [
@@ -123,7 +128,8 @@
           "angle": 2,
           "scale": 1
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "excited": {
       "brows": [
@@ -141,7 +147,8 @@
           "angle": 5,
           "scale": 1.05
         }
-      }
+      },
+      "bodySprite": "TB05"
     },
     "teasing": {
       "brows": [
@@ -159,7 +166,8 @@
           "angle": 3,
           "scale": 0.98
         }
-      }
+      },
+      "bodySprite": "TB05"
     },
     "pleading": {
       "brows": [
@@ -177,7 +185,8 @@
           "angle": 4,
           "scale": 1.02
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "relaxed": {
       "brows": [
@@ -195,7 +204,8 @@
           "angle": -1,
           "scale": 0.96
         }
-      }
+      },
+      "bodySprite": "TB04"
     },
     "sick": {
       "brows": [
@@ -213,14 +223,16 @@
           "angle": 2,
           "scale": 0.98
         }
-      }
+      },
+      "bodySprite": "TB01"
     },
     "angry": {
       "brows": [],
       "browPose": {
         "left": {},
         "right": {}
-      }
+      },
+      "bodySprite": "TB02"
     },
     "annoyed": {
       "brows": [
@@ -238,7 +250,8 @@
           "angle": -6,
           "scale": 1.03
         }
-      }
+      },
+      "bodySprite": "TB02"
     },
     "sad": {
       "brows": [
@@ -256,7 +269,8 @@
           "angle": 6,
           "scale": 1.03
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "surprised": {
       "brows": [
@@ -274,7 +288,8 @@
           "angle": 2,
           "scale": 1.08
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "embarrassed": {
       "brows": [
@@ -292,7 +307,8 @@
           "angle": 4,
           "scale": 0.98
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "scared": {
       "brows": [
@@ -310,7 +326,8 @@
           "angle": 5,
           "scale": 1.06
         }
-      }
+      },
+      "bodySprite": "TB03"
     },
     "smug": {
       "brows": [
@@ -328,7 +345,8 @@
           "angle": -6,
           "scale": 1.04
         }
-      }
+      },
+      "bodySprite": "TB04"
     },
     "confused": {
       "brows": [
@@ -346,7 +364,8 @@
           "angle": 4,
           "scale": 0.98
         }
-      }
+      },
+      "bodySprite": "TB04"
     },
     "love": {
       "brows": [
@@ -364,7 +383,8 @@
           "angle": 2,
           "scale": 1
         }
-      }
+      },
+      "bodySprite": "TB03"
     }
   },
   "neutral": {
@@ -390,8 +410,8 @@
       "energy": 0.1,
       "blush": 0,
       "globalX": 0,
-      "globalBob": 0.15480670054253182,
-      "breath": 0.9999885385687384,
+      "globalBob": 0.15247039219395683,
+      "breath": 0.9984305371402924,
       "blinkOpen": 1,
       "mouthOpen": 0,
       "transition": 1,
@@ -457,7 +477,7 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "neutral",
-      "fps": 58,
+      "fps": 57,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
@@ -475,8 +495,8 @@
         "energy": 0.1,
         "blush": 0,
         "globalX": 0,
-        "globalBob": 0.014780486799986723,
-        "breath": 0.41114782834000346,
+        "globalBob": -0.012210105815026472,
+        "breath": 0.26739848473881805,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -541,26 +561,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "happy",
-      "fps": 61,
+      "fps": 57,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -1.4999999626538532,
+        "headAngle": -1.4999999638635864,
         "headTurn": 0,
         "bodyLean": 0,
         "bodySquash": 0,
-        "armL": -4.000003445329096,
-        "armR": 4.000003445329096,
+        "armL": -4.00000381878229,
+        "armR": 4.00000381878229,
         "legL": 0,
         "legR": 0,
-        "energy": 0.44999999128589907,
-        "blush": 0.2499999937756422,
+        "energy": 0.44999999156817017,
+        "blush": 0.24999999397726438,
         "globalX": 0,
-        "globalBob": -1.0020568286910496,
-        "breath": -0.4364940380129598,
+        "globalBob": -1.072127302417808,
+        "breath": -0.7859699934211258,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -625,26 +645,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "excited",
-      "fps": 61,
+      "fps": 58,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 1.4999998990777448,
+        "headAngle": 1.4999999482616195,
         "headTurn": 0,
         "bodyLean": 0,
-        "bodySquash": -0.013271552374080144,
-        "armL": -6.0000033103657415,
-        "armR": 6.0000033103657415,
-        "legL": -5.998358619441371,
-        "legR": 5.998358619441371,
-        "energy": 0.9999999814975861,
-        "blush": 8.410187859093514e-9,
+        "bodySquash": -0.01311459360916071,
+        "armL": -6.0000009052490775,
+        "armR": 6.0000009052490775,
+        "legL": -5.9790862104129054,
+        "legR": 5.9790862104129054,
+        "energy": 0.9999999905146303,
+        "blush": 4.311531709230973e-9,
         "globalX": 0,
-        "globalBob": -8.142531046026496,
-        "breath": -0.9646634501180488,
+        "globalBob": -7.735757882619497,
+        "breath": -0.8621141964778769,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -716,19 +736,19 @@
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -3.9999998674998163,
-        "headTurn": 0.07999999807272459,
-        "bodyLean": -3.0216245962318986,
+        "headAngle": -3.9999999049661827,
+        "headTurn": 0.07999999861768993,
+        "bodyLean": -2.9056893255132503,
         "bodySquash": 0,
-        "armL": 1.6346020271186423,
-        "armR": -0.000005728173436851975,
-        "legL": 0.0000028640867207321502,
-        "legR": -0.0000028640867207321502,
-        "energy": 0.5500000108409241,
-        "blush": 4.930714849028706e-19,
+        "armL": 1.4491041930739093,
+        "armR": -0.0000027262557822160747,
+        "legL": 0.0000013631279113661019,
+        "legR": -0.0000013631279113661019,
+        "energy": 0.5500000077754942,
+        "blush": -7.827987495082757e-20,
         "globalX": 0,
-        "globalBob": -0.0023256944387247502,
-        "breath": -0.633105308871958,
+        "globalBob": 0.29071448390571275,
+        "breath": 0.1578120064188801,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -793,26 +813,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "pleading",
-      "fps": 61,
+      "fps": 56,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 3.4999998132692682,
-        "headTurn": 1.991794465386589e-9,
-        "bodyLean": 1.000002583992536,
+        "headAngle": 3.499999819009411,
+        "headTurn": 1.9305662833776223e-9,
+        "bodyLean": 1.0000028731742052,
         "bodySquash": 0,
-        "armL": 1.131039757780999,
-        "armR": 1.131039757755283,
-        "legL": 6.429000303474837e-12,
-        "legR": -6.429000303474837e-12,
-        "energy": 0.12000001070589564,
-        "blush": 0.14999999626538532,
+        "armL": 1.1425827563206745,
+        "armR": 1.142582756320797,
+        "legL": -3.0646507031078543e-14,
+        "legR": 3.0646507031078543e-14,
+        "energy": 0.12000001037679377,
+        "blush": 0.1499999963801882,
         "globalX": 0,
-        "globalBob": 0.6955241996493313,
-        "breath": 0.18871427045658806,
+        "globalBob": 0.698133437328038,
+        "breath": 0.9770999752550532,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -877,26 +897,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "relaxed",
-      "fps": 57,
+      "fps": 58,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -2.4999998554543454,
-        "headTurn": -0.049999998795452874,
-        "bodyLean": 1.200000190939111,
+        "headAngle": -2.4999998963264374,
+        "headTurn": -0.049999999136053644,
+        "bodyLean": 1.2000000908761164,
         "bodySquash": 0,
-        "armL": 3.842077218022694e-19,
-        "armR": -3.842077218022694e-19,
-        "legL": 1.9210385832685234e-19,
-        "legR": -1.9210385832685234e-19,
-        "energy": 0.05000000168636597,
-        "blush": 3.6136413691266425e-9,
+        "armL": -2.7158040165975204e-21,
+        "armR": 2.7158040165975204e-21,
+        "legL": -1.357901996239093e-21,
+        "legR": 1.357901996239093e-21,
+        "energy": 0.0500000012095249,
+        "blush": 2.5918390645688386e-9,
         "globalX": 0,
-        "globalBob": 0.10579552022487326,
-        "breath": 0.9684110476906765,
+        "globalBob": -0.06293717801373527,
+        "breath": 0.5540124253188825,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -961,26 +981,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "sick",
-      "fps": 61,
+      "fps": 56,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 4.499999825716678,
-        "headTurn": -1.2448808653515867e-9,
-        "bodyLean": 3.213973047395833,
-        "bodySquash": 0.019999999502047644,
-        "armL": 4.913913347934364e-25,
-        "armR": -4.913913347934364e-25,
-        "legL": 2.4569566148876946e-25,
-        "legR": -2.4569566148876946e-25,
-        "energy": 0.020000000746928565,
-        "blush": 6.640091369932343e-17,
+        "headAngle": 4.499999831649607,
+        "headTurn": -1.2025028014394196e-9,
+        "bodyLean": 3.2095444591032716,
+        "bodySquash": 0.01999999951899888,
+        "armL": -5.413454016338563e-29,
+        "armR": 5.413454016338563e-29,
+        "legL": -2.7067269964061443e-29,
+        "legR": 2.7067269964061443e-29,
+        "energy": 0.02000000072150168,
+        "blush": -3.4159254174360415e-20,
         "globalX": 0,
-        "globalBob": 1.1901617450897448,
-        "breath": 0.8119026073349649,
+        "globalBob": 1.082508393890945,
+        "breath": -0.5735752925984676,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1045,26 +1065,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "angry",
-      "fps": 61,
+      "fps": 60,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -0.9999998146864489,
-        "headTurn": -3.30507124156731e-17,
-        "bodyLean": -2.00000697177482,
-        "bodySquash": 6.738674624154619e-10,
-        "armL": 3.0467507780610383e-31,
-        "armR": -3.0467507780610383e-31,
-        "legL": 1.5233753201371942e-31,
-        "legR": -1.5233753201371942e-31,
-        "energy": 0.8499999720344997,
-        "blush": 1.581647313843806e-24,
-        "globalX": 0.7408560486705997,
-        "globalBob": -0.4260840387787571,
-        "breath": 0.09493398049732549,
+        "headAngle": -0.9999998630631052,
+        "headTurn": -2.2087245755251362e-17,
+        "bodyLean": -2.000003617686674,
+        "bodySquash": 4.979523472825003e-10,
+        "armL": -4.40137301610862e-35,
+        "armR": 4.40137301610862e-35,
+        "legL": -2.2006864856445543e-35,
+        "legR": 2.2006864856445543e-35,
+        "energy": 0.8499999793349772,
+        "blush": -1.8406027972523944e-27,
+        "globalX": 0.6154620806422844,
+        "globalBob": -0.16115064347156902,
+        "breath": -0.9964301916773716,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1129,26 +1149,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "annoyed",
-      "fps": 58,
+      "fps": 57,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -4.99999990363583,
-        "headTurn": -0.07999999807271661,
-        "bodyLean": 0.28863417612703124,
-        "bodySquash": 3.9619238971170545e-20,
-        "armL": 1.5363306833771914e-38,
-        "armR": -1.5363306833771914e-38,
-        "legL": 7.681653189496146e-39,
-        "legR": -7.681653189496146e-39,
-        "energy": 0.12000001758646088,
-        "blush": -9.122067356622842e-35,
+        "headAngle": -4.999999931015289,
+        "headTurn": -0.07999999862030575,
+        "bodyLean": 0.29111163994354716,
+        "bodySquash": -2.1474833411820538e-21,
+        "armL": -9.854594813470988e-43,
+        "armR": 9.854594813470988e-43,
+        "legL": -4.927297380638917e-43,
+        "legR": 4.927297380638917e-43,
+        "energy": 0.12000001258970992,
+        "blush": -6.885106417714978e-38,
         "globalX": 0,
-        "globalBob": -0.1209589210345916,
-        "breath": -0.8707837121125469,
+        "globalBob": 0.14114160963666847,
+        "breath": -0.4416311293899814,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1220,19 +1240,19 @@
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 4.99999982688375,
-        "headTurn": -1.384930005852449e-9,
-        "bodyLean": 1.3999999543872257,
-        "bodySquash": -9.225743492516022e-30,
-        "armL": 3.305683737923508e-46,
-        "armR": -3.305683737923508e-46,
-        "legL": 1.6528418337174147e-46,
-        "legR": -1.6528418337174147e-46,
-        "energy": 0.030000001558046257,
-        "blush": -5.5017343446909533e-45,
+        "headAngle": 4.999999827209703,
+        "headTurn": -1.3823223730277977e-9,
+        "bodyLean": 1.399999954560928,
+        "bodySquash": -1.4042419428105059e-30,
+        "armL": -7.84958769159917e-51,
+        "armR": 7.84958769159917e-51,
+        "legL": -3.924793853303525e-51,
+        "legR": 3.924793853303525e-51,
+        "energy": 0.03000000155511267,
+        "blush": 1.0150514545300239e-47,
         "globalX": 0,
-        "globalBob": 1.8490439751600019,
-        "breath": -0.7894921776037926,
+        "globalBob": 1.8741259830886705,
+        "breath": 0.674646694353581,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1297,26 +1317,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "surprised",
-      "fps": 58,
+      "fps": 61,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 8.639437953864482e-8,
-        "headTurn": -7.341337363269629e-21,
-        "bodyLean": -6.361263434353095e-7,
-        "bodySquash": -0.019999999654422486,
+        "headAngle": 1.2448839696536777e-7,
+        "headTurn": -2.3022652269219986e-17,
+        "bodyLean": -0.0000012059067587123398,
+        "bodySquash": -0.019999999502046405,
         "armL": 4.898587196589413e-16,
         "armR": 4.898587196589413e-16,
-        "legL": 3.420379975887491e-54,
-        "legR": -3.420379975887491e-54,
-        "energy": 0.8499999858313217,
-        "blush": 1.8898053820265918e-54,
+        "legL": -6.123697853204713e-57,
+        "legR": 6.123697853204713e-57,
+        "energy": 0.8499999795839024,
+        "blush": 8.469131658513738e-56,
         "globalX": 0,
-        "globalBob": 0.4825254997972296,
-        "breath": 0.23953809553539443,
+        "globalBob": -0.09585699924124899,
+        "breath": 0.998983135625539,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1381,26 +1401,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "embarrassed",
-      "fps": 61,
+      "fps": 57,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 2.99999989907789,
-        "headTurn": 0.059999997981557765,
-        "bodyLean": 0.7512794850522669,
-        "bodySquash": -6.728140679370763e-10,
-        "armL": 1.159884527273828e-59,
-        "armR": -1.159884527273828e-59,
-        "legL": 5.799422484423794e-60,
-        "legR": -5.799422484423794e-60,
-        "energy": 0.18000002253927122,
-        "blush": 0.9999999663592961,
+        "headAngle": 2.9999999277273224,
+        "headTurn": 0.05999999855454644,
+        "bodyLean": 0.7508386570501123,
+        "bodySquash": -4.818178504719643e-10,
+        "armL": -4.12477687965593e-64,
+        "armR": 4.12477687965593e-64,
+        "legL": -2.062388434336305e-64,
+        "legR": 2.062388434336305e-64,
+        "energy": 0.180000016140898,
+        "blush": 0.9999999759091075,
         "globalX": 0,
-        "globalBob": 0.07355451898933307,
-        "breath": 0.8886326016501033,
+        "globalBob": -0.19281286801037484,
+        "breath": 0.3651783649938417,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1465,26 +1485,26 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "scared",
-      "fps": 61,
+      "fps": 58,
       "errors": [],
       "assetMode": "v13-active-atlas",
       "sheetCount": 1,
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 2.0000000248974295,
-        "headTurn": 1.4938458360200404e-9,
-        "bodyLean": -2.655199246714405e-18,
-        "bodySquash": 0.024999999377564208,
-        "armL": 4.741805333999115e-66,
-        "armR": -4.741805333999115e-66,
-        "legL": 2.3709025530984203e-66,
-        "legR": -2.3709025530984203e-66,
-        "energy": 0.7199999865553875,
-        "blush": 2.4897430600334028e-8,
-        "globalX": -0.306821689646299,
-        "globalBob": -0.24346121306374666,
-        "breath": 0.9214617225417819,
+        "headAngle": 2.0000000172790298,
+        "headTurn": 1.0367417741286e-9,
+        "bodyLean": 1.1122356440168969e-21,
+        "bodySquash": 0.02499999956802426,
+        "armL": -1.6475676744396413e-72,
+        "armR": 1.6475676744396413e-72,
+        "legL": -8.237838495259673e-73,
+        "legR": 8.237838495259673e-73,
+        "energy": 0.719999990669324,
+        "blush": 1.7279029568810012e-8,
+        "globalX": -0.3996820826763592,
+        "globalBob": -0.13393351291121622,
+        "breath": -0.7339214684798006,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1556,19 +1576,19 @@
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -4.499999780993383,
-        "headTurn": 0.079999997304534,
-        "bodyLean": -1.6446673309479027,
-        "bodySquash": 8.423331236841183e-10,
-        "armL": -9.509326237026752e-72,
-        "armR": 9.509326237026752e-72,
-        "legL": -4.754663089923372e-72,
-        "legR": 4.754663089923372e-72,
-        "energy": 0.22000001684666246,
-        "blush": 6.610047330905151e-16,
+        "headAngle": -4.4999997809927565,
+        "headTurn": 0.07999999730452627,
+        "bodyLean": -1.6452066028785475,
+        "bodySquash": 8.423355377731187e-10,
+        "armL": -7.81093897094893e-78,
+        "armR": 7.81093897094893e-78,
+        "legL": -3.905469470867216e-78,
+        "legR": 3.905469470867216e-78,
+        "energy": 0.22000001684671075,
+        "blush": 4.436076070877868e-16,
         "globalX": 0,
-        "globalBob": -0.2114421819611637,
-        "breath": 0.3140918778490904,
+        "globalBob": 0.1269614106579369,
+        "breath": -0.9944286795133397,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1640,19 +1660,19 @@
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": 6.99999971367883,
-        "headTurn": -0.04999999676332591,
-        "bodyLean": 0.1689787609464726,
-        "bodySquash": 1.6525177911035155e-17,
-        "armL": -1.693783730723485e-77,
-        "armR": 1.693783730723485e-77,
-        "legL": -8.468918476896003e-78,
-        "legR": 8.468918476896003e-78,
-        "energy": 0.20000000049795022,
-        "blush": 1.0198410320635702e-23,
+        "headAngle": 6.999999714192017,
+        "headTurn": -0.049999996769127156,
+        "bodyLean": 0.16855823816616772,
+        "bodySquash": 1.649177478491672e-17,
+        "armL": -6.905056335338925e-84,
+        "armR": 6.905056335338925e-84,
+        "legL": -3.452528135377162e-84,
+        "legR": 3.452528135377162e-84,
+        "energy": 0.2000000004970577,
+        "blush": 6.529468567911921e-24,
         "globalX": 0,
-        "globalBob": -0.11643116682602428,
-        "breath": -0.527717428429089,
+        "globalBob": 0.2021955996425221,
+        "breath": -0.5560612181901446,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1724,19 +1744,19 @@
       "configVersion": "1.3.1-active77-integratedbody-viseme7",
       "configUrl": "config/jirai-v13-atlas.json",
       "params": {
-        "headAngle": -1.9999998444891955,
-        "headTurn": -8.639489142203893e-10,
-        "bodyLean": -1.1026101414942644e-14,
-        "bodySquash": -2.7785370568915893e-28,
-        "armL": 0.8722104547365304,
-        "armR": 0.8722104547365304,
-        "legL": -1.7086417484095513e-85,
-        "legR": 1.7086417484095513e-85,
-        "energy": 0.7199999910149313,
-        "blush": 0.549999990496562,
+        "headAngle": -1.9999998444905775,
+        "headTurn": -8.639412359907352e-10,
+        "bodyLean": -1.3140909999721163e-14,
+        "bodySquash": -3.309112867271073e-28,
+        "armL": 0.8551161390579366,
+        "armR": 0.8551161390579366,
+        "legL": -3.2007616950349366e-92,
+        "legR": 3.2007616950349366e-92,
+        "energy": 0.7199999910150111,
+        "blush": 0.5499999904966464,
         "globalX": 0,
-        "globalBob": -1.7214745986057234,
-        "breath": -0.9906320800401927,
+        "globalBob": -1.890001416998544,
+        "breath": 0.5902326572092705,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1798,5 +1818,5 @@
     }
   },
   "consoleErrors": [],
-  "pass": false
+  "pass": true
 }
