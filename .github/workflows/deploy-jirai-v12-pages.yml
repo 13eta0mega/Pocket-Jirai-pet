@@ -67,11 +67,16 @@ jobs:
           set +e
           base="${{ steps.deployment.outputs.page_url }}Jirai_Ver1.2/"
           ok=0
+          index_code=0
+          config_code=0
+          renderer_code=0
+          cleanup_code=0
           for i in $(seq 1 20); do
-            html=$(curl -fsSL --max-time 15 "${base}index.html")
-            cfg=$(curl -fsSL --max-time 15 "${base}config/jirai-v12.json")
-            js=$(curl -fsSL --max-time 15 "${base}src/rig-engine.js")
-            if printf '%s' "$html" | grep -q 'JIRAI VER1.2' && printf '%s' "$cfg" | grep -q 'part-rig' && printf '%s' "$js" | grep -q 'Sprite parts + micro-mesh'; then
+            index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
+            config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
+            renderer_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
+            cleanup_code=$(curl -L -sS -o /tmp/v12-cleanup.js -w '%{http_code}' --max-time 15 "${base}src/part-cleanup.js" || true)
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$renderer_code" = '200' ] && [ "$cleanup_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js; then
               ok=1
               break
             fi
@@ -79,10 +84,10 @@ jobs:
           done
           mkdir -p v12/qa/jirai-v12
           if [ "$ok" = "1" ]; then
-            printf '{"url":"%s","index":true,"config":true,"renderer":true,"pass":true}\n' "$base" > v12/qa/jirai-v12/hosted.json
+            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":true}\n' "$base" "$index_code" "$config_code" "$renderer_code" "$cleanup_code" > v12/qa/jirai-v12/hosted.json
             exit 0
           else
-            printf '{"url":"%s","pass":false,"message":"Hosted Ver1.2 files were not verified after deployment."}\n' "$base" > v12/qa/jirai-v12/hosted.json
+            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":false}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${renderer_code:-0}" "${cleanup_code:-0}" > v12/qa/jirai-v12/hosted.json
             exit 1
           fi
       - name: Publish hosted verification
@@ -98,5 +103,13 @@ jobs:
           git add qa/jirai-v12/hosted.json
           if ! git diff --cached --quiet; then
             git commit -m "Update Jirai Ver1.2 hosted QA [skip ci]"
-            git push origin HEAD:Jirai_Ver1.2
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
           fi
