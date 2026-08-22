@@ -28,22 +28,22 @@
   };
 
   const defs = {
-    neutral:     {label:'기본',eyes:['E01','E02'],brows:['B01','B02'],mouth:'M01',arms:'down',legs:'straight',faceOverlays:[],faceFx:[],pose:{},gesture:'settle'},
-    happy:       {label:'행복',eyes:['E03','E04'],brows:['B01','B02'],mouth:'M05',arms:'open',legs:'straight',faceOverlays:[],faceFx:['FX01','FX02'],pose:{headAngle:-1.5,armL:-4,armR:4,blush:.25,energy:.45},gesture:'happy'},
-    excited:     {label:'신남',eyes:['E01','E02'],brows:['B03','B04'],mouth:'M05',arms:'raised',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:1.5,armL:-6,armR:6,legL:-3,legR:3,energy:1},gesture:'bounce'},
-    teasing:     {label:'장난',eyes:['E01','E04'],brows:['B01','B02'],mouth:'M08',arms:'oneRaisedLeft',legs:'bentLeft',faceOverlays:[],faceFx:[],pose:{headAngle:-4,headTurn:.08,bodyLean:-2,energy:.55},gesture:'tease'},
-    pleading:    {label:'울망',eyes:['E09','E10'],brows:['B05','B06'],mouth:'M01',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:3.5,bodyLean:1,blush:.15,energy:.12},gesture:'plead'},
-    relaxed:     {label:'느긋',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M06',arms:'cheek',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:-2.5,headTurn:-.05,bodyLean:1.2,energy:.05},gesture:'slow'},
-    sick:        {label:'아픔',eyes:['E05','E06'],brows:['B05','B06'],mouth:'M17',arms:'down',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:4.5,bodyLean:2.2,bodySquash:.02,energy:.02},gesture:'sick'},
-    angry:       {label:'화남',eyes:['E07','E08'],brows:[],mouth:'M16',arms:'crossed',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:-1,bodyLean:-2,energy:.85},gesture:'angry'},
-    annoyed:     {label:'삐짐',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M16',arms:'crossed',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:-5,headTurn:-.08,bodyLean:1.5,energy:.12},gesture:'huff'},
-    sad:         {label:'슬픔',eyes:['E09','E10'],brows:['B05','B06'],mouth:'M17',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:5,bodyLean:1.4,energy:.03},gesture:'sad'},
-    surprised:   {label:'놀람',eyes:['E11','E12'],brows:['B03','B04'],mouth:'M06',arms:'palms',legs:'straight',faceOverlays:[],faceFx:[],pose:{bodySquash:-.02,energy:.85},gesture:'startle'},
-    embarrassed: {label:'부끄러움',eyes:['E03','E04'],brows:['B03','B04'],mouth:'M02',arms:'clasped',legs:'bentLeft',faceOverlays:[],faceFx:['FX03','FX04'],pose:{headAngle:3,headTurn:.06,blush:1,energy:.18},gesture:'shy'},
-    scared:      {label:'겁남',eyes:['E11','E12'],brows:['B05','B06'],mouth:'M18',arms:'clasped',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:2,bodySquash:.025,energy:.72},gesture:'shiver'},
-    smug:        {label:'의기양양',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M07',arms:'cheek',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:-4.5,headTurn:.08,bodyLean:-1.2,energy:.22},gesture:'smug'},
-    confused:    {label:'갸웃',eyes:['E01','E02'],brows:['B03','B04'],mouth:'M06',arms:'cheek',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:7,headTurn:-.05,energy:.2},gesture:'tilt'},
-    love:        {label:'좋아!',eyes:['E13','E14'],brows:['B01','B02'],mouth:'M05',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:['FX01','FX02','FX03','FX04'],pose:{headAngle:-2,blush:.55,energy:.72},gesture:'love'}
+    neutral:     {label:'기본',bodySprite:'TB01',eyes:['E01','E02'],brows:['B01','B02'],mouth:'M01',arms:'down',legs:'straight',faceOverlays:[],faceFx:[],pose:{},gesture:'settle'},
+    happy:       {label:'행복',bodySprite:'TB03',eyes:['E03','E04'],brows:['B01','B02'],mouth:'M05',arms:'open',legs:'straight',faceOverlays:[],faceFx:['FX01','FX02'],pose:{headAngle:-1.5,armL:-4,armR:4,blush:.25,energy:.45},gesture:'happy'},
+    excited:     {label:'신남',bodySprite:'TB05',eyes:['E01','E02'],brows:['B03','B04'],mouth:'M05',arms:'raised',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:1.5,armL:-6,armR:6,legL:-3,legR:3,energy:1},gesture:'bounce'},
+    teasing:     {label:'장난',bodySprite:'TB05',eyes:['E01','E04'],brows:['B01','B02'],mouth:'M08',arms:'oneRaisedLeft',legs:'bentLeft',faceOverlays:[],faceFx:[],pose:{headAngle:-4,headTurn:.08,bodyLean:-2,energy:.55},gesture:'tease'},
+    pleading:    {label:'울망',bodySprite:'TB03',eyes:['E09','E10'],brows:['B05','B06'],mouth:'M01',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:3.5,bodyLean:1,blush:.15,energy:.12},gesture:'plead'},
+    relaxed:     {label:'느긋',bodySprite:'TB04',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M06',arms:'cheek',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:-2.5,headTurn:-.05,bodyLean:1.2,energy:.05},gesture:'slow'},
+    sick:        {label:'아픔',bodySprite:'TB01',eyes:['E05','E06'],brows:['B05','B06'],mouth:'M17',arms:'down',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:4.5,bodyLean:2.2,bodySquash:.02,energy:.02},gesture:'sick'},
+    angry:       {label:'화남',bodySprite:'TB02',eyes:['E07','E08'],brows:[],mouth:'M16',arms:'crossed',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:-1,bodyLean:-2,energy:.85},gesture:'angry'},
+    annoyed:     {label:'삐짐',bodySprite:'TB02',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M16',arms:'crossed',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:-5,headTurn:-.08,bodyLean:1.5,energy:.12},gesture:'huff'},
+    sad:         {label:'슬픔',bodySprite:'TB03',eyes:['E09','E10'],brows:['B05','B06'],mouth:'M17',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:5,bodyLean:1.4,energy:.03},gesture:'sad'},
+    surprised:   {label:'놀람',bodySprite:'TB03',eyes:['E11','E12'],brows:['B03','B04'],mouth:'M06',arms:'palms',legs:'straight',faceOverlays:[],faceFx:[],pose:{bodySquash:-.02,energy:.85},gesture:'startle'},
+    embarrassed: {label:'부끄러움',bodySprite:'TB03',eyes:['E03','E04'],brows:['B03','B04'],mouth:'M02',arms:'clasped',legs:'bentLeft',faceOverlays:[],faceFx:['FX03','FX04'],pose:{headAngle:3,headTurn:.06,blush:1,energy:.18},gesture:'shy'},
+    scared:      {label:'겁남',bodySprite:'TB03',eyes:['E11','E12'],brows:['B05','B06'],mouth:'M18',arms:'clasped',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:2,bodySquash:.025,energy:.72},gesture:'shiver'},
+    smug:        {label:'의기양양',bodySprite:'TB04',eyes:['E05','E06'],brows:['B01','B02'],mouth:'M07',arms:'cheek',legs:'straight',faceOverlays:['F02','F03'],faceFx:[],pose:{headAngle:-4.5,headTurn:.08,bodyLean:-1.2,energy:.22},gesture:'smug'},
+    confused:    {label:'갸웃',bodySprite:'TB04',eyes:['E01','E02'],brows:['B03','B04'],mouth:'M06',arms:'cheek',legs:'straight',faceOverlays:[],faceFx:[],pose:{headAngle:7,headTurn:-.05,energy:.2},gesture:'tilt'},
+    love:        {label:'좋아!',bodySprite:'TB03',eyes:['E13','E14'],brows:['B01','B02'],mouth:'M05',arms:'clasped',legs:'straight',faceOverlays:[],faceFx:['FX01','FX02','FX03','FX04'],pose:{headAngle:-2,blush:.55,energy:.72},gesture:'love'}
   };
   for (const [id, def] of Object.entries(defs)) Object.assign(E[id], def, { id, browPose: browPose[id] });
 
@@ -153,6 +153,31 @@
     return true;
   };
 
+  const rotatePoint = (pt, pivot, angleDeg) => {
+    const a=angleDeg*Math.PI/180, c=Math.cos(a), s=Math.sin(a), dx=pt[0]-pivot[0], dy=pt[1]-pivot[1];
+    return [pivot[0]+dx*c-dy*s,pivot[1]+dx*s+dy*c];
+  };
+
+  Renderer.prototype.drawIntegratedBody = function v131IntegratedBody(id, alpha=1) {
+    const q=this.config.layout.integratedBody?.[id];
+    if(!id || !q || !this.part(id)) return false;
+    const breath=(this._p?.breath||0)*.004;
+    this.draw(id,{center:q.center,scale:q.scale,scaleX:q.scaleX||1,scaleY:(q.scaleY||1)*(1+breath),alpha});
+    this.lastBodySprite=id;
+    return true;
+  };
+
+  Renderer.prototype.drawBodyState = function v131BodyState(def, alpha=1, side={l:0,r:0}) {
+    if(def?.bodySprite && this.drawIntegratedBody(def.bodySprite,alpha)) return 'integrated';
+    const p=this._p||{}, breath=p.breath*.008;
+    this.drawWarped('T01',{center:this.config.layout.T01.center,scale:this.config.layout.T01.scale,shear:p.bodyLean*.45,bulge:breath,alpha});
+    this.drawWarped('L01',{center:this.config.layout.L01.center,scale:this.config.layout.L01.scale,shear:p.bodyLean*.7,bulge:breath*.65,alpha});
+    this.draw('T02',{alpha});this.draw('T03',{alpha});this.draw('T04',{alpha});
+    this.drawArmPose(def?.arms||'down',alpha,side);
+    this.lastBodySprite='assembled';
+    return 'assembled';
+  };
+
   Renderer.prototype.drawArmPose = function v13ArmPose(pose, alpha=1, side={l:0,r:0}) {
     const lo=this.config.layout;
     const pair=(l,r,lp,rp)=>{
@@ -173,20 +198,27 @@
     this.draw(id,{center:[p.center[0],p.center[1]-Math.abs(energy)*.65],scale:p.scale,angle:energy*.12,alpha});
   };
 
-  Renderer.prototype.drawLegs = function v13LegPose(pose, alpha=1) {
+  Renderer.prototype.drawLegs = function v131LinkedLegPose(pose, alpha=1) {
     const lo=this.config.layout, p=this._p||{}, lA=p.legL||0, rA=p.legR||0, lP=lo.legLeft.pivot, rP=lo.legRight.pivot;
+    const rigid=(id,baseCenter,pivot,baseAngle,dynamicAngle,scale)=>{
+      const center=rotatePoint(baseCenter,pivot,dynamicAngle);
+      this.draw(id,{center,scale,angle:baseAngle+dynamicAngle,alpha});
+      return center;
+    };
     if(pose==='bentLeft') {
       const b=lo.legPoses?.bentLeft||{legCenter:[232,672],legScale:.96,legAngle:-10,shoeCenter:[208,792],shoeAngle:-15};
-      this.draw('L07',{center:b.legCenter,pivot:lP,scale:b.legScale,angle:b.legAngle+lA,alpha});
-      this.draw('L03',{center:lo.legRight.center,pivot:rP,scale:lo.legRight.scale,angle:rA,alpha});
-      this.draw('L04',{center:b.shoeCenter,pivot:lP,scale:lo.shoeLeft.scale,angle:b.shoeAngle+lA,alpha});
-      this.draw('L05',{center:lo.shoeRight.center,pivot:rP,scale:lo.shoeRight.scale,angle:rA,alpha});
+      rigid('L07',b.legCenter,lP,b.legAngle,lA,b.legScale);
+      rigid('L04',b.shoeCenter,lP,b.shoeAngle,lA,lo.shoeLeft.scale);
+      rigid('L03',lo.legRight.center,rP,0,rA,lo.legRight.scale);
+      rigid('L05',lo.shoeRight.center,rP,0,rA,lo.shoeRight.scale);
+      this.lastFootChain='linked';
       return;
     }
-    this.draw('L02',{center:lo.legLeft.center,pivot:lP,scale:lo.legLeft.scale,angle:lA,alpha});
-    this.draw('L03',{center:lo.legRight.center,pivot:rP,scale:lo.legRight.scale,angle:rA,alpha});
-    this.draw('L04',{center:lo.shoeLeft.center,pivot:lP,scale:lo.shoeLeft.scale,angle:lA,alpha});
-    this.draw('L05',{center:lo.shoeRight.center,pivot:rP,scale:lo.shoeRight.scale,angle:rA,alpha});
+    rigid('L02',lo.legLeft.center,lP,0,lA,lo.legLeft.scale);
+    rigid('L04',lo.shoeLeft.center,lP,0,lA,lo.shoeLeft.scale);
+    rigid('L03',lo.legRight.center,rP,0,rA,lo.legRight.scale);
+    rigid('L05',lo.shoeRight.center,rP,0,rA,lo.shoeRight.scale);
+    this.lastFootChain='linked';
   };
 
   Renderer.prototype.render = function v13LayeredRender(p, emotion) {
@@ -200,7 +232,7 @@
       if(prev.legs!==cur.legs&&t<.999){this.drawLegs(prev.legs,1-t);this.drawLegs(cur.legs,t);} else this.drawLegs(cur.legs,1);
     });
 
-    // 2) head-back stage: twin tails are behind body/arms, fixing raised-arm occlusion.
+    // 2) head-back stage: twin tails/back hair are behind body/arms, fixing raised-arm occlusion.
     const hp=this.config.layout.head.pivot, headX=(p.headTurn||0)*12;
     const follow=(p.headAngle*.28)+(p.bodyLean*.12)+Math.sin(performance.now()/470)*.6*(.25+p.energy);
     this.withGroup(hp,[gx+headX,gy],p.headAngle,1-Math.abs(p.headTurn||0)*.025,1,()=>{
@@ -208,17 +240,15 @@
       this.draw('H04',{center:this.config.layout.H04.center,scale:this.config.layout.H04.scale,angle:follow});
     });
 
-    // 3) torso/clothing, then arms in front of clothing but behind face/head-front.
-    const breath=p.breath*.008, squash=p.bodySquash||0;
+    // 3) Prefer source-integrated body+arm poses. Fallback assembled torso/arms only where no integrated source exists.
+    const squash=p.bodySquash||0;
     this.withGroup([300,365],[gx,gy],p.bodyLean,1+squash*.18,1-squash*.18,()=>{
-      this.drawWarped('T01',{center:this.config.layout.T01.center,scale:this.config.layout.T01.scale,shear:p.bodyLean*.45,bulge:breath});
-      this.drawWarped('L01',{center:this.config.layout.L01.center,scale:this.config.layout.L01.scale,shear:p.bodyLean*.7,bulge:breath*.65});
-      this.draw('T02');this.draw('T03');this.draw('T04');
-      if(prev.arms!==cur.arms&&t<.999){this.drawArmPose(prev.arms,1-t,{l:p.armL,r:p.armR});this.drawArmPose(cur.arms,t,{l:p.armL,r:p.armR});}
-      else this.drawArmPose(cur.arms,1,{l:p.armL,r:p.armR});
+      const prevKey=prev.bodySprite||`assembled:${prev.arms}`, curKey=cur.bodySprite||`assembled:${cur.arms}`;
+      if(prevKey!==curKey&&t<.999){this.drawBodyState(prev,1-t,{l:p.armL,r:p.armR});this.drawBodyState(cur,t,{l:p.armL,r:p.armR});}
+      else this.drawBodyState(cur,1,{l:p.armL,r:p.armR});
     });
 
-    // 4) back-hair cap, face/front-hair/features. F02/F03 are shadows; real blush uses FX01..FX04.
+    // 4) face/front-hair/features. F02/F03 are shadow overlays; real blush uses FX01..FX04.
     this.withGroup(hp,[gx+headX,gy],p.headAngle,1-Math.abs(p.headTurn||0)*.025,1,()=>{
       this.draw('H01');
       this.draw('F01');
@@ -242,15 +272,15 @@
     this.lastBrowSprite=cur.brows?.length?`${cur.brows[0]}/${cur.brows[1]}`:'integrated/none';
     this.lastArmPose=cur.arms;this.lastLegPose=cur.legs;
     this.partSnapshot={
-      eyes:this.lastEyeSprite,brows:this.lastBrowSprite,mouth:this.lastMouthSprite,arms:cur.arms,legs:cur.legs,
+      eyes:this.lastEyeSprite,brows:this.lastBrowSprite,mouth:this.lastMouthSprite,body:cur.bodySprite||'assembled',arms:cur.arms,legs:cur.legs,
       faceOverlays:(cur.faceOverlays||[]).join('/')||'-',faceFx:(cur.faceFx||[]).join('/')||'-',
       blinkOpen:+p.blinkOpen.toFixed(3),mouthOpen:+p.mouthOpen.toFixed(3),mouthOpenRaw:+(p.mouthOpenRaw??p.mouthOpen).toFixed(3),
-      visemeIndex:this.lastVisemeIndex??null,layerMode:'v13-explicit-back-front'
+      visemeIndex:this.lastVisemeIndex??null,footChain:this.lastFootChain||'linked',layerMode:'v13.1-integrated-body-linked-feet'
     };
   };
 
   Renderer.prototype.meshHealth = function v13Health() {
     const base=previousHealth?previousHealth.call(this):{};
-    return {...base,activeParts:Object.keys(this.config.parts||{}).length,v13LayerOrder:true,v13BrowProfiles:16,v13LipVisemes:(this.config.lipSync?.viseme_ids||[]).length};
+    return {...base,activeParts:Object.keys(this.config.parts||{}).length,v13LayerOrder:true,v13BrowProfiles:16,v13LipVisemes:(this.config.lipSync?.viseme_ids||[]).length,v13IntegratedBodies:Object.keys(this.config.layout.integratedBody||{}).length,v13LinkedFootChain:this.config.layout.legChain?.linkedFootPivot===true,v13FaceStackYOffset:this.config.layout.faceStackYOffset||0};
   };
 })();
