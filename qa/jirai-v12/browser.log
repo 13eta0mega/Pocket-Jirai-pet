@@ -6,6 +6,7 @@
     "activeParts": true,
     "renderer": true,
     "a05Cleanup": true,
+    "a05DetachedComponentRemoved": true,
     "excitedUsesRaisedArms": true,
     "lipSmall": true,
     "lipMedium": true,
@@ -13,6 +14,13 @@
     "blinkUsesClosedPart": true,
     "allEmotionPartsDiffer": true,
     "noConsoleErrors": true
+  },
+  "a05CleanupStats": {
+    "opaqueBefore": 14564,
+    "keptPixels": 12001,
+    "removedPixels": 2563,
+    "componentsBefore": 147,
+    "componentsAfter": 1
   },
   "pass": true
 }
