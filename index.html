@@ -6,71 +6,12 @@
 <meta name="theme-color" content="#100c14">
 <title>Pocket Jirai Pet · Original FBX Viewer</title>
 <link rel="stylesheet" href="styles.css">
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
-  }
-}
-</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <main class="shell">
-  <header class="hero">
-    <div>
-      <span class="tag">POCKET JIRAI PET · ORIGINAL FBX VALIDATION</span>
-      <h1>Jirai Original FBX Viewer</h1>
-      <p>저폴리/LOD/pseudo-rig을 사용하지 않습니다. 선택한 FBX 원본을 Three.js FBXLoader로 그대로 파싱해 렌더링합니다.</p>
-    </div>
-    <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span class="ok">NO DECIMATION</span></div>
-  </header>
-
-  <section class="layout">
-    <section class="viewer-card">
-      <div class="viewer-head"><strong id="modelName">원본 FBX</strong><small id="status">FBX 파일을 선택해 주세요</small></div>
-      <div class="stage" id="dropZone">
-        <canvas id="gl"></canvas>
-        <div id="emptyState" class="empty-state">
-          <div class="file-icon">3D</div>
-          <strong>원본 FBX 불러오기</strong>
-          <span>업로드한 <b>Meshy_AI_Pink_Haired_Pop_Idol_0822123556_texture.fbx</b> 파일을 선택하세요.</span>
-          <label class="primary file-button">FBX 선택<input id="fileInput" type="file" accept=".fbx,application/octet-stream"></label>
-          <button id="restoreBtn" class="secondary" type="button" hidden>마지막 FBX 다시 불러오기</button>
-        </div>
-        <div class="gesture">한 손가락: 회전 · 두 손가락/휠: 확대 · 길게 드래그: 시점 이동</div>
-      </div>
-      <div class="stats">
-        <span>Vertices <b id="vertexCount">-</b></span><span>Triangles <b id="triCount">-</b></span><span>Meshes <b id="meshCount">-</b></span>
-      </div>
-    </section>
-
-    <aside class="controls">
-      <section class="panel">
-        <div class="panel-title"><strong>원본 모델</strong><span>Direct FBX</span></div>
-        <div class="row"><button id="pickBtn" type="button">다른 FBX 선택</button><button id="resetCamera" type="button" class="secondary">카메라 초기화</button></div>
-        <label class="check"><input id="idleToggle" type="checkbox" checked> 안전한 전체 모델 Idle (미세 호흡/바운스만)</label>
-        <label class="check"><input id="gridToggle" type="checkbox"> 바닥 그리드</label>
-      </section>
-      <section class="panel">
-        <div class="panel-title"><strong>원본 FBX 진단</strong><span id="diagnosticBadge">대기</span></div>
-        <dl class="diagnostics">
-          <div><dt>Skeleton / Skin</dt><dd id="skinInfo">-</dd></div>
-          <div><dt>Animation Clips</dt><dd id="animInfo">-</dd></div>
-          <div><dt>Materials</dt><dd id="materialInfo">-</dd></div>
-          <div><dt>Textures</dt><dd id="textureInfo">-</dd></div>
-          <div><dt>Source size</dt><dd id="sizeInfo">-</dd></div>
-        </dl>
-      </section>
-      <section class="panel disabled-panel">
-        <div class="panel-title"><strong>감정 / 립싱크 / 팔·다리</strong><span>원본 리깅 필요</span></div>
-        <p>이 단계에서는 모델 형상을 임의로 찢거나 변형하지 않습니다. 원본 FBX에 Skeleton/BlendShape가 없으면 감정·립싱크·관절 애니메이션은 비활성화됩니다.</p>
-      </section>
-    </aside>
-  </section>
-
-  <section class="note"><strong>검수 기준</strong><span>먼저 정지 상태에서 원본 Meshy FBX의 실루엣, 재질, 텍스처, 앞/뒤/측면이 정상인지 확인합니다. 이 화면이 정상일 때만 다음 단계에서 정식 리깅 데이터를 추가합니다.</span></section>
-</main>
-<script type="module" src="src/app3d-original.js"></script>
-</body>
-</html>
+<header class="hero"><div><span class="tag">POCKET JIRAI PET · ORIGINAL FBX VALIDATION</span><h1>Jirai Original FBX Viewer</h1><p>저폴리/LOD/pseudo-rig을 사용하지 않습니다. 선택한 FBX 원본을 Three.js FBXLoader로 그대로 파싱해 렌더링합니다.</p></div><div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span class="ok">NO DECIMATION</span></div></header>
+<section class="layout"><section class="viewer-card"><div class="viewer-head"><strong id="modelName">원본 FBX</strong><small id="status">FBX 파일을 선택해 주세요</small></div><div class="stage" id="dropZone"><canvas id="gl"></canvas><div id="emptyState" class="empty-state"><div class="file-icon">3D</div><strong>원본 FBX 불러오기</strong><span>업로드한 <b>Meshy_AI_Pink_Haired_Pop_Idol_0822123556_texture.fbx</b> 파일을 선택하세요. 처음 한 번 선택하면 브라우저에 캐시해 다시 사용할 수 있습니다.</span><label class="primary file-button">FBX 선택<input id="fileInput" type="file" accept=".fbx,application/octet-stream"></label><button id="restoreBtn" class="secondary" type="button" hidden>마지막 FBX 다시 불러오기</button></div><div class="gesture">한 손가락: 회전 · 두 손가락/휠: 확대 · 길게 드래그: 시점 이동</div></div><div class="stats"><span>Render Vertices <b id="vertexCount">-</b></span><span>Triangles <b id="triCount">-</b></span><span>Meshes <b id="meshCount">-</b></span></div></section>
+<aside class="controls"><section class="panel"><div class="panel-title"><strong>원본 모델</strong><span>Direct FBX</span></div><div class="row"><button id="pickBtn" type="button">다른 FBX 선택</button><button id="resetCamera" type="button" class="secondary">카메라 초기화</button></div><label class="check"><input id="idleToggle" type="checkbox" checked> 안전한 전체 모델 Idle (미세 호흡/바운스만)</label><label class="check"><input id="gridToggle" type="checkbox"> 바닥 그리드</label></section><section class="panel"><div class="panel-title"><strong>원본 FBX 진단</strong><span id="diagnosticBadge">대기</span></div><dl class="diagnostics"><div><dt>Skeleton / Skin</dt><dd id="skinInfo">-</dd></div><div><dt>Animation Clips</dt><dd id="animInfo">-</dd></div><div><dt>Materials</dt><dd id="materialInfo">-</dd></div><div><dt>Textures</dt><dd id="textureInfo">-</dd></div><div><dt>Source size</dt><dd id="sizeInfo">-</dd></div></dl></section><section class="panel disabled-panel"><div class="panel-title"><strong>감정 / 립싱크 / 팔·다리</strong><span>원본 리깅 필요</span></div><p>이 단계에서는 모델 형상을 임의로 찢거나 변형하지 않습니다. 원본 FBX에 Skeleton/BlendShape가 없으면 감정·립싱크·관절 애니메이션은 비활성화됩니다.</p></section></aside></section>
+<section class="note"><strong>검수 기준</strong><span>먼저 정지 상태에서 원본 Meshy FBX의 실루엣, 재질, 텍스처, 앞/뒤/측면이 정상인지 확인합니다. FBXLoader가 UV/노멀 경계에서 렌더용 vertex를 분리할 수 있으므로 Render Vertices는 FBX 내부의 고유 position 수보다 커질 수 있습니다. 이 화면이 정상일 때만 정식 리깅 데이터를 추가합니다.</span></section>
+</main><script type="module" src="src/app3d-original.js"></script></body></html>
