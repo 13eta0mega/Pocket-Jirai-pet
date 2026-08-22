@@ -71,25 +71,22 @@ jobs:
           config_code=0
           renderer_code=0
           cleanup_code=0
+          pivot_code=0
           for i in $(seq 1 20); do
             index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
             config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
             renderer_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
             cleanup_code=$(curl -L -sS -o /tmp/v12-cleanup.js -w '%{http_code}' --max-time 15 "${base}src/part-cleanup.js" || true)
-            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$renderer_code" = '200' ] && [ "$cleanup_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js; then
+            pivot_code=$(curl -L -sS -o /tmp/v12-pivot.js -w '%{http_code}' --max-time 15 "${base}src/pivot-motion.js" || true)
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$renderer_code" = '200' ] && [ "$cleanup_code" = '200' ] && [ "$pivot_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js && grep -q 'pivotArmPose' /tmp/v12-pivot.js; then
               ok=1
               break
             fi
             sleep 3
           done
           mkdir -p v12/qa/jirai-v12
-          if [ "$ok" = "1" ]; then
-            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":true}\n' "$base" "$index_code" "$config_code" "$renderer_code" "$cleanup_code" > v12/qa/jirai-v12/hosted.json
-            exit 0
-          else
-            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":false}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${renderer_code:-0}" "${cleanup_code:-0}" > v12/qa/jirai-v12/hosted.json
-            exit 1
-          fi
+          printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pivot_status":%s,"pass":%s}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${renderer_code:-0}" "${cleanup_code:-0}" "${pivot_code:-0}" "$([ "$ok" = '1' ] && echo true || echo false)" > v12/qa/jirai-v12/hosted.json
+          [ "$ok" = '1' ]
       - name: Publish hosted verification
         if: always()
         run: |
