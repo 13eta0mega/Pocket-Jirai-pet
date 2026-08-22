@@ -21,8 +21,8 @@ jobs:
           node-version: '22'
       - name: Prepare QA directory
         run: |
-          rm -rf qa/jirai-v12
           mkdir -p qa/jirai-v12
+          rm -f qa/jirai-v12/neutral.png qa/jirai-v12/blink.png qa/jirai-v12/excited.png qa/jirai-v12/report.json qa/jirai-v12/browser.log qa/jirai-v12/install.log qa/jirai-v12/runner.mjs
       - name: Install Playwright Chromium
         id: install
         run: |
@@ -50,13 +50,14 @@ jobs:
           await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
           await page.waitForTimeout(500);
           const neutral=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-          await page.screenshot({path:'qa/jirai-v12/neutral.png',fullPage:true});
+          await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/neutral.png'});
           const emotions=['neutral','happy','excited','teasing','pleading','relaxed','sick','angry','annoyed','sad','surprised','embarrassed','scared','smug','confused','love'];
           const samples={};
           for(const id of emotions){
             await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
             await page.waitForTimeout(520);
             samples[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+            if(id==='excited') await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/excited.png'});
           }
           await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
           await page.waitForTimeout(450);
@@ -71,13 +72,15 @@ jobs:
           await page.evaluate(()=>window.__JIRAI_QA__.forceBlink());
           await page.waitForTimeout(75);
           const blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-          await page.screenshot({path:'qa/jirai-v12/blink.png',fullPage:true});
+          await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/blink.png'});
           const checks={
             ready:neutral.ready===true,
             assetLoaded:neutral.assetLoaded===true,
             emotionButtons:neutral.buttonCount===16,
             activeParts:neutral.mesh?.activeParts===58,
             renderer:neutral.renderer==='Sprite parts + micro-mesh',
+            a05Cleanup:Array.isArray(neutral.mesh?.cleanedParts)&&neutral.mesh.cleanedParts.includes('A05'),
+            excitedUsesRaisedArms:samples.excited?.armPose==='raised',
             lipSmall:lip['0.15'].mouthSprite==='M03',
             lipMedium:['M04','M05'].includes(lip['0.55'].mouthSprite),
             lipLarge:lip['0.95'].mouthSprite==='M05',
@@ -110,7 +113,15 @@ jobs:
           git add qa/jirai-v12
           if ! git diff --cached --quiet; then
             git commit -m "Update Jirai Ver1.2 browser QA [skip ci]"
-            git push origin HEAD:Jirai_Ver1.2
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
           fi
       - name: Upload QA artifact
         if: always()
