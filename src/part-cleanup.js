@@ -7,6 +7,7 @@
   const originalLoad = Renderer.prototype.load;
   const originalDraw = Renderer.prototype.draw;
   const originalHealth = Renderer.prototype.meshHealth;
+  const defaultCleanup = { A05: { keepLargestComponent: true, alphaThreshold: 4 } };
 
   function keepLargestAlphaComponent(canvas, alphaThreshold = 4) {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -74,7 +75,7 @@
   Renderer.prototype.load = async function patchedLoad(...args) {
     const result = await originalLoad.apply(this, args);
     this.cleanedSprites = {};
-    const cleanup = this.config.cleanup || {};
+    const cleanup = { ...defaultCleanup, ...(this.config.cleanup || {}) };
 
     for (const [id, rule] of Object.entries(cleanup)) {
       const part = this.part(id);
