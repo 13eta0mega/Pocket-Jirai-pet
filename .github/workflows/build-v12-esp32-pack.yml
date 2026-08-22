@@ -1,0 +1,45 @@
+name: Build Jirai Ver1.2 ESP32 Pack
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths:
+      - 'config/jirai-v12-atlas.json'
+      - 'src/Jirai_Character_Active58.png'
+      - 'tools/build_v12_esp32_pack.py'
+      - '.github/workflows/build-v12-esp32-pack.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pack dependencies
+        run: python -m pip install --disable-pip-version-check pillow==11.3.0 numpy==2.3.2
+      - name: Build and validate ESP32 package
+        run: python tools/build_v12_esp32_pack.py
+      - name: Publish generated firmware assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add firmware/generated/jirai_v12_active58_rgb565a8.jpak firmware/generated/jirai_v12_active58_manifest.json firmware/generated/jirai_v12_pack.h
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build Jirai Ver1.2 ESP32 RGB565A8 pack [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi
