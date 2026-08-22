@@ -1,1 +1,11 @@
-127.0.0.1 - - [22/Aug/2026 04:58:17] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:15] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /?qa=1&emotion=neutral HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/v13-runtime.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/pivot-motion.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/v13-motion-corrections.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/rig-engine.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /styles.css HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/part-cleanup.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /config/jirai-v13-atlas.json HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2026 05:02:16] "GET /src/Jirai_Character_Active72_V13.png HTTP/1.1" 200 -
