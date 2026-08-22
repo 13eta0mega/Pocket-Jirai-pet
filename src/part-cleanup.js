@@ -39,51 +39,24 @@
         component[count++] = idx;
         const x = idx % w;
         const y = (idx / w) | 0;
-
-        if (x > 0) {
-          const n = idx - 1;
-          if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; }
-        }
-        if (x + 1 < w) {
-          const n = idx + 1;
-          if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; }
-        }
-        if (y > 0) {
-          const n = idx - w;
-          if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; }
-        }
-        if (y + 1 < h) {
-          const n = idx + w;
-          if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; }
-        }
+        if (x > 0) { const n = idx - 1; if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; } }
+        if (x + 1 < w) { const n = idx + 1; if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; } }
+        if (y > 0) { const n = idx - w; if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; } }
+        if (y + 1 < h) { const n = idx + w; if (!visited[n] && alphaAt(n) > alphaThreshold) { visited[n] = 1; queue[tail++] = n; } }
       }
-
       if (count > largest.length) largest = Array.from(component.slice(0, count));
     }
 
-    if (!largest.length) {
-      return { opaqueBefore, keptPixels: 0, removedPixels: opaqueBefore, componentsBefore, componentsAfter: 0 };
-    }
-
+    if (!largest.length) return { opaqueBefore, keptPixels: 0, removedPixels: opaqueBefore, componentsBefore, componentsAfter: 0 };
     const keep = new Uint8Array(w * h);
     for (const idx of largest) keep[idx] = 1;
-
     for (let i = 0; i < w * h; i++) {
       if (!keep[i]) {
-        data[i * 4] = 0;
-        data[i * 4 + 1] = 0;
-        data[i * 4 + 2] = 0;
-        data[i * 4 + 3] = 0;
+        data[i * 4] = 0; data[i * 4 + 1] = 0; data[i * 4 + 2] = 0; data[i * 4 + 3] = 0;
       }
     }
     ctx.putImageData(image, 0, 0);
-    return {
-      opaqueBefore,
-      keptPixels: largest.length,
-      removedPixels: Math.max(0, opaqueBefore - largest.length),
-      componentsBefore,
-      componentsAfter: 1
-    };
+    return { opaqueBefore, keptPixels: largest.length, removedPixels: Math.max(0, opaqueBefore - largest.length), componentsBefore, componentsAfter: 1 };
   }
 
   Renderer.prototype.load = async function patchedLoad(...args) {
@@ -91,7 +64,6 @@
     this.cleanedSprites = {};
     this.cleanupStats = {};
     const cleanup = { ...defaultCleanup, ...(this.config.cleanup || {}) };
-
     for (const [id, rule] of Object.entries(cleanup)) {
       const part = this.part(id);
       if (!part) continue;
@@ -99,50 +71,81 @@
       if (!img) continue;
       const [sx, sy, sw, sh] = part.src;
       const sprite = document.createElement('canvas');
-      sprite.width = sw;
-      sprite.height = sh;
+      sprite.width = sw; sprite.height = sh;
       const sctx = sprite.getContext('2d', { willReadFrequently: true });
       sctx.clearRect(0, 0, sw, sh);
       sctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
-
-      if (rule.keepLargestComponent) {
-        this.cleanupStats[id] = keepLargestAlphaComponent(sprite, rule.alphaThreshold ?? 4);
-      } else {
-        this.cleanupStats[id] = { componentsBefore: null, componentsAfter: null, removedPixels: 0 };
-      }
+      this.cleanupStats[id] = rule.keepLargestComponent
+        ? keepLargestAlphaComponent(sprite, rule.alphaThreshold ?? 4)
+        : { componentsBefore: null, componentsAfter: null, removedPixels: 0 };
       this.cleanedSprites[id] = sprite;
     }
     return result;
   };
 
+  function drawAroundPivot(renderer, id, opt, sprite) {
+    const part = renderer.part(id);
+    if (!part) return;
+    const layout = renderer.config.layout?.[id] || {};
+    const source = sprite || renderer.images[String(part.sheet)];
+    if (!source) return;
+    const [rawSx, rawSy, rawSw, rawSh] = part.src;
+    const sx = sprite ? 0 : rawSx;
+    const sy = sprite ? 0 : rawSy;
+    const sw = sprite ? sprite.width : rawSw;
+    const sh = sprite ? sprite.height : rawSh;
+    const center = opt.center || layout.center || [0, 0];
+    const pivot = opt.pivot || layout.pivot;
+    const scale = opt.scale ?? layout.scale ?? 1;
+    const scaleX = opt.scaleX ?? layout.scaleX ?? 1;
+    const scaleY = opt.scaleY ?? layout.scaleY ?? 1;
+    const alpha = opt.alpha ?? 1;
+    const angle = opt.angle ?? layout.angle ?? 0;
+    if (alpha <= .001) return;
+    const flipX = opt.flipX ? -1 : 1;
+    const dw = sw * scale * scaleX;
+    const dh = sh * scale * scaleY;
+    const c = renderer.ctx;
+    c.save();
+    c.globalAlpha *= alpha;
+    c.translate(pivot[0], pivot[1]);
+    c.rotate(angle * Math.PI / 180);
+    c.translate(center[0] - pivot[0], center[1] - pivot[1]);
+    c.scale(flipX, 1);
+    c.drawImage(source, sx, sy, sw, sh, -dw / 2, -dh / 2, dw, dh);
+    if (renderer.debug) {
+      c.strokeStyle = 'rgba(90,210,255,.8)';
+      c.lineWidth = 1.2;
+      c.strokeRect(-dw / 2, -dh / 2, dw, dh);
+      c.fillStyle = '#fff';
+      c.font = '10px monospace';
+      c.fillText(id, -dw / 2 + 2, -dh / 2 + 11);
+      c.beginPath(); c.arc(pivot[0] - center[0], pivot[1] - center[1], 4, 0, Math.PI * 2); c.fill();
+    }
+    c.restore();
+  }
+
   Renderer.prototype.draw = function patchedDraw(id, opt = {}) {
     const layout = this.config.layout?.[id] || {};
-    const drawOpt = {
-      ...opt,
-      scaleX: opt.scaleX ?? layout.scaleX ?? 1,
-      scaleY: opt.scaleY ?? layout.scaleY ?? 1
-    };
+    const drawOpt = { ...opt, scaleX: opt.scaleX ?? layout.scaleX ?? 1, scaleY: opt.scaleY ?? layout.scaleY ?? 1 };
     const sprite = this.cleanedSprites?.[id];
+    const pivot = drawOpt.pivot || layout.pivot;
+    if (pivot) return drawAroundPivot(this, id, drawOpt, sprite);
     if (!sprite) return originalDraw.call(this, id, drawOpt);
 
     const part = this.part(id);
     const key = String(part.sheet);
     const previousImage = this.images[key];
     const previousSrc = part.src;
-
     this.images[key] = sprite;
     part.src = [0, 0, sprite.width, sprite.height];
-    try {
-      return originalDraw.call(this, id, drawOpt);
-    } finally {
-      part.src = previousSrc;
-      this.images[key] = previousImage;
-    }
+    try { return originalDraw.call(this, id, drawOpt); }
+    finally { part.src = previousSrc; this.images[key] = previousImage; }
   };
 
   Renderer.prototype.meshHealth = function patchedMeshHealth() {
     const base = originalHealth ? originalHealth.call(this) : {};
     const cleanedParts = Object.keys(this.cleanedSprites || {});
-    return { ...base, cleanedParts, cleanedCount: cleanedParts.length, cleanupStats: { ...(this.cleanupStats || {}) } };
+    return { ...base, cleanedParts, cleanedCount: cleanedParts.length, cleanupStats: { ...(this.cleanupStats || {}) }, pivotSpriteMotion: true };
   };
 })();
