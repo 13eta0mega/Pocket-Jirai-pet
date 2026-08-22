@@ -43,6 +43,7 @@ jobs:
           ref: Jirai_Ver1.2
           path: v12
       - name: Build versioned Pages bundle
+        id: bundle
         run: |
           rm -rf site/.git site/.github
           mkdir -p site/Jirai_Ver1.1 site/Jirai_Ver1.2
@@ -50,8 +51,10 @@ jobs:
           rsync -a --delete --exclude='.git' --exclude='.github' --exclude='qa' v12/ site/Jirai_Ver1.2/
           touch site/.nojekyll
       - name: Configure Pages
+        id: pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
+        id: upload
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
@@ -85,6 +88,10 @@ jobs:
       - name: Publish hosted verification
         if: always()
         run: |
+          mkdir -p v12/qa/jirai-v12
+          if [ ! -f v12/qa/jirai-v12/hosted.json ]; then
+            printf '%s\n' '{"stage":"deploy-not-complete","bundle":"${{ steps.bundle.outcome }}","configure":"${{ steps.pages.outcome }}","upload":"${{ steps.upload.outcome }}","deploy":"${{ steps.deployment.outcome }}","hosted":"${{ steps.hosted.outcome }}","pass":false}' > v12/qa/jirai-v12/hosted.json
+          fi
           cd v12
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
