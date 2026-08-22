@@ -62,7 +62,7 @@ jobs:
             cat /tmp/jirai-v13-http.log
             exit 1
           fi
-          cat > /tmp/jirai-v13-qa.mjs <<'EOF'
+          cat > qa/jirai-v13/runner.mjs <<'EOF'
           import { chromium } from 'playwright';
           import fs from 'node:fs';
           const browser=await chromium.launch({headless:true});
@@ -124,11 +124,13 @@ jobs:
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1);}
           console.log(JSON.stringify({checks,visemes,lipSamples,pass:report.pass},null,2));
           EOF
-          node /tmp/jirai-v13-qa.mjs 2>&1 | tee qa/jirai-v13/browser.log
+          node qa/jirai-v13/runner.mjs 2>&1 | tee qa/jirai-v13/browser.log
+          rm -f qa/jirai-v13/runner.mjs
 
       - name: Record QA status
         if: always()
         run: |
+          rm -f qa/jirai-v13/runner.mjs
           cp /tmp/jirai-v13-http.log qa/jirai-v13/http.log 2>/dev/null || true
           if [ ! -f qa/jirai-v13/report.json ]; then
             printf '{"stage":"browser-not-complete","build":"${{ steps.build.outcome }}","install":"${{ steps.install.outcome }}","browser":"${{ steps.browser.outcome }}","pass":false}\n' > qa/jirai-v13/report.json
