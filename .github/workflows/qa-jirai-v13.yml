@@ -9,6 +9,7 @@ on:
       - 'src/v13-runtime.js'
       - 'src/v13-motion-corrections.js'
       - 'config/jirai-v13-review.json'
+      - 'config/jirai-v13-emotions.json'
       - 'tools/build_v13_active_atlas.py'
       - '.github/workflows/qa-jirai-v13.yml'
   workflow_dispatch:
@@ -29,7 +30,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Build Ver1.3 append-only Active72 atlas
+      - name: Build Ver1.3 append-only Active77 atlas
         id: build
         run: |
           mkdir -p qa/jirai-v13
@@ -62,7 +63,7 @@ jobs:
             cat /tmp/jirai-v13-http.log
             exit 1
           fi
-          cat > qa/jirai-v13/runner.mjs <<'EOF'
+          cat > qa/jirai-v13/runner.mjs <<'EOF_JS'
           import { chromium } from 'playwright';
           import fs from 'node:fs';
           const browser=await chromium.launch({headless:true});
@@ -82,7 +83,7 @@ jobs:
             await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
             await page.waitForTimeout(620);
             emotion[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-            if(['excited','angry','pleading','sad','annoyed','confused'].includes(id)) await page.locator('#rigCanvas').screenshot({path:`qa/jirai-v13/${id}.png`});
+            if(['neutral','happy','excited','teasing','pleading','relaxed','angry','annoyed','surprised','embarrassed','confused'].includes(id)) await page.locator('#rigCanvas').screenshot({path:`qa/jirai-v13/${id}.png`});
           }
 
           await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
@@ -110,17 +111,21 @@ jobs:
           await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
           await page.waitForTimeout(750);
 
-          const browModel=await page.evaluate(()=>Object.fromEntries(Object.entries(window.JiraiRig.EMOTIONS).map(([id,d])=>[id,{brows:d.brows,browPose:d.browPose}])));
+          const browModel=await page.evaluate(()=>Object.fromEntries(Object.entries(window.JiraiRig.EMOTIONS).map(([id,d])=>[id,{brows:d.brows,browPose:d.browPose,bodySprite:d.bodySprite}])));
           const attackOpen=attackSample.params?.mouthOpen??0, attackRaw=attackSample.params?.mouthOpenRaw??0;
           const releaseOpen=releaseSample.params?.mouthOpen??0, releaseRaw=releaseSample.params?.mouthOpenRaw??0;
           const checks={
             ready:neutral.ready===true,
             assetLoaded:neutral.assetLoaded===true,
-            configV13:String(neutral.configVersion).startsWith('1.3.0'),
-            activeParts72:neutral.mesh?.activeParts===72,
+            configV13:String(neutral.configVersion).startsWith('1.3.'),
+            activeParts77:neutral.mesh?.activeParts===77,
             lipVisemes7:neutral.mesh?.v13LipVisemes===7,
             browProfiles16:neutral.mesh?.v13BrowProfiles===16,
-            explicitLayerMode:neutral.parts?.layerMode==='v13-explicit-back-front',
+            explicitLayerMode:neutral.parts?.layerMode==='v13.1-integrated-body-linked-feet',
+            integratedBodies5:neutral.mesh?.v13IntegratedBodies===5,
+            linkedFootChain:neutral.mesh?.v13LinkedFootChain===true&&neutral.parts?.footChain==='linked',
+            faceStackTightened:neutral.mesh?.v13FaceStackYOffset===-8,
+            integratedBodyMapping:emotion.neutral?.parts?.body==='TB01'&&emotion.happy?.parts?.body==='TB03'&&emotion.angry?.parts?.body==='TB02'&&emotion.pleading?.parts?.body==='TB03'&&emotion.relaxed?.parts?.body==='TB04'&&emotion.excited?.parts?.body==='TB05'&&emotion.surprised?.parts?.body==='TB03',
             oneRaisedSideCorrect:emotion.teasing?.armPose==='oneRaisedLeft',
             reviewedEmotionMouths:emotion.angry?.mouthSprite==='M16'&&emotion.sad?.mouthSprite==='M17'&&emotion.scared?.mouthSprite==='M18',
             reviewedEmotionArms:emotion.relaxed?.armPose==='cheek'&&emotion.sad?.armPose==='clasped'&&emotion.smug?.armPose==='cheek',
@@ -134,7 +139,7 @@ jobs:
           await browser.close();
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1);}
           console.log(JSON.stringify({checks,visemes,transientLip:report.transientLip,pass:report.pass},null,2));
-          EOF
+          EOF_JS
           node qa/jirai-v13/runner.mjs 2>&1 | tee qa/jirai-v13/browser.log
           rm -f qa/jirai-v13/runner.mjs
 
@@ -153,9 +158,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/Jirai_Character_Active72_V13.png config/jirai-v13-atlas.json qa/jirai-v13
+          git add src/Jirai_Character_Active77_V13.png config/jirai-v13-atlas.json qa/jirai-v13
           if ! git diff --cached --quiet; then
-            git commit -m 'Build and validate Jirai Ver1.3 Active72 runtime [skip ci]'
+            git commit -m 'Build and validate Jirai Ver1.3 Active77 runtime [skip ci]'
             for attempt in 1 2 3; do
               git fetch origin Jirai_Ver1.3
               if git rebase origin/Jirai_Ver1.3 && git push origin HEAD:Jirai_Ver1.3; then exit 0; fi
