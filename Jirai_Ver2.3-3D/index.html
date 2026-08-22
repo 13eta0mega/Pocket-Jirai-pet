@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#100c14">
-<title>Pocket Jirai Pet · Ver2.3 Fixed Front</title>
+<title>Pocket Jirai Pet · Ver2.3.1 Fixed Front</title>
 <link rel="stylesheet" href="../Jirai_Ver2.0-3D/styles.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <main class="shell">
 <header class="hero">
-  <div><span class="tag">POCKET JIRAI PET · ORIGINAL FBX · FIXED FRONT V2.3</span><h1>Jirai 3D → Live2D-like 2.5D</h1><p>원본 FBX의 메시·UV·텍스처를 유지한 채 정면 카메라만 사용합니다. 업로드된 테스트 영상을 기준으로 얼굴 마스크 위치, 머리/어깨 경계, 팔 가중치, 표정 전환 속도와 립싱크 속도를 다시 캘리브레이션했습니다.</p></div>
-  <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span id="rigMode" class="ok">CALIBRATED FRONT</span></div>
+  <div><span class="tag">POCKET JIRAI PET · ORIGINAL FBX · FIXED FRONT V2.3.1</span><h1>Jirai 3D → Live2D-like 2.5D</h1><p>원본 FBX의 메시·UV·텍스처를 유지한 채 정면 카메라만 사용합니다. 업로드된 테스트 영상을 기준으로 얼굴 마스크 위치, 머리/어깨 경계, 팔 가중치, 표정 전환 속도와 립싱크 속도를 다시 캘리브레이션했습니다.</p></div>
+  <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span id="rigMode" class="ok">MOBILE PACKED</span></div>
 </header>
 <section class="layout">
   <section class="viewer-card">
@@ -21,7 +21,7 @@
       <div id="emptyState" class="empty-state"><div class="file-icon">3D</div><strong>원본 FBX 불러오기</strong><span><b>Meshy_AI_Pink_Haired_Pop_Idol_0822123556_texture.fbx</b> 원본을 그대로 사용합니다. 이전에 선택한 파일은 같은 브라우저에서 자동 복원됩니다.</span><label class="primary file-button">FBX 선택<input id="fileInput" type="file" accept=".fbx,application/octet-stream"></label><button id="restoreBtn" class="secondary" type="button" hidden>마지막 FBX 다시 불러오기</button></div>
       <div class="gesture">정면 고정 · 회전 없음 · 확대만 가능</div>
     </div>
-    <div id="faceState" class="face-state">Eye -/- · Mouth - · Head -</div>
+    <div id="faceState" class="face-state">Eye -/- · Mouth - · Hair -/-</div>
     <div class="stats"><span>Render Vertices <b id="vertexCount">-</b></span><span>Triangles <b id="triCount">-</b></span><span>Meshes <b id="meshCount">-</b></span></div>
   </section>
   <aside class="controls">
@@ -31,7 +31,7 @@
     <section class="panel"><div class="panel-title"><strong>원본 FBX 진단</strong><span id="diagnosticBadge">대기</span></div><dl class="diagnostics"><div><dt>Skeleton / Skin</dt><dd id="skinInfo">-</dd></div><div><dt>Animation Clips</dt><dd id="animInfo">-</dd></div><div><dt>Materials</dt><dd id="materialInfo">-</dd></div><div><dt>Textures</dt><dd id="textureInfo">-</dd></div><div><dt>Source size</dt><dd id="sizeInfo">-</dd></div></dl></section>
   </aside>
 </section>
-<section class="note"><strong>Ver2.3 영상 기반 수정</strong><span>영상에서 확인된 문제였던 ① 눈 위치가 코 쪽으로 몰린 마스크 ② 머리 회전 시 어깨/목까지 같이 휘는 현상 ③ 팔 영역이 몸통까지 침범하는 현상 ④ 감정 전환과 립싱크가 너무 빠른 현상을 수정했습니다. 얼굴 변형을 먼저 계산한 뒤 머리 전체를 회전시키며, 입이 열릴 때는 정면 전용 셰이더로 어두운 입 내부를 보강합니다.</span></section>
+<section class="note"><strong>Ver2.3.1 모바일 렌더 수정</strong><span>모바일에서 모델이 보이지 않던 원인인 vertex attribute 과다 사용을 4-slot packed 구조로 수정했습니다. 기존 영상에서 확인된 ① 눈 위치가 코 쪽으로 몰린 마스크 ② 머리 회전 시 어깨/목까지 같이 휘는 현상 ③ 팔 영역이 몸통까지 침범하는 현상 ④ 감정 전환과 립싱크가 너무 빠른 현상을 유지한 채 모바일 렌더 호환성을 보강했습니다.</span></section>
 </main>
-<script type="module" src="src/app3d-v23.js"></script>
+<script type="module" src="src/app3d-v23.js?v=231"></script>
 </body></html>
