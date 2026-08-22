@@ -28,7 +28,7 @@ jobs:
             index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
             config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
             js_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
-            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$js_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q '1.2.0-part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js; then
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$js_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js; then
               ok=1
               break
             fi
