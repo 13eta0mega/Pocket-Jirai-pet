@@ -10,7 +10,7 @@
 <body>
 <main class="app-shell">
 <header class="topbar">
-  <div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.3</div><h1>Jirai Sprite + Mesh Rig</h1><p>좌표·앞뒤 레이어·표정 눈썹·7단계 립싱크를 재정의한 Ver1.3 런타임입니다.</p></div>
+  <div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.3</div><h1>Jirai Sprite + Mesh Rig</h1><p>얼굴 결합·다리/신발 연결·일체형 몸통 포즈·7단계 립싱크를 보정한 Ver1.3.1 런타임입니다.</p></div>
   <div class="chips"><span id="fpsChip">-- FPS</span><span id="rendererChip">Renderer --</span><span id="assetChip">Asset loading</span></div>
 </header>
 <section class="workspace">
@@ -27,7 +27,7 @@
     <section class="actions"><button id="autoCycleBtn" type="button">감정 자동 순환</button><button id="neutralBtn" type="button" class="secondary">기본으로 복귀</button></section>
   </aside>
 </section>
-<section class="tech-note"><strong>Ver1.3 renderer</strong><span>72개의 승인 파츠를 단일 아틀라스로 사용합니다. 트윈테일 → 하체/몸통 → 팔 → 뒷머리/얼굴/앞머리 → 얼굴 오버레이/눈썹/눈/입/장식 순으로 앞뒤 관계를 명시했고, F02/F03은 원래 의미대로 그림자 오버레이로만 사용합니다. 눈썹은 감정별 위치·각도·비대칭 프로파일을 적용하고, 립싱크는 M09~M15 7단계 실제 입 파츠에 attack/release 필터, hysteresis, minimum hold를 적용합니다.</span></section>
+<section class="tech-note"><strong>Ver1.3 renderer</strong><span>77개의 승인 파츠를 단일 아틀라스로 사용합니다. 트윈테일 → 하체 → 일체형 몸통/팔 → 얼굴/앞머리 → 얼굴 오버레이/눈썹/눈/입/장식 순으로 앞뒤 관계를 명시했고, F02/F03은 원래 의미대로 그림자 오버레이로만 사용합니다. 얼굴 스택은 머리 안쪽으로 8px 당겨 결합했고 신발은 다리와 동일한 골반 피벗 변환을 따라가도록 묶었습니다. 눈썹은 감정별 위치·각도·비대칭 프로파일을 적용하고, 립싱크는 M09~M15 7단계 실제 입 파츠에 attack/release 필터, hysteresis, minimum hold를 적용합니다.</span></section>
 </main>
 <script src="src/rig-engine.js"></script>
 <script src="src/part-cleanup.js"></script>
