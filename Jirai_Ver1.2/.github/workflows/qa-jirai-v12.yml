@@ -8,6 +8,7 @@ on:
       - 'styles.css'
       - 'src/**'
       - 'config/jirai-v12.json'
+      - 'config/jirai-v12-atlas.json'
       - '.github/workflows/qa-jirai-v12.yml'
   workflow_dispatch:
 
@@ -50,30 +51,35 @@ jobs:
           const consoleErrors=[];
           page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
           page.on('pageerror',e=>consoleErrors.push(String(e)));
+          async function measureBounds(){
+            return page.evaluate(()=>{
+              const c=document.querySelector('#rigCanvas');
+              const ctx=c.getContext('2d');
+              const {data}=ctx.getImageData(0,0,c.width,c.height);
+              let x0=c.width,y0=c.height,x1=-1,y1=-1,count=0;
+              for(let y=0;y<c.height;y++) for(let x=0;x<c.width;x++){
+                const a=data[(y*c.width+x)*4+3];
+                if(a>4){count++;if(x<x0)x0=x;if(y<y0)y0=y;if(x>x1)x1=x;if(y>y1)y1=y;}
+              }
+              if(x1<0)return null;
+              const width=x1-x0+1,height=y1-y0+1;
+              return {x0,y0,x1,y1,width,height,count,widthRatio:width/c.width,heightRatio:height/c.height,centerX:(x0+x1+1)/(2*c.width),centerY:(y0+y1+1)/(2*c.height)};
+            });
+          }
           await page.goto('http://127.0.0.1:8765/?qa=1&emotion=neutral',{waitUntil:'networkidle'});
           await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
           await page.waitForTimeout(500);
           const neutral=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
-          const neutralBounds=await page.evaluate(()=>{
-            const c=document.querySelector('#rigCanvas');
-            const ctx=c.getContext('2d');
-            const {data}=ctx.getImageData(0,0,c.width,c.height);
-            let x0=c.width,y0=c.height,x1=-1,y1=-1,count=0;
-            for(let y=0;y<c.height;y++) for(let x=0;x<c.width;x++){
-              const a=data[(y*c.width+x)*4+3];
-              if(a>4){count++;if(x<x0)x0=x;if(y<y0)y0=y;if(x>x1)x1=x;if(y>y1)y1=y;}
-            }
-            if(x1<0)return null;
-            const width=x1-x0+1,height=y1-y0+1;
-            return {x0,y0,x1,y1,width,height,count,widthRatio:width/c.width,heightRatio:height/c.height,centerX:(x0+x1+1)/(2*c.width),centerY:(y0+y1+1)/(2*c.height)};
-          });
+          const neutralBounds=await measureBounds();
           await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/neutral.png'});
           const emotions=['neutral','happy','excited','teasing','pleading','relaxed','sick','angry','annoyed','sad','surprised','embarrassed','scared','smug','confused','love'];
           const samples={};
+          const visualMetrics={};
           for(const id of emotions){
             await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
             await page.waitForTimeout(520);
             samples[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+            visualMetrics[id]=await measureBounds();
             if(id==='excited') await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/excited.png'});
           }
           await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
@@ -90,17 +96,26 @@ jobs:
           await page.waitForTimeout(75);
           const blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
           await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/blink.png'});
+          const atlasInfoAvailable=Number.isInteger(neutral.sheetCount);
+          const offlineAtlas=atlasInfoAvailable&&neutral.assetMode==='active58-atlas';
+          const atlas=neutral.atlas||{};
           const a05=neutral.mesh?.cleanupStats?.A05||{};
+          const frames=Object.values(visualMetrics).filter(Boolean);
           const checks={
             ready:neutral.ready===true,
             assetLoaded:neutral.assetLoaded===true,
             emotionButtons:neutral.buttonCount===16,
             activeParts:neutral.mesh?.activeParts===58,
             renderer:neutral.renderer==='Sprite parts + micro-mesh',
+            singleAtlasPreferred:atlasInfoAvailable?neutral.sheetCount===1:true,
+            atlasOfflineCleanup:atlasInfoAvailable?offlineAtlas&&atlas.offlineClean===true&&atlas.sourcePartCount===58&&atlas.removedDetachedPixels>1000:true,
             neutralParts:neutral.parts?.eyes==='E01/E02'&&neutral.parts?.mouth==='M01'&&neutral.parts?.arms==='down'&&neutral.parts?.legs==='straight',
             referenceFrameGeometry:!!neutralBounds&&neutralBounds.widthRatio>=0.84&&neutralBounds.widthRatio<=0.92&&neutralBounds.heightRatio>=0.86&&neutralBounds.heightRatio<=0.93&&neutralBounds.centerX>=0.46&&neutralBounds.centerX<=0.54&&neutralBounds.centerY>=0.46&&neutralBounds.centerY<=0.54,
-            a05Cleanup:Array.isArray(neutral.mesh?.cleanedParts)&&neutral.mesh.cleanedParts.includes('A05'),
-            a05DetachedComponentRemoved:a05.componentsBefore>=2&&a05.componentsAfter===1&&a05.removedPixels>100,
+            allEmotionFramesMeasured:frames.length===16,
+            allEmotionFramesNotClipped:frames.length===16&&frames.every(m=>m.x0>=2&&m.y0>=2&&m.x1<=597&&m.y1<=897),
+            allEmotionFramesVisible:frames.length===16&&frames.every(m=>m.widthRatio>=0.55&&m.widthRatio<=0.98&&m.heightRatio>=0.70&&m.heightRatio<=0.98&&m.count>50000),
+            a05Cleanup:offlineAtlas?atlas.cleanupStats?.A05?.componentsAfter===1:Array.isArray(neutral.mesh?.cleanedParts)&&neutral.mesh.cleanedParts.includes('A05'),
+            a05DetachedComponentRemoved:offlineAtlas?atlas.cleanupStats?.A05?.removedPixels>100:a05.componentsBefore>=2&&a05.componentsAfter===1&&a05.removedPixels>100,
             excitedUsesRaisedArms:samples.excited?.armPose==='raised',
             lipSmall:lip['0.15'].mouthSprite==='M03',
             lipMedium:['M04','M05'].includes(lip['0.55'].mouthSprite),
@@ -109,11 +124,11 @@ jobs:
             allEmotionPartsDiffer:new Set(emotions.map(id=>`${samples[id].parts.eyes}|${samples[id].parts.mouth}|${samples[id].parts.arms}|${samples[id].parts.legs}`)).size>=10,
             noConsoleErrors:consoleErrors.length===0
           };
-          const report={started:new Date().toISOString(),stage:'browser-complete',checks,neutralBounds,neutral,lip,blink,samples,consoleErrors,pass:Object.values(checks).every(Boolean)};
+          const report={started:new Date().toISOString(),stage:'browser-complete',checks,neutralBounds,visualMetrics,neutral,lip,blink,samples,consoleErrors,pass:Object.values(checks).every(Boolean)};
           fs.writeFileSync('qa/jirai-v12/report.json',JSON.stringify(report,null,2));
           await browser.close();
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1)}
-          console.log(JSON.stringify({checks,neutralBounds,a05CleanupStats:a05,pass:report.pass},null,2));
+          console.log(JSON.stringify({checks,neutralBounds,assetMode:neutral.assetMode||'legacy',sheetCount:neutral.sheetCount??null,pass:report.pass},null,2));
           EOF
           set +e
           node qa/jirai-v12/runner.mjs > qa/jirai-v12/browser.log 2>&1

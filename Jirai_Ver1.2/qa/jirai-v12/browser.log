@@ -5,8 +5,13 @@
     "emotionButtons": true,
     "activeParts": true,
     "renderer": true,
+    "singleAtlasPreferred": true,
+    "atlasOfflineCleanup": true,
     "neutralParts": true,
     "referenceFrameGeometry": true,
+    "allEmotionFramesMeasured": true,
+    "allEmotionFramesNotClipped": true,
+    "allEmotionFramesVisible": true,
     "a05Cleanup": true,
     "a05DetachedComponentRemoved": true,
     "excitedUsesRaisedArms": true,
@@ -24,18 +29,13 @@
     "y1": 849,
     "width": 527,
     "height": 805,
-    "count": 239557,
+    "count": 238923,
     "widthRatio": 0.8783333333333333,
     "heightRatio": 0.8944444444444445,
     "centerX": 0.5025,
     "centerY": 0.49722222222222223
   },
-  "a05CleanupStats": {
-    "opaqueBefore": 14564,
-    "keptPixels": 12001,
-    "removedPixels": 2563,
-    "componentsBefore": 147,
-    "componentsAfter": 1
-  },
+  "assetMode": "active58-atlas",
+  "sheetCount": 1,
   "pass": true
 }

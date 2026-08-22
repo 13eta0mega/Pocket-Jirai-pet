@@ -1,5 +1,5 @@
 {
-  "started": "2026-08-22T02:14:20.395Z",
+  "started": "2026-08-22T03:03:07.633Z",
   "stage": "browser-complete",
   "checks": {
     "ready": true,
@@ -7,8 +7,13 @@
     "emotionButtons": true,
     "activeParts": true,
     "renderer": true,
+    "singleAtlasPreferred": true,
+    "atlasOfflineCleanup": true,
     "neutralParts": true,
     "referenceFrameGeometry": true,
+    "allEmotionFramesMeasured": true,
+    "allEmotionFramesNotClipped": true,
+    "allEmotionFramesVisible": true,
     "a05Cleanup": true,
     "a05DetachedComponentRemoved": true,
     "excitedUsesRaisedArms": true,
@@ -26,19 +31,252 @@
     "y1": 849,
     "width": 527,
     "height": 805,
-    "count": 239557,
+    "count": 238923,
     "widthRatio": 0.8783333333333333,
     "heightRatio": 0.8944444444444445,
     "centerX": 0.5025,
     "centerY": 0.49722222222222223
+  },
+  "visualMetrics": {
+    "neutral": {
+      "x0": 37,
+      "y0": 45,
+      "x1": 564,
+      "y1": 849,
+      "width": 528,
+      "height": 805,
+      "count": 238928,
+      "widthRatio": 0.88,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.5016666666666667,
+      "centerY": 0.49722222222222223
+    },
+    "happy": {
+      "x0": 36,
+      "y0": 44,
+      "x1": 565,
+      "y1": 848,
+      "width": 530,
+      "height": 805,
+      "count": 236453,
+      "widthRatio": 0.8833333333333333,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.5016666666666667,
+      "centerY": 0.4961111111111111
+    },
+    "excited": {
+      "x0": 39,
+      "y0": 37,
+      "x1": 563,
+      "y1": 842,
+      "width": 525,
+      "height": 806,
+      "count": 233745,
+      "widthRatio": 0.875,
+      "heightRatio": 0.8955555555555555,
+      "centerX": 0.5025,
+      "centerY": 0.4888888888888889
+    },
+    "teasing": {
+      "x0": 36,
+      "y0": 45,
+      "x1": 566,
+      "y1": 848,
+      "width": 531,
+      "height": 804,
+      "count": 236518,
+      "widthRatio": 0.885,
+      "heightRatio": 0.8933333333333333,
+      "centerX": 0.5025,
+      "centerY": 0.49666666666666665
+    },
+    "pleading": {
+      "x0": 41,
+      "y0": 44,
+      "x1": 563,
+      "y1": 850,
+      "width": 523,
+      "height": 807,
+      "count": 217970,
+      "widthRatio": 0.8716666666666667,
+      "heightRatio": 0.8966666666666666,
+      "centerX": 0.5041666666666667,
+      "centerY": 0.49722222222222223
+    },
+    "relaxed": {
+      "x0": 35,
+      "y0": 45,
+      "x1": 564,
+      "y1": 849,
+      "width": 530,
+      "height": 805,
+      "count": 239088,
+      "widthRatio": 0.8833333333333333,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.5,
+      "centerY": 0.49722222222222223
+    },
+    "sick": {
+      "x0": 42,
+      "y0": 44,
+      "x1": 562,
+      "y1": 850,
+      "width": 521,
+      "height": 807,
+      "count": 238888,
+      "widthRatio": 0.8683333333333333,
+      "heightRatio": 0.8966666666666666,
+      "centerX": 0.5041666666666667,
+      "centerY": 0.49722222222222223
+    },
+    "angry": {
+      "x0": 36,
+      "y0": 45,
+      "x1": 564,
+      "y1": 850,
+      "width": 529,
+      "height": 806,
+      "count": 221916,
+      "widthRatio": 0.8816666666666667,
+      "heightRatio": 0.8955555555555555,
+      "centerX": 0.5008333333333334,
+      "centerY": 0.49777777777777776
+    },
+    "annoyed": {
+      "x0": 34,
+      "y0": 45,
+      "x1": 564,
+      "y1": 849,
+      "width": 531,
+      "height": 805,
+      "count": 221716,
+      "widthRatio": 0.885,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.49916666666666665,
+      "centerY": 0.49722222222222223
+    },
+    "sad": {
+      "x0": 42,
+      "y0": 45,
+      "x1": 562,
+      "y1": 851,
+      "width": 521,
+      "height": 807,
+      "count": 238493,
+      "widthRatio": 0.8683333333333333,
+      "heightRatio": 0.8966666666666666,
+      "centerX": 0.5041666666666667,
+      "centerY": 0.49833333333333335
+    },
+    "surprised": {
+      "x0": 37,
+      "y0": 45,
+      "x1": 565,
+      "y1": 849,
+      "width": 529,
+      "height": 805,
+      "count": 218539,
+      "widthRatio": 0.8816666666666667,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.5025,
+      "centerY": 0.49722222222222223
+    },
+    "embarrassed": {
+      "x0": 41,
+      "y0": 44,
+      "x1": 564,
+      "y1": 849,
+      "width": 524,
+      "height": 806,
+      "count": 217334,
+      "widthRatio": 0.8733333333333333,
+      "heightRatio": 0.8955555555555555,
+      "centerX": 0.505,
+      "centerY": 0.49666666666666665
+    },
+    "scared": {
+      "x0": 39,
+      "y0": 44,
+      "x1": 564,
+      "y1": 850,
+      "width": 526,
+      "height": 807,
+      "count": 218074,
+      "widthRatio": 0.8766666666666667,
+      "heightRatio": 0.8966666666666666,
+      "centerX": 0.5033333333333333,
+      "centerY": 0.49722222222222223
+    },
+    "smug": {
+      "x0": 36,
+      "y0": 45,
+      "x1": 566,
+      "y1": 850,
+      "width": 531,
+      "height": 806,
+      "count": 221775,
+      "widthRatio": 0.885,
+      "heightRatio": 0.8955555555555555,
+      "centerX": 0.5025,
+      "centerY": 0.49777777777777776
+    },
+    "confused": {
+      "x0": 44,
+      "y0": 42,
+      "x1": 560,
+      "y1": 849,
+      "width": 517,
+      "height": 808,
+      "count": 217202,
+      "widthRatio": 0.8616666666666667,
+      "heightRatio": 0.8977777777777778,
+      "centerX": 0.5041666666666667,
+      "centerY": 0.4955555555555556
+    },
+    "love": {
+      "x0": 36,
+      "y0": 42,
+      "x1": 565,
+      "y1": 846,
+      "width": 530,
+      "height": 805,
+      "count": 218422,
+      "widthRatio": 0.8833333333333333,
+      "heightRatio": 0.8944444444444445,
+      "centerX": 0.5016666666666667,
+      "centerY": 0.4938888888888889
+    }
   },
   "neutral": {
     "ready": true,
     "renderer": "Sprite parts + micro-mesh",
     "assetLoaded": true,
     "emotion": "neutral",
-    "fps": 50,
+    "fps": 59,
     "errors": [],
+    "assetMode": "active58-atlas",
+    "sheetCount": 1,
+    "configVersion": "1.2.3-active58-atlas",
+    "configUrl": "config/jirai-v12-atlas.json",
+    "atlas": {
+      "size": [
+        1280,
+        896
+      ],
+      "padding": 2,
+      "offlineClean": true,
+      "sourcePartCount": 58,
+      "removedDetachedPixels": 6948,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      }
+    },
     "params": {
       "headAngle": 0,
       "headTurn": 0,
@@ -51,8 +289,8 @@
       "energy": 0.1,
       "blush": 0,
       "globalX": 0,
-      "globalBob": 0.15198189262391273,
-      "breath": 0.9977686819495627,
+      "globalBob": 0.1555593354668479,
+      "breath": 0.9995557914164649,
       "blinkOpen": 1,
       "mouthOpen": 0,
       "transition": 1,
@@ -79,10 +317,10 @@
       "cleanedCount": 1,
       "cleanupStats": {
         "A05": {
-          "opaqueBefore": 14564,
+          "opaqueBefore": 12001,
           "keptPixels": 12001,
-          "removedPixels": 2563,
-          "componentsBefore": 147,
+          "removedPixels": 0,
+          "componentsBefore": 1,
           "componentsAfter": 1
         }
       },
@@ -103,20 +341,43 @@
       "emotion": "neutral",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -4.979509318362082e-8,
-        "headTurn": -9.994327840421249e-17,
-        "bodyLean": -1.2703059386406735e-16,
-        "bodySquash": -1.7307351557266193e-29,
-        "armL": -3.151777084830556e-71,
-        "armR": 3.151777084830556e-71,
-        "legL": -1.5758882482688988e-71,
-        "legR": 1.5758882482688988e-71,
-        "energy": 0.10000001543648343,
-        "blush": 1.3693654473310668e-8,
+        "headAngle": -3.489022735740684e-8,
+        "headTurn": -8.693459871619714e-17,
+        "bodyLean": -3.58192586560403e-18,
+        "bodySquash": -1.2049578319877706e-31,
+        "armL": 7.339665016806295e-74,
+        "armR": -7.339665016806295e-74,
+        "legL": 3.669832110133032e-74,
+        "legR": -3.669832110133032e-74,
+        "energy": 0.10000001081597444,
+        "blush": 9.594815870269094e-9,
         "globalX": 0,
-        "globalBob": -0.13530205959353037,
-        "breath": 0.7017642255959142,
+        "globalBob": -0.1574485809758061,
+        "breath": 0.3159285731033914,
         "blinkOpen": 1,
         "mouthOpen": 0.15,
         "transition": 1,
@@ -143,10 +404,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -166,20 +427,43 @@
       "emotion": "neutral",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -1.0516419378383463e-10,
-        "headTurn": -1.6842919938545398e-18,
-        "bodyLean": 3.0818158411964214e-18,
-        "bodySquash": 6.963734121914206e-32,
-        "armL": 5.446090349192044e-73,
-        "armR": -5.446090349192044e-73,
-        "legL": 2.7230448864491208e-73,
-        "legR": -2.7230448864491208e-73,
-        "energy": 0.10000000003260098,
-        "blush": 2.8920218135815106e-11,
+        "headAngle": -2.8852314636644134e-11,
+        "headTurn": -4.472796315894205e-19,
+        "bodyLean": 8.947950264930717e-19,
+        "bodySquash": 5.551964245105892e-33,
+        "armL": -2.558521950299537e-76,
+        "armR": 2.558521950299537e-76,
+        "legL": -1.2792609276098091e-76,
+        "legR": 1.2792609276098091e-76,
+        "energy": 0.10000000000894424,
+        "blush": 7.934403745345167e-12,
         "globalX": 0,
-        "globalBob": -0.15248239155948226,
-        "breath": 0.5006564516011311,
+        "globalBob": -0.15226455328143576,
+        "breath": 0.06800693248259448,
         "blinkOpen": 1,
         "mouthOpen": 0.55,
         "transition": 1,
@@ -206,10 +490,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -227,22 +511,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "neutral",
-      "fps": 60,
+      "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 1.8186880876691525e-12,
-        "headTurn": 9.378516518005951e-21,
-        "bodyLean": 4.171396855010282e-20,
-        "bodySquash": 2.1923269890914644e-34,
-        "armL": 1.039247115914173e-74,
-        "armR": -1.039247115914173e-74,
-        "legL": 5.196234605394336e-75,
-        "legR": -5.196234605394336e-75,
-        "energy": 0.09999999999943622,
-        "blush": -5.001395851819399e-13,
+        "headAngle": 1.1019222181602048e-12,
+        "headTurn": 4.203815359614923e-21,
+        "bodyLean": 1.0311765302459118e-21,
+        "bodySquash": -1.8148091593971169e-35,
+        "armL": -2.444651129194665e-77,
+        "armR": 2.444651129194665e-77,
+        "legL": -1.22232543177645e-77,
+        "legR": 1.22232543177645e-77,
+        "energy": 0.0999999999996584,
+        "blush": -3.0302877184096076e-13,
         "globalX": 0,
-        "globalBob": -0.15742346860942544,
-        "breath": 0.2675437870490937,
+        "globalBob": -0.13485938042742668,
+        "breath": -0.18439325660875297,
         "blinkOpen": 1,
         "mouthOpen": 0.95,
         "transition": 1,
@@ -269,10 +576,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -293,20 +600,43 @@
     "emotion": "neutral",
     "fps": 61,
     "errors": [],
+    "assetMode": "active58-atlas",
+    "sheetCount": 1,
+    "configVersion": "1.2.3-active58-atlas",
+    "configUrl": "config/jirai-v12-atlas.json",
+    "atlas": {
+      "size": [
+        1280,
+        896
+      ],
+      "padding": 2,
+      "offlineClean": true,
+      "sourcePartCount": 58,
+      "removedDetachedPixels": 6948,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      }
+    },
     "params": {
-      "headAngle": -4.101648088309631e-15,
-      "headTurn": 1.1348100666484083e-23,
-      "bodyLean": -1.037608663718715e-21,
-      "bodySquash": -2.836974954636104e-36,
-      "armL": -1.8388623244952455e-76,
-      "armR": 1.8388623244952455e-76,
-      "legL": -9.194310642204368e-77,
-      "legR": 9.194310642204368e-77,
-      "energy": 0.10000000000000128,
-      "blush": 1.1279527873828841e-15,
+      "headAngle": -3.4725370946869054e-15,
+      "headTurn": -3.676049147549291e-24,
+      "bodyLean": -2.9879647132809924e-22,
+      "bodySquash": -8.691293611352738e-38,
+      "armL": 8.98752474398073e-80,
+      "armR": -8.98752474398073e-80,
+      "legL": 4.4937621889288905e-80,
+      "legR": -4.4937621889288905e-80,
+      "energy": 0.10000000000000109,
+      "blush": 9.549478425667787e-16,
       "globalX": 0,
-      "globalBob": -0.14974382105854214,
-      "breath": 0.017604575765662114,
+      "globalBob": -0.10664745357660176,
+      "breath": -0.42488082092696616,
       "blinkOpen": 0,
       "mouthOpen": 0,
       "transition": 1,
@@ -333,10 +663,10 @@
       "cleanedCount": 1,
       "cleanupStats": {
         "A05": {
-          "opaqueBefore": 14564,
+          "opaqueBefore": 12001,
           "keptPixels": 12001,
-          "removedPixels": 2563,
-          "componentsBefore": 147,
+          "removedPixels": 0,
+          "componentsBefore": 1,
           "componentsAfter": 1
         }
       },
@@ -357,6 +687,29 @@
       "emotion": "neutral",
       "fps": 56,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
         "headAngle": 0,
         "headTurn": 0,
@@ -369,8 +722,8 @@
         "energy": 0.1,
         "blush": 0,
         "globalX": 0,
-        "globalBob": 0.014342944076381314,
-        "breath": 0.4088784462425576,
+        "globalBob": 0.01917325579765637,
+        "breath": 0.43382389378588393,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -397,10 +750,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -418,22 +771,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "happy",
-      "fps": 60,
+      "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -1.500000467018362,
+        "headAngle": -1.5000001468444775,
         "headTurn": 0,
         "bodyLean": 0,
         "bodySquash": 0,
-        "armL": -4.000114219469786,
-        "armR": 4.000114219469786,
+        "armL": -4.000076467621498,
+        "armR": 4.000076467621498,
         "legL": 0,
         "legR": 0,
-        "energy": 0.45000010897095116,
-        "blush": 0.25000007783639366,
+        "energy": 0.45000003426371143,
+        "blush": 0.25000002447407954,
         "globalX": 0,
-        "globalBob": -0.7735763869470738,
-        "breath": -0.3107255345182847,
+        "globalBob": -0.8040965450613036,
+        "breath": -0.3065181037845427,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -460,10 +836,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -483,20 +859,43 @@
       "emotion": "excited",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 1.5000002936887213,
+        "headAngle": 1.500000293669377,
         "headTurn": 0,
         "bodyLean": 0,
-        "bodySquash": -0.010976698874394855,
-        "armL": -6.0000382338624645,
-        "armR": 6.0000382338624645,
-        "legL": -5.3723699808780125,
-        "legR": 5.3723699808780125,
-        "energy": 1.000000053843046,
-        "blush": -2.4474037318865368e-8,
+        "bodySquash": -0.010921695462658395,
+        "armL": -6.000038233526942,
+        "armR": 6.000038233526942,
+        "legL": -5.359420547844435,
+        "legR": 5.359420547844435,
+        "energy": 1.000000053839417,
+        "blush": -2.4472441888142825e-8,
         "globalX": 0,
-        "globalBob": -6.821182084489241,
-        "breath": -0.8689799618948496,
+        "globalBob": -6.789519917056477,
+        "breath": -0.8780625005188178,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -523,10 +922,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -544,22 +943,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "teasing",
-      "fps": 57,
+      "fps": 56,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -4.000000153444402,
-        "headTurn": 0.08000000223191854,
-        "bodyLean": -3.8139762623045708,
+        "headAngle": -4.000000804331571,
+        "headTurn": 0.08000001169936827,
+        "bodyLean": -3.8841930310052115,
         "bodySquash": 0,
-        "armL": 0.00007658379126975216,
-        "armR": 2.902244591203966,
-        "legL": 0.00003829188925915617,
-        "legR": -0.00003829188925915617,
-        "energy": 0.549999987445458,
-        "blush": 1.6470398245351964e-16,
+        "armL": 0.00011614069154733492,
+        "armR": 3.0145307672112316,
+        "legL": 0.00005807033939800839,
+        "legR": -0.00005807033939800839,
+        "energy": 0.5499999341910532,
+        "blush": 1.647028971754858e-16,
         "globalX": 0,
-        "globalBob": -0.1373089908626528,
-        "breath": -0.8566721446532783,
+        "globalBob": -0.12158657180697051,
+        "breath": -0.8343971748207883,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -586,10 +1008,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -609,20 +1031,43 @@
       "emotion": "pleading",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 3.5000007341895683,
-        "headTurn": -7.831354176876503e-9,
-        "bodyLean": 1.000057350199434,
+        "headAngle": 3.500000734189568,
+        "headTurn": -7.831354176837599e-9,
+        "bodyLean": 1.0000573501994345,
         "bodySquash": 0,
-        "armL": 1.1989350099254796,
-        "armR": 1.1989350095045501,
-        "legL": 1.0523242374597587e-10,
-        "legR": -1.0523242374597587e-10,
+        "armL": 1.1998323959889572,
+        "armR": 1.1998323955680295,
+        "legL": 1.0523196209989138e-10,
+        "legR": -1.0523196209989138e-10,
         "energy": 0.11999995790642118,
         "blush": 0.15000001468379762,
         "globalX": 0,
-        "globalBob": 0.7384699516456338,
-        "breath": -0.28748756770833134,
+        "globalBob": 0.7551095300282413,
+        "breath": -0.22483405167792342,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -649,10 +1094,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -672,20 +1117,43 @@
       "emotion": "relaxed",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -2.5000018604278074,
-        "headTurn": -0.050000015503590976,
-        "bodyLean": 1.2000056997294117,
+        "headAngle": -2.50000058739062,
+        "headTurn": -0.0500000048949289,
+        "bodyLean": 1.2000038235180555,
         "bodySquash": 0,
-        "armL": -9.295140616294534e-15,
-        "armR": 9.295140616294534e-15,
-        "legL": -4.6475696147290476e-15,
-        "legR": 4.6475696147290476e-15,
-        "energy": 0.04999997829491481,
-        "blush": -4.6510702004357776e-8,
+        "armL": -4.286491763197342e-15,
+        "armR": 4.286491763197342e-15,
+        "legL": -2.1432456453804e-15,
+        "legR": 2.1432456453804e-15,
+        "energy": 0.04999999314708377,
+        "blush": -1.4684767367042012e-8,
         "globalX": 0,
-        "globalBob": 0.1275121667846457,
-        "breath": 0.4101624489839408,
+        "globalBob": 0.13202539403048114,
+        "breath": 0.5085437761787023,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -712,10 +1180,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -735,20 +1203,43 @@
       "emotion": "sick",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 4.500002170499611,
-        "headTurn": 1.5503567359884717e-8,
-        "bodyLean": 3.104883193955343,
-        "bodySquash": 0.02000000620143057,
-        "armL": 8.92817799569651e-21,
-        "armR": -8.92817799569651e-21,
-        "legL": 4.464086691280919e-21,
-        "legR": -4.464086691280919e-21,
-        "energy": 0.01999999069784145,
-        "blush": -2.7200873815623908e-14,
+        "headAngle": 4.500000685228422,
+        "headTurn": 4.8944883695639944e-9,
+        "bodyLean": 3.1133455841098074,
+        "bodySquash": 0.020000001957796342,
+        "armL": -8.610042340106793e-21,
+        "armR": 8.610042340106793e-21,
+        "legL": -4.3050208848928936e-21,
+        "legR": 4.3050208848928936e-21,
+        "energy": 0.019999997063302005,
+        "blush": -7.462306071602879e-15,
         "globalX": 0,
-        "globalBob": 1.3070803455137874,
-        "breath": 0.9167837021558831,
+        "globalBob": 1.2973068926535327,
+        "breath": 0.9618319139477748,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -775,10 +1266,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -798,20 +1289,43 @@
       "emotion": "angry",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -1.0000005416523747,
-        "headTurn": 9.11729326478632e-15,
-        "bodyLean": -2.00008045689958,
-        "bodySquash": -1.969645993605419e-9,
-        "armL": 6.971438679077949e-25,
-        "armR": -6.971438679077949e-25,
-        "legL": 3.4857188565222476e-25,
-        "legR": -3.4857188565222476e-25,
-        "energy": 0.8500000817404546,
-        "blush": -8.005116660480423e-21,
-        "globalX": -0.8099361524908542,
-        "globalBob": 0.12351404651368054,
-        "breath": 0.9472675631217468,
+        "headAngle": -1.0000005384294768,
+        "headTurn": 2.4793718610208325e-15,
+        "bodyLean": -2.000080290962952,
+        "bodySquash": -1.957925640704373e-9,
+        "armL": 1.5838084248869526e-25,
+        "armR": -1.5838084248869526e-25,
+        "legL": 7.919041248290695e-26,
+        "legR": -7.919041248290695e-26,
+        "energy": 0.8500000812539538,
+        "blush": -1.6955554868198436e-21,
+        "globalX": -0.8363115002454351,
+        "globalBob": 0.037713586266029324,
+        "breath": 0.8855642640827271,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -838,10 +1352,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -859,22 +1373,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "annoyed",
-      "fps": 60,
+      "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -5.000000389223821,
-        "headTurn": -0.08000000778446564,
-        "bodyLean": 0.2590784561895363,
-        "bodySquash": -1.9614411568821176e-15,
-        "armL": -2.258141234053043e-30,
-        "armR": 2.258141234053043e-30,
-        "legL": -1.1290703302690998e-30,
-        "legR": 1.1290703302690998e-30,
-        "energy": 0.11999992896683251,
-        "blush": -1.536856639477127e-27,
+        "headAngle": -5.000000391576931,
+        "headTurn": -0.08000000783153317,
+        "bodyLean": 0.25623521929899473,
+        "bodySquash": -9.917670590540572e-16,
+        "armL": 3.4914795871413786e-31,
+        "armR": -3.4914795871413786e-31,
+        "legL": 1.7457396715950122e-31,
+        "legR": -1.7457396715950122e-31,
+        "energy": 0.11999992853730103,
+        "blush": -2.912082486542759e-28,
         "globalX": 0,
-        "globalBob": -0.09049006758393635,
-        "breath": 0.48580092242447137,
+        "globalBob": -0.11664976201749536,
+        "breath": 0.32162191795089784,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -901,10 +1438,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -924,20 +1461,43 @@
       "emotion": "sad",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 5.000003126278096,
-        "headTurn": 2.5010216010785283e-8,
-        "bodyLean": 1.3999971388963532,
-        "bodySquash": -1.0722800675122877e-21,
-        "armL": -6.396555449666469e-35,
-        "armR": 6.396555449666469e-35,
-        "legL": -3.1982773466007213e-35,
-        "legR": 3.1982773466007213e-35,
-        "energy": 0.029999971863357466,
-        "blush": -7.990513247611402e-35,
+        "headAngle": 4.999999998703901,
+        "headTurn": -1.0369892333256853e-11,
+        "bodyLean": 1.3999987466669122,
+        "bodySquash": -1.2485404056418277e-22,
+        "armL": -3.798884901551701e-36,
+        "armR": 3.798884901551701e-36,
+        "legL": -1.8994422354412995e-36,
+        "legR": 1.8994422354412995e-36,
+        "energy": 0.03000000001164736,
+        "blush": -2.6734444155145574e-35,
         "globalX": 0,
-        "globalBob": 1.6206664452676665,
-        "breath": -0.2052108110128964,
+        "globalBob": 1.6257246594728292,
+        "breath": -0.44015357131354815,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -964,10 +1524,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -987,20 +1547,43 @@
       "emotion": "surprised",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -0.0000015503352239579805,
-        "headTurn": 1.458756656200758e-14,
-        "bodyLean": -0.00003989769382547826,
-        "bodySquash": -0.020000006201348192,
+        "headAngle": -4.894705271059713e-7,
+        "headTurn": 1.831431617835917e-15,
+        "bodyLean": -0.00002676356728634391,
+        "bodySquash": -0.020000001957883026,
         "armL": 4.898587196589413e-16,
         "armR": 4.898587196589413e-16,
-        "legL": 2.4282714149564417e-40,
-        "legR": -2.4282714149564417e-40,
-        "energy": 0.8500002542552594,
-        "blush": 9.295198838266882e-41,
+        "legL": -6.59281471663092e-42,
+        "legR": 6.59281471663092e-42,
+        "energy": 0.8500000802732018,
+        "blush": -3.232249022093073e-42,
         "globalX": 0,
-        "globalBob": -0.39964370748803174,
-        "breath": -0.809909804407364,
+        "globalBob": -0.29347367384319195,
+        "breath": -0.937729463601248,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1027,10 +1610,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -1048,22 +1631,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "embarrassed",
-      "fps": 60,
+      "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 3.000002932684635,
-        "headTurn": 0.06000005865373132,
-        "bodyLean": 0.6664407029080583,
-        "bodySquash": 1.9551236049716106e-8,
-        "armL": 4.317077985920606e-45,
-        "armR": -4.317077985920606e-45,
-        "legL": 2.1585388475269874e-45,
-        "legR": -2.1585388475269874e-45,
-        "energy": 0.17999934503365023,
-        "blush": 1.0000009775621888,
+        "headAngle": 3.0000002936692036,
+        "headTurn": 0.06000000587338903,
+        "bodyLean": 0.6900043631798632,
+        "bodySquash": 1.9577953510606335e-9,
+        "armL": 1.3907021037357145e-46,
+        "armR": -1.3907021037357145e-46,
+        "legL": 6.953509726785832e-47,
+        "legR": -6.953509726785832e-47,
+        "energy": 0.17999993441386317,
+        "blush": 1.0000000978898171,
         "globalX": 0,
-        "globalBob": -0.02676788932006688,
-        "breath": -0.9961798371688565,
+        "globalBob": 0.04182593774647707,
+        "breath": -0.9189036108209818,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1090,10 +1696,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -1111,22 +1717,45 @@
       "renderer": "Sprite parts + micro-mesh",
       "assetLoaded": true,
       "emotion": "scared",
-      "fps": 59,
+      "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 1.9999999021063064,
-        "headTurn": -5.8736399212611204e-9,
-        "bodyLean": 2.5910347928739778e-15,
-        "bodySquash": 0.025000002447356832,
-        "armL": -3.8088876512927203e-50,
-        "armR": 3.8088876512927203e-50,
-        "legL": -1.9044434951296916e-50,
-        "legR": 1.9044434951296916e-50,
-        "energy": 0.7200000528627394,
-        "blush": -9.789399868768602e-8,
-        "globalX": 0.28170221014168473,
-        "globalBob": 0.2941491589759702,
-        "breath": -0.6443308042890046,
+        "headAngle": 1.999999902103817,
+        "headTurn": -5.873776922113524e-9,
+        "bodyLean": 9.862507758485129e-16,
+        "bodySquash": 0.02500000244740928,
+        "armL": 5.160366374172458e-52,
+        "armR": -5.160366374172458e-52,
+        "legL": 2.5801829686817726e-52,
+        "legR": -2.5801829686817726e-52,
+        "energy": 0.7200000528639859,
+        "blush": -9.789628203522522e-8,
+        "globalX": 0.3476972959302593,
+        "globalBob": 0.3829764757323981,
+        "breath": -0.3940432922419595,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1153,10 +1782,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -1176,20 +1805,43 @@
       "emotion": "smug",
       "fps": 60,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -4.5000020154651175,
-        "headTurn": 0.08000002480571138,
-        "bodyLean": -1.6676085259300102,
-        "bodySquash": -7.751783667359265e-9,
-        "armL": -1.5755228018950059e-55,
-        "armR": 1.5755228018950059e-55,
-        "legL": -7.877613941596814e-56,
-        "legR": 7.877613941596814e-56,
-        "energy": 0.21999984496433392,
-        "blush": -1.8184249614124959e-13,
+        "headAngle": -4.500000632515968,
+        "headTurn": 0.08000000778480833,
+        "bodyLean": -1.6661773848736348,
+        "bodySquash": -2.432752290974193e-9,
+        "armL": -5.0852095153098195e-57,
+        "armR": 5.0852095153098195e-57,
+        "legL": -2.5426044667332232e-57,
+        "legR": 2.5426044667332232e-57,
+        "energy": 0.21999995134495617,
+        "blush": -4.958926389458082e-14,
         "globalX": 0,
-        "globalBob": 0.21140180927154295,
-        "breath": 0.014086435560670327,
+        "globalBob": 0.1985261725217864,
+        "breath": 0.34781420051628853,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1216,10 +1868,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -1239,20 +1891,43 @@
       "emotion": "confused",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": 7.000001132647504,
-        "headTurn": -0.050000012803840164,
-        "bodyLean": 0.14538756272196512,
-        "bodySquash": -4.558775109711747e-15,
-        "armL": 4.91852845140678e-60,
-        "armR": -4.91852845140678e-60,
-        "legL": 2.4592638452123447e-60,
-        "legR": -2.4592638452123447e-60,
-        "energy": 0.19999999803008503,
-        "blush": -5.349177041286849e-20,
+        "headAngle": 7.000001125732575,
+        "headTurn": -0.05000001272567226,
+        "bodyLean": 0.14448301520830603,
+        "bodySquash": -1.239697287286837e-15,
+        "armL": -2.0150669987566415e-62,
+        "armR": 2.0150669987566415e-62,
+        "legL": -1.0075334127537582e-62,
+        "legR": 1.0075334127537582e-62,
+        "energy": 0.19999999804217888,
+        "blush": -1.1303702900425691e-20,
         "globalX": 0,
-        "globalBob": 0.14166331712644334,
-        "breath": 0.6824648924090546,
+        "globalBob": 0.07254193102693658,
+        "breath": 0.8980717987318444,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1279,10 +1954,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
@@ -1302,20 +1977,43 @@
       "emotion": "love",
       "fps": 61,
       "errors": [],
+      "assetMode": "active58-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.2.3-active58-atlas",
+      "configUrl": "config/jirai-v12-atlas.json",
+      "atlas": {
+        "size": [
+          1280,
+          896
+        ],
+        "padding": 2,
+        "offlineClean": true,
+        "sourcePartCount": 58,
+        "removedDetachedPixels": 6948,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        }
+      },
       "params": {
-        "headAngle": -2.0000027906416595,
-        "headTurn": 1.5503552721218747e-8,
-        "bodyLean": 1.5365168646564172e-11,
-        "bodySquash": -2.1019807285590133e-21,
-        "armL": 1.1262632263163903,
-        "armR": 1.1262632263163903,
-        "legL": -3.711162520128507e-66,
-        "legR": 3.711162520128507e-66,
-        "energy": 0.7200001612371911,
-        "blush": 0.5500001705393408,
+        "headAngle": -2.000000886322512,
+        "headTurn": 4.924012440714509e-9,
+        "bodyLean": 4.742301976071518e-11,
+        "bodySquash": -1.5606522545053449e-22,
+        "armL": 1.1070948193944845,
+        "armR": 1.1070948193944845,
+        "legL": 5.787542612208834e-68,
+        "legR": -5.787542612208834e-68,
+        "energy": 0.72000005120976,
+        "blush": 0.5500000541641696,
         "globalX": 0,
-        "globalBob": -2.6578101825054463,
-        "breath": 0.9944472090977983,
+        "globalBob": -2.8077119620191135,
+        "breath": 0.9467589973176801,
         "blinkOpen": 1,
         "mouthOpen": 0,
         "transition": 1,
@@ -1342,10 +2040,10 @@
         "cleanedCount": 1,
         "cleanupStats": {
           "A05": {
-            "opaqueBefore": 14564,
+            "opaqueBefore": 12001,
             "keptPixels": 12001,
-            "removedPixels": 2563,
-            "componentsBefore": 147,
+            "removedPixels": 0,
+            "componentsBefore": 1,
             "componentsAfter": 1
           }
         },
