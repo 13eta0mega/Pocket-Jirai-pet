@@ -11,8 +11,8 @@
 <body>
 <main class="shell">
 <header class="hero">
-  <div><span class="tag">POCKET JIRAI PET · ORIGINAL FBX · FIXED FRONT V2.2</span><h1>Jirai 3D → Live2D-like 2.5D</h1><p>원본 FBX의 메시·UV·텍스처를 유지한 채 정면 카메라만 사용합니다. 몸 모션에 이어 눈 깜빡임, 감정별 눈/입/눈썹 미세변형, 립싱크 테스트, 머리카락 보조 모션을 GPU에서 추가했습니다.</p></div>
-  <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span id="rigMode" class="ok">FIXED FRONT FACE</span></div>
+  <div><span class="tag">POCKET JIRAI PET · ORIGINAL FBX · FIXED FRONT V2.3</span><h1>Jirai 3D → Live2D-like 2.5D</h1><p>원본 FBX의 메시·UV·텍스처를 유지한 채 정면 카메라만 사용합니다. 업로드된 테스트 영상을 기준으로 얼굴 마스크 위치, 머리/어깨 경계, 팔 가중치, 표정 전환 속도와 립싱크 속도를 다시 캘리브레이션했습니다.</p></div>
+  <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">FBX 대기</span><span id="rigMode" class="ok">CALIBRATED FRONT</span></div>
 </header>
 <section class="layout">
   <section class="viewer-card">
@@ -21,17 +21,17 @@
       <div id="emptyState" class="empty-state"><div class="file-icon">3D</div><strong>원본 FBX 불러오기</strong><span><b>Meshy_AI_Pink_Haired_Pop_Idol_0822123556_texture.fbx</b> 원본을 그대로 사용합니다. 이전에 선택한 파일은 같은 브라우저에서 자동 복원됩니다.</span><label class="primary file-button">FBX 선택<input id="fileInput" type="file" accept=".fbx,application/octet-stream"></label><button id="restoreBtn" class="secondary" type="button" hidden>마지막 FBX 다시 불러오기</button></div>
       <div class="gesture">정면 고정 · 회전 없음 · 확대만 가능</div>
     </div>
-    <div id="faceState" class="face-state">Eye -/- · Mouth - · Hair -/-</div>
+    <div id="faceState" class="face-state">Eye -/- · Mouth - · Head -</div>
     <div class="stats"><span>Render Vertices <b id="vertexCount">-</b></span><span>Triangles <b id="triCount">-</b></span><span>Meshes <b id="meshCount">-</b></span></div>
   </section>
   <aside class="controls">
     <section class="panel"><div class="panel-title"><strong>정면 감정 모션</strong><span id="motionLabel">기본 · face + motion</span></div><div id="emotionButtons" class="emotion-grid"></div><button id="cycleBtn" class="secondary wide" type="button">16종 자동 순환</button></section>
-    <section class="panel"><div class="panel-title"><strong>얼굴 / 립싱크</strong><span>GPU face micro-deform</span></div><div class="toggle-grid"><label class="check"><input id="faceToggle" type="checkbox" checked> 얼굴 미세변형</label><label class="check"><input id="blinkToggle" type="checkbox" checked> 자동 눈깜빡임</label><label class="check"><input id="hairToggle" type="checkbox" checked> 머리카락 보조 모션</label><label class="check"><input id="lipTest" type="checkbox"> 테스트 립싱크</label></div><div class="row lip-row"><button id="micBtn" type="button" class="secondary">마이크 입력</button><div class="mouth-readout">Mouth <b id="mouthValue">0.00</b></div></div><label class="range"><span>수동 MouthOpen <b>0 → 1</b></span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label></section>
+    <section class="panel"><div class="panel-title"><strong>얼굴 / 립싱크</strong><span>calibrated face region + slow lip</span></div><div class="toggle-grid"><label class="check"><input id="faceToggle" type="checkbox" checked> 얼굴 미세변형</label><label class="check"><input id="blinkToggle" type="checkbox" checked> 자동 눈깜빡임</label><label class="check"><input id="hairToggle" type="checkbox" checked> 머리카락 보조 모션</label><label class="check"><input id="lipTest" type="checkbox"> 테스트 립싱크</label></div><div class="row lip-row"><button id="micBtn" type="button" class="secondary">마이크 입력</button><div class="mouth-readout">Mouth <b id="mouthValue">0.00</b></div></div><label class="range"><span>수동 MouthOpen <b>0 → 1</b></span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label></section>
     <section class="panel"><div class="panel-title"><strong>런타임</strong><span>원본 FBX 유지</span></div><div class="row"><button id="pickBtn" type="button">다른 FBX 선택</button><button id="resetCamera" type="button" class="secondary">정면 초기화</button></div><label class="check"><input id="idleToggle" type="checkbox" checked> Idle / 호흡 / 미세 바운스</label><label class="check"><input id="deformToggle" type="checkbox" checked> GPU 머리·팔·몸통 변형</label><label class="check"><input id="gridToggle" type="checkbox"> 바닥 그리드</label><label class="range"><span>확대 <b id="zoomValue">1.00×</b></span><input id="zoomSlider" type="range" min="0.8" max="1.65" step="0.01" value="1"></label></section>
     <section class="panel"><div class="panel-title"><strong>원본 FBX 진단</strong><span id="diagnosticBadge">대기</span></div><dl class="diagnostics"><div><dt>Skeleton / Skin</dt><dd id="skinInfo">-</dd></div><div><dt>Animation Clips</dt><dd id="animInfo">-</dd></div><div><dt>Materials</dt><dd id="materialInfo">-</dd></div><div><dt>Textures</dt><dd id="textureInfo">-</dd></div><div><dt>Source size</dt><dd id="sizeInfo">-</dd></div></dl></section>
   </aside>
 </section>
-<section class="note"><strong>Ver2.2 검수 포인트</strong><span>아직 Skeleton/BlendShape를 새로 만든 것은 아닙니다. 원본 3D를 유지하면서 정면에서만 보이는 작은 얼굴/머리/팔 변형을 GPU 셰이더로 시험합니다. 특히 눈 깜빡임 위치, 입 변형 위치, 장난의 윙크, 놀람/화남/슬픔 표정, 머리카락 좌우 흔들림이 캐릭터 외형을 망가뜨리지 않는지 확인해 주세요.</span></section>
+<section class="note"><strong>Ver2.3 영상 기반 수정</strong><span>영상에서 확인된 문제였던 ① 눈 위치가 코 쪽으로 몰린 마스크 ② 머리 회전 시 어깨/목까지 같이 휘는 현상 ③ 팔 영역이 몸통까지 침범하는 현상 ④ 감정 전환과 립싱크가 너무 빠른 현상을 수정했습니다. 얼굴 변형을 먼저 계산한 뒤 머리 전체를 회전시키며, 입이 열릴 때는 정면 전용 셰이더로 어두운 입 내부를 보강합니다.</span></section>
 </main>
-<script type="module" src="src/app3d-v22.js"></script>
+<script type="module" src="src/app3d-v23.js"></script>
 </body></html>
