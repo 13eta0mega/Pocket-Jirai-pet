@@ -17,28 +17,47 @@ The first character in the supplied 8-pose reference is the visual target for ne
 - hip-to-leg start position
 - shoe attachment and left/right spacing
 
-## Current neutral layout
+The reference silhouette measurements used as a coarse geometry gate are approximately:
+
+- normalized character width: `0.888`
+- normalized character height: `0.897`
+- normalized center X: `0.511`
+- normalized center Y: `0.495`
+
+These values are not treated as a pixel-identical target. They prevent the rig from drifting back to the previous tall/narrow assembly while visual inspection remains the final criterion.
+
+## Current neutral layout (1.2.2)
 
 Internal rig canvas: `600 x 900`.
 
 Key anchors:
 
-- head pivot: `(300, 270)`
-- face center: `(300, 252)`
-- eyes: `(240, 255)` / `(360, 255)`
-- mouth center: `(300, 309)`
+- head pivot: `(300, 275)`
+- face center: `(300, 258)`
+- eyes: `(225, 260)` / `(375, 260)`
+- brows: `(226, 216)` / `(374, 216)`
+- mouth center: `(300, 314)`
+- twin-tail centers: `(100, 238)` / `(500, 238)`
+- bunny clips: `(135, 126)` / `(465, 126)`
 - body pivot: `(300, 365)`
 - skirt center: `(300, 550)`
-- hip/leg pivots: `(250, 607)` / `(350, 607)`
+- hip/leg pivots: `(244, 598)` / `(356, 598)`
+- shoe centers: `(244, 805)` / `(356, 805)`
+
+The reference-matching pass widens the head/twin-tail silhouette, slightly flattens the back/front hair vertically, spreads the eyes, widens the neutral arm stance, and shortens the lower-body vertical extent. The selected active semantic parts are unchanged.
 
 `T01` is still the approved torso semantic part, but the runtime renders only its center section to remove bare shoulder lobes; independently animated sleeve/arm sprites provide the shoulder silhouette. No unapproved atlas part is introduced by this seam cleanup.
+
+`A05` remains the approved raised-left-arm semantic part. Its source crop contains a disconnected neighbouring triangle, so `src/part-cleanup.js` keeps only the main alpha-connected component. This is a cleanup of A05 itself, not substitution with an inactive part.
 
 ## Runtime QA requirements
 
 - 58 and only 58 semantic IDs are available to the renderer.
 - Every referenced semantic ID must exist in the runtime config.
 - Source rectangles must stay within the 1254 x 1254 atlas bounds.
+- Neutral assembly must stay inside the reference-frame geometry tolerances used by browser QA.
 - Neutral blink must visibly swap to `E03/E04`.
 - `MouthOpenY > 0` must use `M03/M04/M05` instead of stretching `M01`.
 - Emotion transitions crossfade sprite state changes while spring motion handles pivots/pose movement.
-- Micro-mesh deformation is limited to torso/skirt breathing and seam smoothing.
+- Actual arm/hand and leg sprites provide major pose changes; micro-mesh deformation is secondary only.
+- A05 cleanup must remove disconnected pixels/components before the raised-arm sprite is rendered.
