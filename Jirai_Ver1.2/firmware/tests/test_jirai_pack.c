@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "../jirai_pack_reader.h"
+#include "../generated/jirai_v12_motion.h"
 
 static unsigned char *read_file(const char *path, size_t *size_out) {
   FILE *f = fopen(path, "rb");
@@ -29,6 +30,19 @@ static int check_id(const JiraiPackView *view, const char *id) {
     fprintf(stderr, "invalid payload view for %s\n", id);
     return 0;
   }
+  return 1;
+}
+
+static int check_motion_tables(void) {
+  if (JIRAI_EMOTION_COUNT != 16) return 0;
+  const JiraiEmotionPreset *neutral = &kJiraiEmotionPresets[JIRAI_EMOTION_NEUTRAL];
+  const JiraiEmotionPreset *excited = &kJiraiEmotionPresets[JIRAI_EMOTION_EXCITED];
+  const JiraiEmotionPreset *love = &kJiraiEmotionPresets[JIRAI_EMOTION_LOVE];
+  if (neutral->eye_l != JIRAI_PART_E01 || neutral->eye_r != JIRAI_PART_E02 || neutral->mouth != JIRAI_PART_M01) return 0;
+  if (neutral->arm_pose != JIRAI_ARM_DOWN || neutral->leg_pose != JIRAI_LEG_STRAIGHT) return 0;
+  if (excited->eye_l != JIRAI_PART_E11 || excited->mouth != JIRAI_PART_M05 || excited->arm_pose != JIRAI_ARM_RAISED) return 0;
+  if (love->eye_l != JIRAI_PART_E13 || love->eye_r != JIRAI_PART_E14 || love->gesture != JIRAI_GESTURE_LOVE) return 0;
+  if (JIRAI_TRANSITION_MS != 420 || JIRAI_BLINK_DURATION_MS != 180) return 0;
   return 1;
 }
 
@@ -59,7 +73,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  if (view.header.part_count != 58 || !check_id(&view, "H01") || !check_id(&view, "A05") || !check_id(&view, "L07")) {
+  if (view.header.part_count != 58 || !check_id(&view, "H01") || !check_id(&view, "A05") || !check_id(&view, "L07") || !check_motion_tables()) {
     free(bytes);
     return 1;
   }
@@ -69,8 +83,9 @@ int main(int argc, char **argv) {
     free(bytes);
     return 1;
   }
-  printf("OK parts=%u bytes=%zu A05=%ux%u rgb=%u alpha=%u crc=%08x\n",
+  printf("OK parts=%u emotions=%u bytes=%zu A05=%ux%u rgb=%u alpha=%u crc=%08x\n",
          view.header.part_count,
+         (unsigned)JIRAI_EMOTION_COUNT,
          size,
          a05.entry.trim_w,
          a05.entry.trim_h,
