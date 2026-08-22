@@ -1,0 +1,31 @@
+{
+  "version": "1.3.1-active77-integratedbody-viseme7",
+  "bodyIntegrated": {
+    "ids": ["TB01", "TB02", "TB03", "TB04", "TB05"],
+    "preferredFor": ["neutral", "happy", "excited", "teasing", "pleading", "relaxed", "sick", "angry", "annoyed", "sad", "surprised", "embarrassed", "scared", "smug", "confused", "love"],
+    "fallbackAssembled": []
+  },
+  "placement": {
+    "faceStackYOffset": -8,
+    "linkedFootChain": true,
+    "shoeSocketOverlapPx": 10
+  },
+  "emotions": {
+    "neutral": {"body_sprite":"TB01","eyes":["E01","E02"],"brows":["B01","B02"],"mouth":"M01","arms":["A01","A02"]},
+    "happy": {"body_sprite":"TB03","eyes":["E03","E04"],"brows":["B01","B02"],"mouth":"M05","arms":["A03","A04"]},
+    "excited": {"body_sprite":"TB05","eyes":["E01","E02"],"brows":["B03","B04"],"mouth":"M05","arms":["A05","A06"]},
+    "teasing": {"body_sprite":"TB05","eyes":["E01","E04"],"brows":["B01","B02"],"mouth":"M08","arms":["A05"]},
+    "pleading": {"body_sprite":"TB03","eyes":["E09","E10"],"brows":["B05","B06"],"mouth":"M01","arms":["A10"]},
+    "relaxed": {"body_sprite":"TB04","eyes":["E05","E06"],"brows":["B01","B02"],"mouth":"M06","arms":["A08"]},
+    "sick": {"body_sprite":"TB01","eyes":["E05","E06"],"brows":["B05","B06"],"mouth":"M17","arms":["A01","A02"]},
+    "angry": {"body_sprite":"TB02","eyes":["E07","E08"],"brows":[],"mouth":"M16","arms":["A07"]},
+    "annoyed": {"body_sprite":"TB02","eyes":["E05","E06"],"brows":["B01","B02"],"mouth":"M16","arms":["A07"]},
+    "sad": {"body_sprite":"TB03","eyes":["E09","E10"],"brows":["B05","B06"],"mouth":"M17","arms":["A10"]},
+    "surprised": {"body_sprite":"TB03","eyes":["E11","E12"],"brows":["B03","B04"],"mouth":"M06","arms":["A09"]},
+    "embarrassed": {"body_sprite":"TB03","eyes":["E03","E04"],"brows":["B03","B04"],"mouth":"M02","arms":["A10"]},
+    "scared": {"body_sprite":"TB03","eyes":["E11","E12"],"brows":["B05","B06"],"mouth":"M18","arms":["A10"]},
+    "smug": {"body_sprite":"TB04","eyes":["E05","E06"],"brows":["B01","B02"],"mouth":"M07","arms":["A08"]},
+    "confused": {"body_sprite":"TB04","eyes":["E01","E02"],"brows":["B03","B04"],"mouth":"M06","arms":["A08"]},
+    "love": {"body_sprite":"TB03","eyes":["E13","E14"],"brows":["B01","B02"],"mouth":"M05","arms":["A10"]}
+  }
+}
