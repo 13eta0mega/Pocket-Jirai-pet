@@ -3,8 +3,12 @@ name: QA Jirai Ver1.2
 on:
   push:
     branches: [Jirai_Ver1.2]
-    paths-ignore:
-      - 'qa/jirai-v12/**'
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'src/**'
+      - 'config/jirai-v12.json'
+      - '.github/workflows/qa-jirai-v12.yml'
   workflow_dispatch:
 
 permissions:
