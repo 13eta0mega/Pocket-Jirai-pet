@@ -77,6 +77,7 @@ jobs:
           await page.waitForTimeout(75);
           const blink=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
           await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/blink.png'});
+          const a05=neutral.mesh?.cleanupStats?.A05||{};
           const checks={
             ready:neutral.ready===true,
             assetLoaded:neutral.assetLoaded===true,
@@ -84,6 +85,7 @@ jobs:
             activeParts:neutral.mesh?.activeParts===58,
             renderer:neutral.renderer==='Sprite parts + micro-mesh',
             a05Cleanup:Array.isArray(neutral.mesh?.cleanedParts)&&neutral.mesh.cleanedParts.includes('A05'),
+            a05DetachedComponentRemoved:a05.componentsBefore>=2&&a05.componentsAfter===1&&a05.removedPixels>100,
             excitedUsesRaisedArms:samples.excited?.armPose==='raised',
             lipSmall:lip['0.15'].mouthSprite==='M03',
             lipMedium:['M04','M05'].includes(lip['0.55'].mouthSprite),
@@ -96,7 +98,7 @@ jobs:
           fs.writeFileSync('qa/jirai-v12/report.json',JSON.stringify(report,null,2));
           await browser.close();
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1)}
-          console.log(JSON.stringify({checks,pass:report.pass},null,2));
+          console.log(JSON.stringify({checks,a05CleanupStats:a05,pass:report.pass},null,2));
           EOF
           set +e
           node qa/jirai-v12/runner.mjs > qa/jirai-v12/browser.log 2>&1
