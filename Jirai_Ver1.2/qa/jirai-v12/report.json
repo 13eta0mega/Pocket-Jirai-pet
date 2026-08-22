@@ -1,0 +1,1364 @@
+{
+  "started": "2026-08-22T02:14:20.395Z",
+  "stage": "browser-complete",
+  "checks": {
+    "ready": true,
+    "assetLoaded": true,
+    "emotionButtons": true,
+    "activeParts": true,
+    "renderer": true,
+    "neutralParts": true,
+    "referenceFrameGeometry": true,
+    "a05Cleanup": true,
+    "a05DetachedComponentRemoved": true,
+    "excitedUsesRaisedArms": true,
+    "lipSmall": true,
+    "lipMedium": true,
+    "lipLarge": true,
+    "blinkUsesClosedPart": true,
+    "allEmotionPartsDiffer": true,
+    "noConsoleErrors": true
+  },
+  "neutralBounds": {
+    "x0": 38,
+    "y0": 45,
+    "x1": 564,
+    "y1": 849,
+    "width": 527,
+    "height": 805,
+    "count": 239557,
+    "widthRatio": 0.8783333333333333,
+    "heightRatio": 0.8944444444444445,
+    "centerX": 0.5025,
+    "centerY": 0.49722222222222223
+  },
+  "neutral": {
+    "ready": true,
+    "renderer": "Sprite parts + micro-mesh",
+    "assetLoaded": true,
+    "emotion": "neutral",
+    "fps": 50,
+    "errors": [],
+    "params": {
+      "headAngle": 0,
+      "headTurn": 0,
+      "bodyLean": 0,
+      "bodySquash": 0,
+      "armL": 0,
+      "armR": 0,
+      "legL": 0,
+      "legR": 0,
+      "energy": 0.1,
+      "blush": 0,
+      "globalX": 0,
+      "globalBob": 0.15198189262391273,
+      "breath": 0.9977686819495627,
+      "blinkOpen": 1,
+      "mouthOpen": 0,
+      "transition": 1,
+      "emotion": "neutral",
+      "previousEmotion": "neutral"
+    },
+    "parts": {
+      "eyes": "E01/E02",
+      "mouth": "M01",
+      "arms": "down",
+      "legs": "straight",
+      "blinkOpen": 1,
+      "mouthOpen": 0
+    },
+    "buttonCount": 16,
+    "mesh": {
+      "mode": "sprite-parts+micro-mesh",
+      "inverted": 0,
+      "degenerate": 0,
+      "activeParts": 58,
+      "cleanedParts": [
+        "A05"
+      ],
+      "cleanedCount": 1,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      },
+      "pivotSpriteMotion": true,
+      "shoulderPivotMotion": true,
+      "hipPivotMotion": true,
+      "hairRootPivotMotion": true
+    },
+    "mouthSprite": "M01",
+    "eyeSprite": "E01/E02",
+    "armPose": "down"
+  },
+  "lip": {
+    "0.15": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "neutral",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -4.979509318362082e-8,
+        "headTurn": -9.994327840421249e-17,
+        "bodyLean": -1.2703059386406735e-16,
+        "bodySquash": -1.7307351557266193e-29,
+        "armL": -3.151777084830556e-71,
+        "armR": 3.151777084830556e-71,
+        "legL": -1.5758882482688988e-71,
+        "legR": 1.5758882482688988e-71,
+        "energy": 0.10000001543648343,
+        "blush": 1.3693654473310668e-8,
+        "globalX": 0,
+        "globalBob": -0.13530205959353037,
+        "breath": 0.7017642255959142,
+        "blinkOpen": 1,
+        "mouthOpen": 0.15,
+        "transition": 1,
+        "emotion": "neutral",
+        "previousEmotion": "love"
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "mouth": "M03",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0.15
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M03",
+      "eyeSprite": "E01/E02",
+      "armPose": "down"
+    },
+    "0.55": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "neutral",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -1.0516419378383463e-10,
+        "headTurn": -1.6842919938545398e-18,
+        "bodyLean": 3.0818158411964214e-18,
+        "bodySquash": 6.963734121914206e-32,
+        "armL": 5.446090349192044e-73,
+        "armR": -5.446090349192044e-73,
+        "legL": 2.7230448864491208e-73,
+        "legR": -2.7230448864491208e-73,
+        "energy": 0.10000000003260098,
+        "blush": 2.8920218135815106e-11,
+        "globalX": 0,
+        "globalBob": -0.15248239155948226,
+        "breath": 0.5006564516011311,
+        "blinkOpen": 1,
+        "mouthOpen": 0.55,
+        "transition": 1,
+        "emotion": "neutral",
+        "previousEmotion": "love"
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "mouth": "M04",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0.55
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M04",
+      "eyeSprite": "E01/E02",
+      "armPose": "down"
+    },
+    "0.95": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "neutral",
+      "fps": 60,
+      "errors": [],
+      "params": {
+        "headAngle": 1.8186880876691525e-12,
+        "headTurn": 9.378516518005951e-21,
+        "bodyLean": 4.171396855010282e-20,
+        "bodySquash": 2.1923269890914644e-34,
+        "armL": 1.039247115914173e-74,
+        "armR": -1.039247115914173e-74,
+        "legL": 5.196234605394336e-75,
+        "legR": -5.196234605394336e-75,
+        "energy": 0.09999999999943622,
+        "blush": -5.001395851819399e-13,
+        "globalX": 0,
+        "globalBob": -0.15742346860942544,
+        "breath": 0.2675437870490937,
+        "blinkOpen": 1,
+        "mouthOpen": 0.95,
+        "transition": 1,
+        "emotion": "neutral",
+        "previousEmotion": "love"
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "mouth": "M05",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0.95
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M05",
+      "eyeSprite": "E01/E02",
+      "armPose": "down"
+    }
+  },
+  "blink": {
+    "ready": true,
+    "renderer": "Sprite parts + micro-mesh",
+    "assetLoaded": true,
+    "emotion": "neutral",
+    "fps": 61,
+    "errors": [],
+    "params": {
+      "headAngle": -4.101648088309631e-15,
+      "headTurn": 1.1348100666484083e-23,
+      "bodyLean": -1.037608663718715e-21,
+      "bodySquash": -2.836974954636104e-36,
+      "armL": -1.8388623244952455e-76,
+      "armR": 1.8388623244952455e-76,
+      "legL": -9.194310642204368e-77,
+      "legR": 9.194310642204368e-77,
+      "energy": 0.10000000000000128,
+      "blush": 1.1279527873828841e-15,
+      "globalX": 0,
+      "globalBob": -0.14974382105854214,
+      "breath": 0.017604575765662114,
+      "blinkOpen": 0,
+      "mouthOpen": 0,
+      "transition": 1,
+      "emotion": "neutral",
+      "previousEmotion": "love"
+    },
+    "parts": {
+      "eyes": "E01/E02 -> E03/E04",
+      "mouth": "M01",
+      "arms": "down",
+      "legs": "straight",
+      "blinkOpen": 0,
+      "mouthOpen": 0
+    },
+    "buttonCount": 16,
+    "mesh": {
+      "mode": "sprite-parts+micro-mesh",
+      "inverted": 0,
+      "degenerate": 0,
+      "activeParts": 58,
+      "cleanedParts": [
+        "A05"
+      ],
+      "cleanedCount": 1,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 14564,
+          "keptPixels": 12001,
+          "removedPixels": 2563,
+          "componentsBefore": 147,
+          "componentsAfter": 1
+        }
+      },
+      "pivotSpriteMotion": true,
+      "shoulderPivotMotion": true,
+      "hipPivotMotion": true,
+      "hairRootPivotMotion": true
+    },
+    "mouthSprite": "M01",
+    "eyeSprite": "E01/E02 -> E03/E04",
+    "armPose": "down"
+  },
+  "samples": {
+    "neutral": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "neutral",
+      "fps": 56,
+      "errors": [],
+      "params": {
+        "headAngle": 0,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": 0,
+        "armL": 0,
+        "armR": 0,
+        "legL": 0,
+        "legR": 0,
+        "energy": 0.1,
+        "blush": 0,
+        "globalX": 0,
+        "globalBob": 0.014342944076381314,
+        "breath": 0.4088784462425576,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "neutral",
+        "previousEmotion": "neutral"
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "mouth": "M01",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M01",
+      "eyeSprite": "E01/E02",
+      "armPose": "down"
+    },
+    "happy": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "happy",
+      "fps": 60,
+      "errors": [],
+      "params": {
+        "headAngle": -1.500000467018362,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": 0,
+        "armL": -4.000114219469786,
+        "armR": 4.000114219469786,
+        "legL": 0,
+        "legR": 0,
+        "energy": 0.45000010897095116,
+        "blush": 0.25000007783639366,
+        "globalX": 0,
+        "globalBob": -0.7735763869470738,
+        "breath": -0.3107255345182847,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "happy",
+        "previousEmotion": "neutral"
+      },
+      "parts": {
+        "eyes": "E03/E04",
+        "mouth": "M02",
+        "arms": "open",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M02",
+      "eyeSprite": "E03/E04",
+      "armPose": "open"
+    },
+    "excited": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "excited",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": 1.5000002936887213,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": -0.010976698874394855,
+        "armL": -6.0000382338624645,
+        "armR": 6.0000382338624645,
+        "legL": -5.3723699808780125,
+        "legR": 5.3723699808780125,
+        "energy": 1.000000053843046,
+        "blush": -2.4474037318865368e-8,
+        "globalX": 0,
+        "globalBob": -6.821182084489241,
+        "breath": -0.8689799618948496,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "excited",
+        "previousEmotion": "happy"
+      },
+      "parts": {
+        "eyes": "E11/E12",
+        "mouth": "M05",
+        "arms": "raised",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M05",
+      "eyeSprite": "E11/E12",
+      "armPose": "raised"
+    },
+    "teasing": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "teasing",
+      "fps": 57,
+      "errors": [],
+      "params": {
+        "headAngle": -4.000000153444402,
+        "headTurn": 0.08000000223191854,
+        "bodyLean": -3.8139762623045708,
+        "bodySquash": 0,
+        "armL": 0.00007658379126975216,
+        "armR": 2.902244591203966,
+        "legL": 0.00003829188925915617,
+        "legR": -0.00003829188925915617,
+        "energy": 0.549999987445458,
+        "blush": 1.6470398245351964e-16,
+        "globalX": 0,
+        "globalBob": -0.1373089908626528,
+        "breath": -0.8566721446532783,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "teasing",
+        "previousEmotion": "excited"
+      },
+      "parts": {
+        "eyes": "E01/E04",
+        "mouth": "M08",
+        "arms": "oneRaised",
+        "legs": "bentLeft",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M08",
+      "eyeSprite": "E01/E04",
+      "armPose": "oneRaised"
+    },
+    "pleading": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "pleading",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": 3.5000007341895683,
+        "headTurn": -7.831354176876503e-9,
+        "bodyLean": 1.000057350199434,
+        "bodySquash": 0,
+        "armL": 1.1989350099254796,
+        "armR": 1.1989350095045501,
+        "legL": 1.0523242374597587e-10,
+        "legR": -1.0523242374597587e-10,
+        "energy": 0.11999995790642118,
+        "blush": 0.15000001468379762,
+        "globalX": 0,
+        "globalBob": 0.7384699516456338,
+        "breath": -0.28748756770833134,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "pleading",
+        "previousEmotion": "teasing"
+      },
+      "parts": {
+        "eyes": "E09/E10",
+        "mouth": "M07",
+        "arms": "clasped",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M07",
+      "eyeSprite": "E09/E10",
+      "armPose": "clasped"
+    },
+    "relaxed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "relaxed",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -2.5000018604278074,
+        "headTurn": -0.050000015503590976,
+        "bodyLean": 1.2000056997294117,
+        "bodySquash": 0,
+        "armL": -9.295140616294534e-15,
+        "armR": 9.295140616294534e-15,
+        "legL": -4.6475696147290476e-15,
+        "legR": 4.6475696147290476e-15,
+        "energy": 0.04999997829491481,
+        "blush": -4.6510702004357776e-8,
+        "globalX": 0,
+        "globalBob": 0.1275121667846457,
+        "breath": 0.4101624489839408,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "relaxed",
+        "previousEmotion": "pleading"
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "mouth": "M02",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M02",
+      "eyeSprite": "E05/E06",
+      "armPose": "down"
+    },
+    "sick": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "sick",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": 4.500002170499611,
+        "headTurn": 1.5503567359884717e-8,
+        "bodyLean": 3.104883193955343,
+        "bodySquash": 0.02000000620143057,
+        "armL": 8.92817799569651e-21,
+        "armR": -8.92817799569651e-21,
+        "legL": 4.464086691280919e-21,
+        "legR": -4.464086691280919e-21,
+        "energy": 0.01999999069784145,
+        "blush": -2.7200873815623908e-14,
+        "globalX": 0,
+        "globalBob": 1.3070803455137874,
+        "breath": 0.9167837021558831,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "sick",
+        "previousEmotion": "relaxed"
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "mouth": "M07",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M07",
+      "eyeSprite": "E05/E06",
+      "armPose": "down"
+    },
+    "angry": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "angry",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -1.0000005416523747,
+        "headTurn": 9.11729326478632e-15,
+        "bodyLean": -2.00008045689958,
+        "bodySquash": -1.969645993605419e-9,
+        "armL": 6.971438679077949e-25,
+        "armR": -6.971438679077949e-25,
+        "legL": 3.4857188565222476e-25,
+        "legR": -3.4857188565222476e-25,
+        "energy": 0.8500000817404546,
+        "blush": -8.005116660480423e-21,
+        "globalX": -0.8099361524908542,
+        "globalBob": 0.12351404651368054,
+        "breath": 0.9472675631217468,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "angry",
+        "previousEmotion": "sick"
+      },
+      "parts": {
+        "eyes": "E07/E08",
+        "mouth": "M07",
+        "arms": "crossed",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M07",
+      "eyeSprite": "E07/E08",
+      "armPose": "crossed"
+    },
+    "annoyed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "annoyed",
+      "fps": 60,
+      "errors": [],
+      "params": {
+        "headAngle": -5.000000389223821,
+        "headTurn": -0.08000000778446564,
+        "bodyLean": 0.2590784561895363,
+        "bodySquash": -1.9614411568821176e-15,
+        "armL": -2.258141234053043e-30,
+        "armR": 2.258141234053043e-30,
+        "legL": -1.1290703302690998e-30,
+        "legR": 1.1290703302690998e-30,
+        "energy": 0.11999992896683251,
+        "blush": -1.536856639477127e-27,
+        "globalX": 0,
+        "globalBob": -0.09049006758393635,
+        "breath": 0.48580092242447137,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "annoyed",
+        "previousEmotion": "angry"
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "mouth": "M07",
+        "arms": "crossed",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M07",
+      "eyeSprite": "E05/E06",
+      "armPose": "crossed"
+    },
+    "sad": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "sad",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": 5.000003126278096,
+        "headTurn": 2.5010216010785283e-8,
+        "bodyLean": 1.3999971388963532,
+        "bodySquash": -1.0722800675122877e-21,
+        "armL": -6.396555449666469e-35,
+        "armR": 6.396555449666469e-35,
+        "legL": -3.1982773466007213e-35,
+        "legR": 3.1982773466007213e-35,
+        "energy": 0.029999971863357466,
+        "blush": -7.990513247611402e-35,
+        "globalX": 0,
+        "globalBob": 1.6206664452676665,
+        "breath": -0.2052108110128964,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "sad",
+        "previousEmotion": "annoyed"
+      },
+      "parts": {
+        "eyes": "E09/E10",
+        "mouth": "M07",
+        "arms": "down",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M07",
+      "eyeSprite": "E09/E10",
+      "armPose": "down"
+    },
+    "surprised": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "surprised",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -0.0000015503352239579805,
+        "headTurn": 1.458756656200758e-14,
+        "bodyLean": -0.00003989769382547826,
+        "bodySquash": -0.020000006201348192,
+        "armL": 4.898587196589413e-16,
+        "armR": 4.898587196589413e-16,
+        "legL": 2.4282714149564417e-40,
+        "legR": -2.4282714149564417e-40,
+        "energy": 0.8500002542552594,
+        "blush": 9.295198838266882e-41,
+        "globalX": 0,
+        "globalBob": -0.39964370748803174,
+        "breath": -0.809909804407364,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "surprised",
+        "previousEmotion": "sad"
+      },
+      "parts": {
+        "eyes": "E11/E12",
+        "mouth": "M06",
+        "arms": "palms",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M06",
+      "eyeSprite": "E11/E12",
+      "armPose": "palms"
+    },
+    "embarrassed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "embarrassed",
+      "fps": 60,
+      "errors": [],
+      "params": {
+        "headAngle": 3.000002932684635,
+        "headTurn": 0.06000005865373132,
+        "bodyLean": 0.6664407029080583,
+        "bodySquash": 1.9551236049716106e-8,
+        "armL": 4.317077985920606e-45,
+        "armR": -4.317077985920606e-45,
+        "legL": 2.1585388475269874e-45,
+        "legR": -2.1585388475269874e-45,
+        "energy": 0.17999934503365023,
+        "blush": 1.0000009775621888,
+        "globalX": 0,
+        "globalBob": -0.02676788932006688,
+        "breath": -0.9961798371688565,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "embarrassed",
+        "previousEmotion": "surprised"
+      },
+      "parts": {
+        "eyes": "E03/E04",
+        "mouth": "M03",
+        "arms": "cheek",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M03",
+      "eyeSprite": "E03/E04",
+      "armPose": "cheek"
+    },
+    "scared": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "scared",
+      "fps": 59,
+      "errors": [],
+      "params": {
+        "headAngle": 1.9999999021063064,
+        "headTurn": -5.8736399212611204e-9,
+        "bodyLean": 2.5910347928739778e-15,
+        "bodySquash": 0.025000002447356832,
+        "armL": -3.8088876512927203e-50,
+        "armR": 3.8088876512927203e-50,
+        "legL": -1.9044434951296916e-50,
+        "legR": 1.9044434951296916e-50,
+        "energy": 0.7200000528627394,
+        "blush": -9.789399868768602e-8,
+        "globalX": 0.28170221014168473,
+        "globalBob": 0.2941491589759702,
+        "breath": -0.6443308042890046,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "scared",
+        "previousEmotion": "embarrassed"
+      },
+      "parts": {
+        "eyes": "E11/E12",
+        "mouth": "M06",
+        "arms": "clasped",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M06",
+      "eyeSprite": "E11/E12",
+      "armPose": "clasped"
+    },
+    "smug": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "smug",
+      "fps": 60,
+      "errors": [],
+      "params": {
+        "headAngle": -4.5000020154651175,
+        "headTurn": 0.08000002480571138,
+        "bodyLean": -1.6676085259300102,
+        "bodySquash": -7.751783667359265e-9,
+        "armL": -1.5755228018950059e-55,
+        "armR": 1.5755228018950059e-55,
+        "legL": -7.877613941596814e-56,
+        "legR": 7.877613941596814e-56,
+        "energy": 0.21999984496433392,
+        "blush": -1.8184249614124959e-13,
+        "globalX": 0,
+        "globalBob": 0.21140180927154295,
+        "breath": 0.014086435560670327,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "smug",
+        "previousEmotion": "scared"
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "mouth": "M02",
+        "arms": "crossed",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M02",
+      "eyeSprite": "E05/E06",
+      "armPose": "crossed"
+    },
+    "confused": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "confused",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": 7.000001132647504,
+        "headTurn": -0.050000012803840164,
+        "bodyLean": 0.14538756272196512,
+        "bodySquash": -4.558775109711747e-15,
+        "armL": 4.91852845140678e-60,
+        "armR": -4.91852845140678e-60,
+        "legL": 2.4592638452123447e-60,
+        "legR": -2.4592638452123447e-60,
+        "energy": 0.19999999803008503,
+        "blush": -5.349177041286849e-20,
+        "globalX": 0,
+        "globalBob": 0.14166331712644334,
+        "breath": 0.6824648924090546,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "confused",
+        "previousEmotion": "smug"
+      },
+      "parts": {
+        "eyes": "E01/E06",
+        "mouth": "M01",
+        "arms": "cheek",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M01",
+      "eyeSprite": "E01/E06",
+      "armPose": "cheek"
+    },
+    "love": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "love",
+      "fps": 61,
+      "errors": [],
+      "params": {
+        "headAngle": -2.0000027906416595,
+        "headTurn": 1.5503552721218747e-8,
+        "bodyLean": 1.5365168646564172e-11,
+        "bodySquash": -2.1019807285590133e-21,
+        "armL": 1.1262632263163903,
+        "armR": 1.1262632263163903,
+        "legL": -3.711162520128507e-66,
+        "legR": 3.711162520128507e-66,
+        "energy": 0.7200001612371911,
+        "blush": 0.5500001705393408,
+        "globalX": 0,
+        "globalBob": -2.6578101825054463,
+        "breath": 0.9944472090977983,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "love",
+        "previousEmotion": "confused"
+      },
+      "parts": {
+        "eyes": "E13/E14",
+        "mouth": "M02",
+        "arms": "clasped",
+        "legs": "straight",
+        "blinkOpen": 1,
+        "mouthOpen": 0
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 58,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 14564,
+            "keptPixels": 12001,
+            "removedPixels": 2563,
+            "componentsBefore": 147,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true
+      },
+      "mouthSprite": "M02",
+      "eyeSprite": "E13/E14",
+      "armPose": "clasped"
+    }
+  },
+  "consoleErrors": [],
+  "pass": true
+}

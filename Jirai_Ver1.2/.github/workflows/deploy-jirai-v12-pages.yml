@@ -1,0 +1,112 @@
+name: Deploy Jirai Ver1.2 Pages
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'src/**'
+      - 'config/jirai-v12.json'
+      - '.github/workflows/deploy-jirai-v12-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pocket-jirai-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main site
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+      - name: Checkout Jirai Ver1.1
+        uses: actions/checkout@v4
+        with:
+          ref: Jirai_Ver1.1
+          path: v11
+      - name: Checkout Jirai Ver1.2
+        uses: actions/checkout@v4
+        with:
+          ref: Jirai_Ver1.2
+          path: v12
+      - name: Build versioned Pages bundle
+        id: bundle
+        run: |
+          rm -rf site/.git site/.github
+          mkdir -p site/Jirai_Ver1.1 site/Jirai_Ver1.2
+          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='qa' v11/ site/Jirai_Ver1.1/
+          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='qa' v12/ site/Jirai_Ver1.2/
+          touch site/.nojekyll
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        id: upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify hosted Ver1.2 files
+        id: hosted
+        run: |
+          set +e
+          base="${{ steps.deployment.outputs.page_url }}Jirai_Ver1.2/"
+          ok=0
+          index_code=0
+          config_code=0
+          renderer_code=0
+          cleanup_code=0
+          pivot_code=0
+          for i in $(seq 1 20); do
+            index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
+            config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
+            renderer_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
+            cleanup_code=$(curl -L -sS -o /tmp/v12-cleanup.js -w '%{http_code}' --max-time 15 "${base}src/part-cleanup.js" || true)
+            pivot_code=$(curl -L -sS -o /tmp/v12-pivot.js -w '%{http_code}' --max-time 15 "${base}src/pivot-motion.js" || true)
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$renderer_code" = '200' ] && [ "$cleanup_code" = '200' ] && [ "$pivot_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js && grep -q 'pivotArmPose' /tmp/v12-pivot.js; then
+              ok=1
+              break
+            fi
+            sleep 3
+          done
+          mkdir -p v12/qa/jirai-v12
+          printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pivot_status":%s,"pass":%s}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${renderer_code:-0}" "${cleanup_code:-0}" "${pivot_code:-0}" "$([ "$ok" = '1' ] && echo true || echo false)" > v12/qa/jirai-v12/hosted.json
+          [ "$ok" = '1' ]
+      - name: Publish hosted verification
+        if: always()
+        run: |
+          mkdir -p v12/qa/jirai-v12
+          if [ ! -f v12/qa/jirai-v12/hosted.json ]; then
+            printf '%s\n' '{"stage":"deploy-not-complete","bundle":"${{ steps.bundle.outcome }}","configure":"${{ steps.pages.outcome }}","upload":"${{ steps.upload.outcome }}","deploy":"${{ steps.deployment.outcome }}","hosted":"${{ steps.hosted.outcome }}","pass":false}' > v12/qa/jirai-v12/hosted.json
+          fi
+          cd v12
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/jirai-v12/hosted.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update Jirai Ver1.2 hosted QA [skip ci]"
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi

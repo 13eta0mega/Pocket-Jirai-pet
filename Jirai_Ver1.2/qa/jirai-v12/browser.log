@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "ready": true,
+    "assetLoaded": true,
+    "emotionButtons": true,
+    "activeParts": true,
+    "renderer": true,
+    "neutralParts": true,
+    "referenceFrameGeometry": true,
+    "a05Cleanup": true,
+    "a05DetachedComponentRemoved": true,
+    "excitedUsesRaisedArms": true,
+    "lipSmall": true,
+    "lipMedium": true,
+    "lipLarge": true,
+    "blinkUsesClosedPart": true,
+    "allEmotionPartsDiffer": true,
+    "noConsoleErrors": true
+  },
+  "neutralBounds": {
+    "x0": 38,
+    "y0": 45,
+    "x1": 564,
+    "y1": 849,
+    "width": 527,
+    "height": 805,
+    "count": 239557,
+    "widthRatio": 0.8783333333333333,
+    "heightRatio": 0.8944444444444445,
+    "centerX": 0.5025,
+    "centerY": 0.49722222222222223
+  },
+  "a05CleanupStats": {
+    "opaqueBefore": 14564,
+    "keptPixels": 12001,
+    "removedPixels": 2563,
+    "componentsBefore": 147,
+    "componentsAfter": 1
+  },
+  "pass": true
+}
