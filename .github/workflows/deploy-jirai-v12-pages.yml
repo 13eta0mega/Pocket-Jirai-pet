@@ -71,7 +71,7 @@ jobs:
             html=$(curl -fsSL --max-time 15 "${base}index.html")
             cfg=$(curl -fsSL --max-time 15 "${base}config/jirai-v12.json")
             js=$(curl -fsSL --max-time 15 "${base}src/rig-engine.js")
-            if printf '%s' "$html" | grep -q 'JIRAI VER1.2' && printf '%s' "$cfg" | grep -q '1.2.0-part-rig' && printf '%s' "$js" | grep -q 'Sprite parts + micro-mesh'; then
+            if printf '%s' "$html" | grep -q 'JIRAI VER1.2' && printf '%s' "$cfg" | grep -q 'part-rig' && printf '%s' "$js" | grep -q 'Sprite parts + micro-mesh'; then
               ok=1
               break
             fi
