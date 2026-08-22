@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#100c14">
 <title>Pocket Jirai Pet · Fixed Front 3D Face Runtime</title>
 <link rel="stylesheet" href="styles.css">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/","./src/v23-rig.js":"./src/v23-rig.js?v=231"}}</script>
 </head>
 <body>
 <main class="shell">
@@ -31,7 +31,7 @@
     <section class="panel"><div class="panel-title"><strong>원본 FBX 진단</strong><span id="diagnosticBadge">대기</span></div><dl class="diagnostics"><div><dt>Skeleton / Skin</dt><dd id="skinInfo">-</dd></div><div><dt>Animation Clips</dt><dd id="animInfo">-</dd></div><div><dt>Materials</dt><dd id="materialInfo">-</dd></div><div><dt>Textures</dt><dd id="textureInfo">-</dd></div><div><dt>Source size</dt><dd id="sizeInfo">-</dd></div></dl></section>
   </aside>
 </section>
-<section class="note"><strong>Ver2.3.1 모바일 렌더 수정</strong><span>모바일에서 모델이 보이지 않던 원인인 vertex attribute 과다 사용을 4-slot packed 구조로 수정했습니다. 기존 영상에서 확인된 ① 눈 위치가 코 쪽으로 몰린 마스크 ② 머리 회전 시 어깨/목까지 같이 휘는 현상 ③ 팔 영역이 몸통까지 침범하는 현상 ④ 감정 전환과 립싱크가 너무 빠른 현상을 수정했습니다. 얼굴 변형을 먼저 계산한 뒤 머리 전체를 회전시키며, 입이 열릴 때는 정면 전용 셰이더로 어두운 입 내부를 보강합니다.</span></section>
+<section class="note"><strong>Ver2.3.1 모바일 렌더 수정</strong><span>모바일에서 모델이 보이지 않던 원인인 vertex attribute 과다 사용을 4-slot packed 구조로 수정했습니다. 기존 영상에서 확인된 ① 눈 위치가 코 쪽으로 몰린 마스크 ② 머리 회전 시 어깨/목까지 같이 휘는 현상 ③ 팔 영역이 몸통까지 침범하는 현상 ④ 감정 전환과 립싱크가 너무 빠른 현상을 수정했습니다.</span></section>
 </main>
 <script type="module" src="src/app3d-v23.js?v=231"></script>
 </body></html>
