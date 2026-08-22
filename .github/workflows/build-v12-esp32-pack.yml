@@ -13,7 +13,10 @@ on:
       - 'tools/verify_v12_emotions.mjs'
       - 'firmware/jirai_pack_reader.c'
       - 'firmware/jirai_pack_reader.h'
+      - 'firmware/jirai_anim.c'
+      - 'firmware/jirai_anim.h'
       - 'firmware/tests/test_jirai_pack.c'
+      - 'firmware/tests/test_jirai_anim.c'
       - '.github/workflows/build-v12-esp32-pack.yml'
   workflow_dispatch:
 
@@ -45,17 +48,22 @@ jobs:
           cc -std=c11 -Wall -Wextra -Werror -Ifirmware \
             firmware/jirai_pack_reader.c firmware/tests/test_jirai_pack.c \
             -o /tmp/test_jirai_pack
-      - name: Validate generated pack through C reader
-        id: ctest
+      - name: Compile fixed-point animation core
         run: |
-          /tmp/test_jirai_pack firmware/generated/jirai_v12_active58_rgb565a8.jpak | tee /tmp/jirai-pack-test.txt
+          cc -std=c11 -Wall -Wextra -Werror -Ifirmware \
+            firmware/jirai_anim.c firmware/tests/test_jirai_anim.c \
+            -o /tmp/test_jirai_anim
+      - name: Validate generated pack through C reader
+        run: /tmp/test_jirai_pack firmware/generated/jirai_v12_active58_rgb565a8.jpak | tee /tmp/jirai-pack-test.txt
+      - name: Validate fixed-point animation core
+        run: /tmp/test_jirai_anim | tee /tmp/jirai-anim-test.txt
       - name: Enforce firmware asset budget and write validation record
         run: |
           bytes=$(wc -c < firmware/generated/jirai_v12_active58_rgb565a8.jpak)
           motion_bytes=$(wc -c < firmware/generated/jirai_v12_motion.h)
           test "$bytes" -le 3145728
           sha=$(sha256sum firmware/generated/jirai_v12_active58_rgb565a8.jpak | awk '{print $1}')
-          printf '{"format":"RGB565_PLANAR_A8","parts":58,"emotions":16,"packageBytes":%s,"limitBytes":3145728,"motionHeaderBytes":%s,"browserEmotionParity":true,"readerCompile":true,"readerCrcValidation":true,"motionTableValidation":true,"sha256":"%s","pass":true}\n' "$bytes" "$motion_bytes" "$sha" > firmware/generated/validation.json
+          printf '{"format":"RGB565_PLANAR_A8","parts":58,"emotions":16,"packageBytes":%s,"limitBytes":3145728,"motionHeaderBytes":%s,"browserEmotionParity":true,"readerCompile":true,"readerCrcValidation":true,"motionTableValidation":true,"animationCoreCompile":true,"animationCoreTest":true,"sha256":"%s","pass":true}\n' "$bytes" "$motion_bytes" "$sha" > firmware/generated/validation.json
           cat firmware/generated/validation.json
       - name: Publish generated firmware assets
         run: |
@@ -63,7 +71,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add firmware/generated/jirai_v12_active58_rgb565a8.jpak firmware/generated/jirai_v12_active58_manifest.json firmware/generated/jirai_v12_pack.h firmware/generated/jirai_v12_motion.h firmware/generated/validation.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Validate Jirai Ver1.2 ESP32 pack and motion tables [skip ci]'
+            git commit -m 'Validate Jirai Ver1.2 ESP32 pack, motion and anim core [skip ci]'
             for attempt in 1 2 3; do
               git fetch origin Jirai_Ver1.2
               if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
