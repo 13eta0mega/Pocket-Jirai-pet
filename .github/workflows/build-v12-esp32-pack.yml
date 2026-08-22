@@ -7,6 +7,9 @@ on:
       - 'config/jirai-v12-atlas.json'
       - 'src/Jirai_Character_Active58.png'
       - 'tools/build_v12_esp32_pack.py'
+      - 'firmware/jirai_pack_reader.c'
+      - 'firmware/jirai_pack_reader.h'
+      - 'firmware/tests/test_jirai_pack.c'
       - '.github/workflows/build-v12-esp32-pack.yml'
   workflow_dispatch:
 
@@ -26,6 +29,18 @@ jobs:
         run: python -m pip install --disable-pip-version-check pillow==11.3.0 numpy==2.3.2
       - name: Build and validate ESP32 package
         run: python tools/build_v12_esp32_pack.py
+      - name: Compile portable pack reader
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror -Ifirmware \
+            firmware/jirai_pack_reader.c firmware/tests/test_jirai_pack.c \
+            -o /tmp/test_jirai_pack
+      - name: Validate generated pack through C reader
+        run: /tmp/test_jirai_pack firmware/generated/jirai_v12_active58_rgb565a8.jpak
+      - name: Enforce firmware asset budget
+        run: |
+          bytes=$(wc -c < firmware/generated/jirai_v12_active58_rgb565a8.jpak)
+          test "$bytes" -le 3145728
+          echo "ESP32 asset package: $bytes bytes"
       - name: Publish generated firmware assets
         run: |
           git config user.name 'github-actions[bot]'
