@@ -1,0 +1,55 @@
+name: Probe Jirai Ver1.2 Hosted Page
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths-ignore:
+      - 'qa/jirai-v12/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe hosted page
+        run: |
+          rm -f qa/jirai-v12/hosted-probe.json
+          mkdir -p qa/jirai-v12
+          base='https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.2/'
+          ok=0
+          index_code=0
+          config_code=0
+          js_code=0
+          for i in $(seq 1 25); do
+            index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
+            config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
+            js_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$js_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q '1.2.0-part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js; then
+              ok=1
+              break
+            fi
+            sleep 3
+          done
+          if [ "$ok" = '1' ]; then
+            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"pass":true}\n' "$base" "$index_code" "$config_code" "$js_code" > qa/jirai-v12/hosted-probe.json
+          else
+            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"pass":false}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${js_code:-0}" > qa/jirai-v12/hosted-probe.json
+          fi
+      - name: Publish probe
+        if: always()
+        run: |
+          mkdir -p qa/jirai-v12
+          if [ ! -f qa/jirai-v12/hosted-probe.json ]; then
+            printf '%s\n' '{"stage":"probe-not-complete","pass":false}' > qa/jirai-v12/hosted-probe.json
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa/jirai-v12/hosted-probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update Jirai Ver1.2 hosted probe [skip ci]'
+            git push origin HEAD:Jirai_Ver1.2
+          fi
