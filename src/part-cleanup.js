@@ -116,8 +116,14 @@
   };
 
   Renderer.prototype.draw = function patchedDraw(id, opt = {}) {
+    const layout = this.config.layout?.[id] || {};
+    const drawOpt = {
+      ...opt,
+      scaleX: opt.scaleX ?? layout.scaleX ?? 1,
+      scaleY: opt.scaleY ?? layout.scaleY ?? 1
+    };
     const sprite = this.cleanedSprites?.[id];
-    if (!sprite) return originalDraw.call(this, id, opt);
+    if (!sprite) return originalDraw.call(this, id, drawOpt);
 
     const part = this.part(id);
     const key = String(part.sheet);
@@ -127,7 +133,7 @@
     this.images[key] = sprite;
     part.src = [0, 0, sprite.width, sprite.height];
     try {
-      return originalDraw.call(this, id, opt);
+      return originalDraw.call(this, id, drawOpt);
     } finally {
       part.src = previousSrc;
       this.images[key] = previousImage;
