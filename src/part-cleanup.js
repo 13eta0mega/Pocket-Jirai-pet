@@ -19,11 +19,15 @@
     const component = new Int32Array(w * h);
     const queue = new Int32Array(w * h);
     let largest = [];
+    let opaqueBefore = 0;
+    let componentsBefore = 0;
 
     const alphaAt = i => data[i * 4 + 3];
+    for (let i = 0; i < w * h; i++) if (alphaAt(i) > alphaThreshold) opaqueBefore++;
 
     for (let start = 0; start < w * h; start++) {
       if (visited[start] || alphaAt(start) <= alphaThreshold) continue;
+      componentsBefore++;
       let head = 0;
       let tail = 0;
       let count = 0;
@@ -57,7 +61,10 @@
       if (count > largest.length) largest = Array.from(component.slice(0, count));
     }
 
-    if (!largest.length) return;
+    if (!largest.length) {
+      return { opaqueBefore, keptPixels: 0, removedPixels: opaqueBefore, componentsBefore, componentsAfter: 0 };
+    }
+
     const keep = new Uint8Array(w * h);
     for (const idx of largest) keep[idx] = 1;
 
@@ -70,11 +77,19 @@
       }
     }
     ctx.putImageData(image, 0, 0);
+    return {
+      opaqueBefore,
+      keptPixels: largest.length,
+      removedPixels: Math.max(0, opaqueBefore - largest.length),
+      componentsBefore,
+      componentsAfter: 1
+    };
   }
 
   Renderer.prototype.load = async function patchedLoad(...args) {
     const result = await originalLoad.apply(this, args);
     this.cleanedSprites = {};
+    this.cleanupStats = {};
     const cleanup = { ...defaultCleanup, ...(this.config.cleanup || {}) };
 
     for (const [id, rule] of Object.entries(cleanup)) {
@@ -91,7 +106,9 @@
       sctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
 
       if (rule.keepLargestComponent) {
-        keepLargestAlphaComponent(sprite, rule.alphaThreshold ?? 4);
+        this.cleanupStats[id] = keepLargestAlphaComponent(sprite, rule.alphaThreshold ?? 4);
+      } else {
+        this.cleanupStats[id] = { componentsBefore: null, componentsAfter: null, removedPixels: 0 };
       }
       this.cleanedSprites[id] = sprite;
     }
@@ -120,6 +137,6 @@
   Renderer.prototype.meshHealth = function patchedMeshHealth() {
     const base = originalHealth ? originalHealth.call(this) : {};
     const cleanedParts = Object.keys(this.cleanedSprites || {});
-    return { ...base, cleanedParts, cleanedCount: cleanedParts.length };
+    return { ...base, cleanedParts, cleanedCount: cleanedParts.length, cleanupStats: { ...(this.cleanupStats || {}) } };
   };
 })();
