@@ -46,9 +46,32 @@ Key anchors:
 
 The reference-matching pass widens the head/twin-tail silhouette, slightly flattens the back/front hair vertically, spreads the eyes, widens the neutral arm stance, and shortens the lower-body vertical extent. The selected active semantic parts are unchanged.
 
+### Latest Chromium geometry result
+
+The actual transparent pixels rendered in Chromium currently occupy:
+
+- bounds: `x=38..564`, `y=45..849`
+- width: `527 / 600 = 0.8783`
+- height: `805 / 900 = 0.8944`
+- center X: `0.5025`
+- center Y: `0.4972`
+
+This passes the current reference-frame geometry gate and is substantially closer to the supplied neutral reference than the earlier tall/narrow assembly.
+
 `T01` is still the approved torso semantic part, but the runtime renders only its center section to remove bare shoulder lobes; independently animated sleeve/arm sprites provide the shoulder silhouette. No unapproved atlas part is introduced by this seam cleanup.
 
-`A05` remains the approved raised-left-arm semantic part. Its source crop contains a disconnected neighbouring triangle, so `src/part-cleanup.js` keeps only the main alpha-connected component. This is a cleanup of A05 itself, not substitution with an inactive part.
+`A05` remains the approved raised-left-arm semantic part. Its source crop contains a disconnected neighbouring triangle, so `src/part-cleanup.js` keeps only the main alpha-connected component. Browser QA currently measures `14564` opaque source pixels, keeps `12001`, removes `2563`, and reduces the crop to one retained component.
+
+## Pivot motion
+
+Major sprite movement is now attachment-point based:
+
+- `A01-A06`: shoulder pivots
+- `L02/L03/L07` and shoes: hip pivots
+- `H03/H04`: twin-tail root pivots
+- `A07-A10`: actual pre-drawn two-arm composites with only subtle whole-pose offsets
+
+This avoids rotating long limb sprites around their visual center, which was one of the main causes of the earlier unnatural motion.
 
 ## Runtime QA requirements
 
@@ -61,3 +84,4 @@ The reference-matching pass widens the head/twin-tail silhouette, slightly flatt
 - Emotion transitions crossfade sprite state changes while spring motion handles pivots/pose movement.
 - Actual arm/hand and leg sprites provide major pose changes; micro-mesh deformation is secondary only.
 - A05 cleanup must remove disconnected pixels/components before the raised-arm sprite is rendered.
+- Browser QA must report `pivotSpriteMotion`, `shoulderPivotMotion`, `hipPivotMotion`, and `hairRootPivotMotion` as enabled.
