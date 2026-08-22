@@ -26,14 +26,14 @@
   ],
   "transientLip": {
     "attack": {
-      "mouthOpen": 0.25206169369324016,
+      "mouthOpen": 0.25141102970094237,
       "mouthOpenRaw": 1,
       "sprite": "M09"
     },
     "release": {
-      "mouthOpen": 0.7566896470761929,
+      "mouthOpen": 0.6930197202188795,
       "mouthOpenRaw": 0,
-      "sprite": "M14"
+      "sprite": "M13"
     }
   },
   "pass": true
