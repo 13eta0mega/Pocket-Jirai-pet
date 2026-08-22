@@ -54,6 +54,19 @@ jobs:
           await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
           await page.waitForTimeout(500);
           const neutral=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          const neutralBounds=await page.evaluate(()=>{
+            const c=document.querySelector('#rigCanvas');
+            const ctx=c.getContext('2d');
+            const {data}=ctx.getImageData(0,0,c.width,c.height);
+            let x0=c.width,y0=c.height,x1=-1,y1=-1,count=0;
+            for(let y=0;y<c.height;y++) for(let x=0;x<c.width;x++){
+              const a=data[(y*c.width+x)*4+3];
+              if(a>4){count++;if(x<x0)x0=x;if(y<y0)y0=y;if(x>x1)x1=x;if(y>y1)y1=y;}
+            }
+            if(x1<0)return null;
+            const width=x1-x0+1,height=y1-y0+1;
+            return {x0,y0,x1,y1,width,height,count,widthRatio:width/c.width,heightRatio:height/c.height,centerX:(x0+x1+1)/(2*c.width),centerY:(y0+y1+1)/(2*c.height)};
+          });
           await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v12/neutral.png'});
           const emotions=['neutral','happy','excited','teasing','pleading','relaxed','sick','angry','annoyed','sad','surprised','embarrassed','scared','smug','confused','love'];
           const samples={};
@@ -84,6 +97,8 @@ jobs:
             emotionButtons:neutral.buttonCount===16,
             activeParts:neutral.mesh?.activeParts===58,
             renderer:neutral.renderer==='Sprite parts + micro-mesh',
+            neutralParts:neutral.parts?.eyes==='E01/E02'&&neutral.parts?.mouth==='M01'&&neutral.parts?.arms==='down'&&neutral.parts?.legs==='straight',
+            referenceFrameGeometry:!!neutralBounds&&neutralBounds.widthRatio>=0.84&&neutralBounds.widthRatio<=0.92&&neutralBounds.heightRatio>=0.86&&neutralBounds.heightRatio<=0.93&&neutralBounds.centerX>=0.46&&neutralBounds.centerX<=0.54&&neutralBounds.centerY>=0.46&&neutralBounds.centerY<=0.54,
             a05Cleanup:Array.isArray(neutral.mesh?.cleanedParts)&&neutral.mesh.cleanedParts.includes('A05'),
             a05DetachedComponentRemoved:a05.componentsBefore>=2&&a05.componentsAfter===1&&a05.removedPixels>100,
             excitedUsesRaisedArms:samples.excited?.armPose==='raised',
@@ -94,11 +109,11 @@ jobs:
             allEmotionPartsDiffer:new Set(emotions.map(id=>`${samples[id].parts.eyes}|${samples[id].parts.mouth}|${samples[id].parts.arms}|${samples[id].parts.legs}`)).size>=10,
             noConsoleErrors:consoleErrors.length===0
           };
-          const report={started:new Date().toISOString(),stage:'browser-complete',checks,neutral,lip,blink,samples,consoleErrors,pass:Object.values(checks).every(Boolean)};
+          const report={started:new Date().toISOString(),stage:'browser-complete',checks,neutralBounds,neutral,lip,blink,samples,consoleErrors,pass:Object.values(checks).every(Boolean)};
           fs.writeFileSync('qa/jirai-v12/report.json',JSON.stringify(report,null,2));
           await browser.close();
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1)}
-          console.log(JSON.stringify({checks,a05CleanupStats:a05,pass:report.pass},null,2));
+          console.log(JSON.stringify({checks,neutralBounds,a05CleanupStats:a05,pass:report.pass},null,2));
           EOF
           set +e
           node qa/jirai-v12/runner.mjs > qa/jirai-v12/browser.log 2>&1
