@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -58,3 +58,38 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify hosted Ver1.2 files
+        id: hosted
+        run: |
+          set +e
+          base="${{ steps.deployment.outputs.page_url }}Jirai_Ver1.2/"
+          ok=0
+          for i in $(seq 1 20); do
+            html=$(curl -fsSL --max-time 15 "${base}index.html")
+            cfg=$(curl -fsSL --max-time 15 "${base}config/jirai-v12.json")
+            js=$(curl -fsSL --max-time 15 "${base}src/rig-engine.js")
+            if printf '%s' "$html" | grep -q 'JIRAI VER1.2' && printf '%s' "$cfg" | grep -q '1.2.0-part-rig' && printf '%s' "$js" | grep -q 'Sprite parts + micro-mesh'; then
+              ok=1
+              break
+            fi
+            sleep 3
+          done
+          mkdir -p v12/qa/jirai-v12
+          if [ "$ok" = "1" ]; then
+            printf '{"url":"%s","index":true,"config":true,"renderer":true,"pass":true}\n' "$base" > v12/qa/jirai-v12/hosted.json
+            exit 0
+          else
+            printf '{"url":"%s","pass":false,"message":"Hosted Ver1.2 files were not verified after deployment."}\n' "$base" > v12/qa/jirai-v12/hosted.json
+            exit 1
+          fi
+      - name: Publish hosted verification
+        if: always()
+        run: |
+          cd v12
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/jirai-v12/hosted.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update Jirai Ver1.2 hosted QA [skip ci]"
+            git push origin HEAD:Jirai_Ver1.2
+          fi
