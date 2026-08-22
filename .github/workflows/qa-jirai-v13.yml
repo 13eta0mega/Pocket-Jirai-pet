@@ -88,6 +88,15 @@ jobs:
           await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
           await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
           await page.waitForTimeout(700);
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(1));
+          await page.waitForTimeout(35);
+          const attackSample=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.waitForTimeout(230);
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
+          await page.waitForTimeout(35);
+          const releaseSample=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.waitForTimeout(700);
+
           const levels=[.08,.21,.34,.50,.65,.80,.98];
           const visemes=[];
           const lipSamples=[];
@@ -102,6 +111,8 @@ jobs:
           await page.waitForTimeout(750);
 
           const browModel=await page.evaluate(()=>Object.fromEntries(Object.entries(window.JiraiRig.EMOTIONS).map(([id,d])=>[id,{brows:d.brows,browPose:d.browPose}])));
+          const attackOpen=attackSample.params?.mouthOpen??0, attackRaw=attackSample.params?.mouthOpenRaw??0;
+          const releaseOpen=releaseSample.params?.mouthOpen??0, releaseRaw=releaseSample.params?.mouthOpenRaw??0;
           const checks={
             ready:neutral.ready===true,
             assetLoaded:neutral.assetLoaded===true,
@@ -115,14 +126,14 @@ jobs:
             reviewedEmotionArms:emotion.relaxed?.armPose==='cheek'&&emotion.sad?.armPose==='clasped'&&emotion.smug?.armPose==='cheek',
             browsMeaningfullyDifferent:browModel.surprised.browPose.left.dy<=-8&&browModel.annoyed.browPose.left.angle!==browModel.annoyed.browPose.right.angle&&browModel.confused.browPose.left.dy!==browModel.confused.browPose.right.dy&&browModel.angry.brows.length===0,
             visemeRange:visemes.includes('M09')&&visemes.includes('M15')&&new Set(visemes).size>=6,
-            lipSmoothingActive:lipSamples.some(s=>Math.abs((s.mouthOpen??0)-(s.mouthOpenRaw??0))>.01),
+            lipSmoothingActive:attackRaw>.95&&attackOpen>.05&&attackOpen<.75&&releaseRaw<.01&&releaseOpen>.1,
             noConsoleErrors:consoleErrors.length===0
           };
-          const report={started:new Date().toISOString(),checks,visemes,lipSamples,browModel,neutral,emotion,consoleErrors,pass:Object.values(checks).every(Boolean)};
+          const report={started:new Date().toISOString(),checks,visemes,lipSamples,transientLip:{attack:{mouthOpen:attackOpen,mouthOpenRaw:attackRaw,sprite:attackSample.mouthSprite},release:{mouthOpen:releaseOpen,mouthOpenRaw:releaseRaw,sprite:releaseSample.mouthSprite}},browModel,neutral,emotion,consoleErrors,pass:Object.values(checks).every(Boolean)};
           fs.writeFileSync('qa/jirai-v13/report.json',JSON.stringify(report,null,2));
           await browser.close();
           if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1);}
-          console.log(JSON.stringify({checks,visemes,lipSamples,pass:report.pass},null,2));
+          console.log(JSON.stringify({checks,visemes,transientLip:report.transientLip,pass:report.pass},null,2));
           EOF
           node qa/jirai-v13/runner.mjs 2>&1 | tee qa/jirai-v13/browser.log
           rm -f qa/jirai-v13/runner.mjs
