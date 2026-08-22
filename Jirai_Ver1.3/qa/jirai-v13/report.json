@@ -1,0 +1,1822 @@
+{
+  "started": "2026-08-22T05:44:32.265Z",
+  "checks": {
+    "ready": true,
+    "assetLoaded": true,
+    "configV13": true,
+    "activeParts77": true,
+    "lipVisemes7": true,
+    "browProfiles16": true,
+    "explicitLayerMode": true,
+    "integratedBodies5": true,
+    "linkedFootChain": true,
+    "faceStackTightened": true,
+    "integratedBodyMapping": true,
+    "oneRaisedSideCorrect": true,
+    "reviewedEmotionMouths": true,
+    "reviewedEmotionArms": true,
+    "browsMeaningfullyDifferent": true,
+    "visemeRange": true,
+    "lipSmoothingActive": true,
+    "noConsoleErrors": true
+  },
+  "visemes": [
+    "M09",
+    "M10",
+    "M11",
+    "M12",
+    "M13",
+    "M14",
+    "M15"
+  ],
+  "lipSamples": [
+    {
+      "input": 0.08,
+      "mouthOpen": 0.07815182152170984,
+      "mouthOpenRaw": 0.08,
+      "sprite": "M09",
+      "index": 0
+    },
+    {
+      "input": 0.21,
+      "mouthOpen": 0.206959751980876,
+      "mouthOpenRaw": 0.21,
+      "sprite": "M10",
+      "index": 1
+    },
+    {
+      "input": 0.34,
+      "mouthOpen": 0.3369291449309045,
+      "mouthOpenRaw": 0.34,
+      "sprite": "M11",
+      "index": 2
+    },
+    {
+      "input": 0.5,
+      "mouthOpen": 0.49623269944031156,
+      "mouthOpenRaw": 0.5,
+      "sprite": "M12",
+      "index": 3
+    },
+    {
+      "input": 0.65,
+      "mouthOpen": 0.6464476323055103,
+      "mouthOpenRaw": 0.65,
+      "sprite": "M13",
+      "index": 4
+    },
+    {
+      "input": 0.8,
+      "mouthOpen": 0.7964556810910451,
+      "mouthOpenRaw": 0.8,
+      "sprite": "M14",
+      "index": 5
+    },
+    {
+      "input": 0.98,
+      "mouthOpen": 0.9757597167497506,
+      "mouthOpenRaw": 0.98,
+      "sprite": "M15",
+      "index": 6
+    }
+  ],
+  "transientLip": {
+    "attack": {
+      "mouthOpen": 0.25141102970093054,
+      "mouthOpenRaw": 1,
+      "sprite": "M09"
+    },
+    "release": {
+      "mouthOpen": 0.7566896470761844,
+      "mouthOpenRaw": 0,
+      "sprite": "M14"
+    }
+  },
+  "browModel": {
+    "neutral": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 0,
+          "angle": 0,
+          "scale": 1
+        },
+        "right": {
+          "dy": 0,
+          "angle": 0,
+          "scale": 1
+        }
+      },
+      "bodySprite": "TB01"
+    },
+    "happy": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 2,
+          "angle": -2,
+          "scale": 1
+        },
+        "right": {
+          "dy": 2,
+          "angle": 2,
+          "scale": 1
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "excited": {
+      "brows": [
+        "B03",
+        "B04"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -7,
+          "angle": -5,
+          "scale": 1.05
+        },
+        "right": {
+          "dy": -7,
+          "angle": 5,
+          "scale": 1.05
+        }
+      },
+      "bodySprite": "TB05"
+    },
+    "teasing": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -7,
+          "angle": -7,
+          "scale": 1.03
+        },
+        "right": {
+          "dy": 2,
+          "angle": 3,
+          "scale": 0.98
+        }
+      },
+      "bodySprite": "TB05"
+    },
+    "pleading": {
+      "brows": [
+        "B05",
+        "B06"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -2,
+          "angle": -4,
+          "scale": 1.02
+        },
+        "right": {
+          "dy": -2,
+          "angle": 4,
+          "scale": 1.02
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "relaxed": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 4,
+          "angle": 1,
+          "scale": 0.96
+        },
+        "right": {
+          "dy": 4,
+          "angle": -1,
+          "scale": 0.96
+        }
+      },
+      "bodySprite": "TB04"
+    },
+    "sick": {
+      "brows": [
+        "B05",
+        "B06"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 2,
+          "angle": -2,
+          "scale": 0.98
+        },
+        "right": {
+          "dy": 2,
+          "angle": 2,
+          "scale": 0.98
+        }
+      },
+      "bodySprite": "TB01"
+    },
+    "angry": {
+      "brows": [],
+      "browPose": {
+        "left": {},
+        "right": {}
+      },
+      "bodySprite": "TB02"
+    },
+    "annoyed": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 1,
+          "angle": 5,
+          "scale": 1
+        },
+        "right": {
+          "dy": -5,
+          "angle": -6,
+          "scale": 1.03
+        }
+      },
+      "bodySprite": "TB02"
+    },
+    "sad": {
+      "brows": [
+        "B05",
+        "B06"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -1,
+          "angle": -6,
+          "scale": 1.03
+        },
+        "right": {
+          "dy": -1,
+          "angle": 6,
+          "scale": 1.03
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "surprised": {
+      "brows": [
+        "B03",
+        "B04"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -10,
+          "angle": -2,
+          "scale": 1.08
+        },
+        "right": {
+          "dy": -10,
+          "angle": 2,
+          "scale": 1.08
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "embarrassed": {
+      "brows": [
+        "B03",
+        "B04"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -4,
+          "angle": -4,
+          "scale": 0.98
+        },
+        "right": {
+          "dy": -4,
+          "angle": 4,
+          "scale": 0.98
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "scared": {
+      "brows": [
+        "B05",
+        "B06"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -8,
+          "angle": -5,
+          "scale": 1.06
+        },
+        "right": {
+          "dy": -8,
+          "angle": 5,
+          "scale": 1.06
+        }
+      },
+      "bodySprite": "TB03"
+    },
+    "smug": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": 2,
+          "angle": 5,
+          "scale": 0.98
+        },
+        "right": {
+          "dy": -5,
+          "angle": -6,
+          "scale": 1.04
+        }
+      },
+      "bodySprite": "TB04"
+    },
+    "confused": {
+      "brows": [
+        "B03",
+        "B04"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -8,
+          "angle": -7,
+          "scale": 1.05
+        },
+        "right": {
+          "dy": 1,
+          "angle": 4,
+          "scale": 0.98
+        }
+      },
+      "bodySprite": "TB04"
+    },
+    "love": {
+      "brows": [
+        "B01",
+        "B02"
+      ],
+      "browPose": {
+        "left": {
+          "dy": -2,
+          "angle": -2,
+          "scale": 1
+        },
+        "right": {
+          "dy": -2,
+          "angle": 2,
+          "scale": 1
+        }
+      },
+      "bodySprite": "TB03"
+    }
+  },
+  "neutral": {
+    "ready": true,
+    "renderer": "Sprite parts + micro-mesh",
+    "assetLoaded": true,
+    "emotion": "neutral",
+    "fps": 61,
+    "errors": [],
+    "assetMode": "v13-active-atlas",
+    "sheetCount": 1,
+    "configVersion": "1.3.1-active77-integratedbody-viseme7",
+    "configUrl": "config/jirai-v13-atlas.json",
+    "params": {
+      "headAngle": 0,
+      "headTurn": 0,
+      "bodyLean": 0,
+      "bodySquash": 0,
+      "armL": 0,
+      "armR": 0,
+      "legL": 0,
+      "legR": 0,
+      "energy": 0.1,
+      "blush": 0,
+      "globalX": 0,
+      "globalBob": 0.15247039219395683,
+      "breath": 0.9984305371402924,
+      "blinkOpen": 1,
+      "mouthOpen": 0,
+      "transition": 1,
+      "emotion": "neutral",
+      "previousEmotion": "neutral",
+      "mouthOpenRaw": 0
+    },
+    "parts": {
+      "eyes": "E01/E02",
+      "brows": "B01/B02",
+      "mouth": "M01",
+      "body": "TB01",
+      "arms": "down",
+      "legs": "straight",
+      "faceOverlays": "-",
+      "faceFx": "-",
+      "blinkOpen": 1,
+      "mouthOpen": 0,
+      "mouthOpenRaw": 0,
+      "visemeIndex": null,
+      "footChain": "linked",
+      "layerMode": "v13.1-integrated-body-linked-feet"
+    },
+    "buttonCount": 16,
+    "mesh": {
+      "mode": "sprite-parts+micro-mesh",
+      "inverted": 0,
+      "degenerate": 0,
+      "activeParts": 77,
+      "cleanedParts": [
+        "A05"
+      ],
+      "cleanedCount": 1,
+      "cleanupStats": {
+        "A05": {
+          "opaqueBefore": 12001,
+          "keptPixels": 12001,
+          "removedPixels": 0,
+          "componentsBefore": 1,
+          "componentsAfter": 1
+        }
+      },
+      "pivotSpriteMotion": true,
+      "shoulderPivotMotion": true,
+      "hipPivotMotion": true,
+      "hairRootPivotMotion": true,
+      "v13LayerOrder": true,
+      "v13BrowProfiles": 16,
+      "v13LipVisemes": 7,
+      "v13IntegratedBodies": 5,
+      "v13LinkedFootChain": true,
+      "v13FaceStackYOffset": -8
+    },
+    "mouthSprite": "M01",
+    "browSprite": "B01/B02",
+    "eyeSprite": "E01/E02",
+    "armPose": "down",
+    "visemeIndex": null
+  },
+  "emotion": {
+    "neutral": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "neutral",
+      "fps": 57,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 0,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": 0,
+        "armL": 0,
+        "armR": 0,
+        "legL": 0,
+        "legR": 0,
+        "energy": 0.1,
+        "blush": 0,
+        "globalX": 0,
+        "globalBob": -0.012210105815026472,
+        "breath": 0.26739848473881805,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "neutral",
+        "previousEmotion": "neutral",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "brows": "B01/B02",
+        "mouth": "M01",
+        "body": "TB01",
+        "arms": "down",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M01",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E01/E02",
+      "armPose": "down",
+      "visemeIndex": null
+    },
+    "happy": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "happy",
+      "fps": 57,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -1.4999999638635864,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": 0,
+        "armL": -4.00000381878229,
+        "armR": 4.00000381878229,
+        "legL": 0,
+        "legR": 0,
+        "energy": 0.44999999156817017,
+        "blush": 0.24999999397726438,
+        "globalX": 0,
+        "globalBob": -1.072127302417808,
+        "breath": -0.7859699934211258,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "happy",
+        "previousEmotion": "neutral",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E03/E04",
+        "brows": "B01/B02",
+        "mouth": "M05",
+        "body": "TB03",
+        "arms": "open",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "FX01/FX02",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M05",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E03/E04",
+      "armPose": "open",
+      "visemeIndex": null
+    },
+    "excited": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "excited",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 1.4999999482616195,
+        "headTurn": 0,
+        "bodyLean": 0,
+        "bodySquash": -0.01311459360916071,
+        "armL": -6.0000009052490775,
+        "armR": 6.0000009052490775,
+        "legL": -5.9790862104129054,
+        "legR": 5.9790862104129054,
+        "energy": 0.9999999905146303,
+        "blush": 4.311531709230973e-9,
+        "globalX": 0,
+        "globalBob": -7.735757882619497,
+        "breath": -0.8621141964778769,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "excited",
+        "previousEmotion": "happy",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "brows": "B03/B04",
+        "mouth": "M05",
+        "body": "TB05",
+        "arms": "raised",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M05",
+      "browSprite": "B03/B04",
+      "eyeSprite": "E01/E02",
+      "armPose": "raised",
+      "visemeIndex": null
+    },
+    "teasing": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "teasing",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -3.9999999049661827,
+        "headTurn": 0.07999999861768993,
+        "bodyLean": -2.9056893255132503,
+        "bodySquash": 0,
+        "armL": 1.4491041930739093,
+        "armR": -0.0000027262557822160747,
+        "legL": 0.0000013631279113661019,
+        "legR": -0.0000013631279113661019,
+        "energy": 0.5500000077754942,
+        "blush": -7.827987495082757e-20,
+        "globalX": 0,
+        "globalBob": 0.29071448390571275,
+        "breath": 0.1578120064188801,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "teasing",
+        "previousEmotion": "excited",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E01/E04",
+        "brows": "B01/B02",
+        "mouth": "M08",
+        "body": "TB05",
+        "arms": "oneRaisedLeft",
+        "legs": "bentLeft",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M08",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E01/E04",
+      "armPose": "oneRaisedLeft",
+      "visemeIndex": null
+    },
+    "pleading": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "pleading",
+      "fps": 56,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 3.499999819009411,
+        "headTurn": 1.9305662833776223e-9,
+        "bodyLean": 1.0000028731742052,
+        "bodySquash": 0,
+        "armL": 1.1425827563206745,
+        "armR": 1.142582756320797,
+        "legL": -3.0646507031078543e-14,
+        "legR": 3.0646507031078543e-14,
+        "energy": 0.12000001037679377,
+        "blush": 0.1499999963801882,
+        "globalX": 0,
+        "globalBob": 0.698133437328038,
+        "breath": 0.9770999752550532,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "pleading",
+        "previousEmotion": "teasing",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E09/E10",
+        "brows": "B05/B06",
+        "mouth": "M01",
+        "body": "TB03",
+        "arms": "clasped",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M01",
+      "browSprite": "B05/B06",
+      "eyeSprite": "E09/E10",
+      "armPose": "clasped",
+      "visemeIndex": null
+    },
+    "relaxed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "relaxed",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -2.4999998963264374,
+        "headTurn": -0.049999999136053644,
+        "bodyLean": 1.2000000908761164,
+        "bodySquash": 0,
+        "armL": -2.7158040165975204e-21,
+        "armR": 2.7158040165975204e-21,
+        "legL": -1.357901996239093e-21,
+        "legR": 1.357901996239093e-21,
+        "energy": 0.0500000012095249,
+        "blush": 2.5918390645688386e-9,
+        "globalX": 0,
+        "globalBob": -0.06293717801373527,
+        "breath": 0.5540124253188825,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "relaxed",
+        "previousEmotion": "pleading",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "brows": "B01/B02",
+        "mouth": "M06",
+        "body": "TB04",
+        "arms": "cheek",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M06",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E05/E06",
+      "armPose": "cheek",
+      "visemeIndex": null
+    },
+    "sick": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "sick",
+      "fps": 56,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 4.499999831649607,
+        "headTurn": -1.2025028014394196e-9,
+        "bodyLean": 3.2095444591032716,
+        "bodySquash": 0.01999999951899888,
+        "armL": -5.413454016338563e-29,
+        "armR": 5.413454016338563e-29,
+        "legL": -2.7067269964061443e-29,
+        "legR": 2.7067269964061443e-29,
+        "energy": 0.02000000072150168,
+        "blush": -3.4159254174360415e-20,
+        "globalX": 0,
+        "globalBob": 1.082508393890945,
+        "breath": -0.5735752925984676,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "sick",
+        "previousEmotion": "relaxed",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "brows": "B05/B06",
+        "mouth": "M17",
+        "body": "TB01",
+        "arms": "down",
+        "legs": "straight",
+        "faceOverlays": "F02/F03",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M17",
+      "browSprite": "B05/B06",
+      "eyeSprite": "E05/E06",
+      "armPose": "down",
+      "visemeIndex": null
+    },
+    "angry": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "angry",
+      "fps": 60,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -0.9999998630631052,
+        "headTurn": -2.2087245755251362e-17,
+        "bodyLean": -2.000003617686674,
+        "bodySquash": 4.979523472825003e-10,
+        "armL": -4.40137301610862e-35,
+        "armR": 4.40137301610862e-35,
+        "legL": -2.2006864856445543e-35,
+        "legR": 2.2006864856445543e-35,
+        "energy": 0.8499999793349772,
+        "blush": -1.8406027972523944e-27,
+        "globalX": 0.6154620806422844,
+        "globalBob": -0.16115064347156902,
+        "breath": -0.9964301916773716,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "angry",
+        "previousEmotion": "sick",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E07/E08",
+        "brows": "integrated/none",
+        "mouth": "M16",
+        "body": "TB02",
+        "arms": "crossed",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M16",
+      "browSprite": "integrated/none",
+      "eyeSprite": "E07/E08",
+      "armPose": "crossed",
+      "visemeIndex": null
+    },
+    "annoyed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "annoyed",
+      "fps": 57,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -4.999999931015289,
+        "headTurn": -0.07999999862030575,
+        "bodyLean": 0.29111163994354716,
+        "bodySquash": -2.1474833411820538e-21,
+        "armL": -9.854594813470988e-43,
+        "armR": 9.854594813470988e-43,
+        "legL": -4.927297380638917e-43,
+        "legR": 4.927297380638917e-43,
+        "energy": 0.12000001258970992,
+        "blush": -6.885106417714978e-38,
+        "globalX": 0,
+        "globalBob": 0.14114160963666847,
+        "breath": -0.4416311293899814,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "annoyed",
+        "previousEmotion": "angry",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "brows": "B01/B02",
+        "mouth": "M16",
+        "body": "TB02",
+        "arms": "crossed",
+        "legs": "straight",
+        "faceOverlays": "F02/F03",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M16",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E05/E06",
+      "armPose": "crossed",
+      "visemeIndex": null
+    },
+    "sad": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "sad",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 4.999999827209703,
+        "headTurn": -1.3823223730277977e-9,
+        "bodyLean": 1.399999954560928,
+        "bodySquash": -1.4042419428105059e-30,
+        "armL": -7.84958769159917e-51,
+        "armR": 7.84958769159917e-51,
+        "legL": -3.924793853303525e-51,
+        "legR": 3.924793853303525e-51,
+        "energy": 0.03000000155511267,
+        "blush": 1.0150514545300239e-47,
+        "globalX": 0,
+        "globalBob": 1.8741259830886705,
+        "breath": 0.674646694353581,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "sad",
+        "previousEmotion": "annoyed",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E09/E10",
+        "brows": "B05/B06",
+        "mouth": "M17",
+        "body": "TB03",
+        "arms": "clasped",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M17",
+      "browSprite": "B05/B06",
+      "eyeSprite": "E09/E10",
+      "armPose": "clasped",
+      "visemeIndex": null
+    },
+    "surprised": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "surprised",
+      "fps": 61,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 1.2448839696536777e-7,
+        "headTurn": -2.3022652269219986e-17,
+        "bodyLean": -0.0000012059067587123398,
+        "bodySquash": -0.019999999502046405,
+        "armL": 4.898587196589413e-16,
+        "armR": 4.898587196589413e-16,
+        "legL": -6.123697853204713e-57,
+        "legR": 6.123697853204713e-57,
+        "energy": 0.8499999795839024,
+        "blush": 8.469131658513738e-56,
+        "globalX": 0,
+        "globalBob": -0.09585699924124899,
+        "breath": 0.998983135625539,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "surprised",
+        "previousEmotion": "sad",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E11/E12",
+        "brows": "B03/B04",
+        "mouth": "M06",
+        "body": "TB03",
+        "arms": "palms",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M06",
+      "browSprite": "B03/B04",
+      "eyeSprite": "E11/E12",
+      "armPose": "palms",
+      "visemeIndex": null
+    },
+    "embarrassed": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "embarrassed",
+      "fps": 57,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 2.9999999277273224,
+        "headTurn": 0.05999999855454644,
+        "bodyLean": 0.7508386570501123,
+        "bodySquash": -4.818178504719643e-10,
+        "armL": -4.12477687965593e-64,
+        "armR": 4.12477687965593e-64,
+        "legL": -2.062388434336305e-64,
+        "legR": 2.062388434336305e-64,
+        "energy": 0.180000016140898,
+        "blush": 0.9999999759091075,
+        "globalX": 0,
+        "globalBob": -0.19281286801037484,
+        "breath": 0.3651783649938417,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "embarrassed",
+        "previousEmotion": "surprised",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E03/E04",
+        "brows": "B03/B04",
+        "mouth": "M02",
+        "body": "TB03",
+        "arms": "clasped",
+        "legs": "bentLeft",
+        "faceOverlays": "-",
+        "faceFx": "FX03/FX04",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M02",
+      "browSprite": "B03/B04",
+      "eyeSprite": "E03/E04",
+      "armPose": "clasped",
+      "visemeIndex": null
+    },
+    "scared": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "scared",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 2.0000000172790298,
+        "headTurn": 1.0367417741286e-9,
+        "bodyLean": 1.1122356440168969e-21,
+        "bodySquash": 0.02499999956802426,
+        "armL": -1.6475676744396413e-72,
+        "armR": 1.6475676744396413e-72,
+        "legL": -8.237838495259673e-73,
+        "legR": 8.237838495259673e-73,
+        "energy": 0.719999990669324,
+        "blush": 1.7279029568810012e-8,
+        "globalX": -0.3996820826763592,
+        "globalBob": -0.13393351291121622,
+        "breath": -0.7339214684798006,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "scared",
+        "previousEmotion": "embarrassed",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E11/E12",
+        "brows": "B05/B06",
+        "mouth": "M18",
+        "body": "TB03",
+        "arms": "clasped",
+        "legs": "straight",
+        "faceOverlays": "F02/F03",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M18",
+      "browSprite": "B05/B06",
+      "eyeSprite": "E11/E12",
+      "armPose": "clasped",
+      "visemeIndex": null
+    },
+    "smug": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "smug",
+      "fps": 61,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -4.4999997809927565,
+        "headTurn": 0.07999999730452627,
+        "bodyLean": -1.6452066028785475,
+        "bodySquash": 8.423355377731187e-10,
+        "armL": -7.81093897094893e-78,
+        "armR": 7.81093897094893e-78,
+        "legL": -3.905469470867216e-78,
+        "legR": 3.905469470867216e-78,
+        "energy": 0.22000001684671075,
+        "blush": 4.436076070877868e-16,
+        "globalX": 0,
+        "globalBob": 0.1269614106579369,
+        "breath": -0.9944286795133397,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "smug",
+        "previousEmotion": "scared",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E05/E06",
+        "brows": "B01/B02",
+        "mouth": "M07",
+        "body": "TB04",
+        "arms": "cheek",
+        "legs": "straight",
+        "faceOverlays": "F02/F03",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M07",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E05/E06",
+      "armPose": "cheek",
+      "visemeIndex": null
+    },
+    "confused": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "confused",
+      "fps": 61,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": 6.999999714192017,
+        "headTurn": -0.049999996769127156,
+        "bodyLean": 0.16855823816616772,
+        "bodySquash": 1.649177478491672e-17,
+        "armL": -6.905056335338925e-84,
+        "armR": 6.905056335338925e-84,
+        "legL": -3.452528135377162e-84,
+        "legR": 3.452528135377162e-84,
+        "energy": 0.2000000004970577,
+        "blush": 6.529468567911921e-24,
+        "globalX": 0,
+        "globalBob": 0.2021955996425221,
+        "breath": -0.5560612181901446,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "confused",
+        "previousEmotion": "smug",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E01/E02",
+        "brows": "B03/B04",
+        "mouth": "M06",
+        "body": "TB04",
+        "arms": "cheek",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "-",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M06",
+      "browSprite": "B03/B04",
+      "eyeSprite": "E01/E02",
+      "armPose": "cheek",
+      "visemeIndex": null
+    },
+    "love": {
+      "ready": true,
+      "renderer": "Sprite parts + micro-mesh",
+      "assetLoaded": true,
+      "emotion": "love",
+      "fps": 58,
+      "errors": [],
+      "assetMode": "v13-active-atlas",
+      "sheetCount": 1,
+      "configVersion": "1.3.1-active77-integratedbody-viseme7",
+      "configUrl": "config/jirai-v13-atlas.json",
+      "params": {
+        "headAngle": -1.9999998444905775,
+        "headTurn": -8.639412359907352e-10,
+        "bodyLean": -1.3140909999721163e-14,
+        "bodySquash": -3.309112867271073e-28,
+        "armL": 0.8551161390579366,
+        "armR": 0.8551161390579366,
+        "legL": -3.2007616950349366e-92,
+        "legR": 3.2007616950349366e-92,
+        "energy": 0.7199999910150111,
+        "blush": 0.5499999904966464,
+        "globalX": 0,
+        "globalBob": -1.890001416998544,
+        "breath": 0.5902326572092705,
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "transition": 1,
+        "emotion": "love",
+        "previousEmotion": "confused",
+        "mouthOpenRaw": 0
+      },
+      "parts": {
+        "eyes": "E13/E14",
+        "brows": "B01/B02",
+        "mouth": "M05",
+        "body": "TB03",
+        "arms": "clasped",
+        "legs": "straight",
+        "faceOverlays": "-",
+        "faceFx": "FX01/FX02/FX03/FX04",
+        "blinkOpen": 1,
+        "mouthOpen": 0,
+        "mouthOpenRaw": 0,
+        "visemeIndex": null,
+        "footChain": "linked",
+        "layerMode": "v13.1-integrated-body-linked-feet"
+      },
+      "buttonCount": 16,
+      "mesh": {
+        "mode": "sprite-parts+micro-mesh",
+        "inverted": 0,
+        "degenerate": 0,
+        "activeParts": 77,
+        "cleanedParts": [
+          "A05"
+        ],
+        "cleanedCount": 1,
+        "cleanupStats": {
+          "A05": {
+            "opaqueBefore": 12001,
+            "keptPixels": 12001,
+            "removedPixels": 0,
+            "componentsBefore": 1,
+            "componentsAfter": 1
+          }
+        },
+        "pivotSpriteMotion": true,
+        "shoulderPivotMotion": true,
+        "hipPivotMotion": true,
+        "hairRootPivotMotion": true,
+        "v13LayerOrder": true,
+        "v13BrowProfiles": 16,
+        "v13LipVisemes": 7,
+        "v13IntegratedBodies": 5,
+        "v13LinkedFootChain": true,
+        "v13FaceStackYOffset": -8
+      },
+      "mouthSprite": "M05",
+      "browSprite": "B01/B02",
+      "eyeSprite": "E13/E14",
+      "armPose": "clasped",
+      "visemeIndex": null
+    }
+  },
+  "consoleErrors": [],
+  "pass": true
+}

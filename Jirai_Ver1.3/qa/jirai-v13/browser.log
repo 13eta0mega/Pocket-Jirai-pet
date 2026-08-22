@@ -1,0 +1,44 @@
+{
+  "checks": {
+    "ready": true,
+    "assetLoaded": true,
+    "configV13": true,
+    "activeParts77": true,
+    "lipVisemes7": true,
+    "browProfiles16": true,
+    "explicitLayerMode": true,
+    "integratedBodies5": true,
+    "linkedFootChain": true,
+    "faceStackTightened": true,
+    "integratedBodyMapping": true,
+    "oneRaisedSideCorrect": true,
+    "reviewedEmotionMouths": true,
+    "reviewedEmotionArms": true,
+    "browsMeaningfullyDifferent": true,
+    "visemeRange": true,
+    "lipSmoothingActive": true,
+    "noConsoleErrors": true
+  },
+  "visemes": [
+    "M09",
+    "M10",
+    "M11",
+    "M12",
+    "M13",
+    "M14",
+    "M15"
+  ],
+  "transientLip": {
+    "attack": {
+      "mouthOpen": 0.25141102970093054,
+      "mouthOpenRaw": 1,
+      "sprite": "M09"
+    },
+    "release": {
+      "mouthOpen": 0.7566896470761844,
+      "mouthOpenRaw": 0,
+      "sprite": "M14"
+    }
+  },
+  "pass": true
+}

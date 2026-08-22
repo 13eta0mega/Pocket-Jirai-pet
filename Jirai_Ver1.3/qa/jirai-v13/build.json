@@ -1,0 +1,19 @@
+{
+  "version": "1.3.1-active77-integratedbody-viseme7",
+  "parts": 77,
+  "baseParts": 58,
+  "promotedParts": 19,
+  "integratedBodies": 5,
+  "atlasSize": [
+    1280,
+    1280
+  ],
+  "atlasBytes": 1478098,
+  "sha256": "8d15519532b3b853635be36d5c6a98da096dfa4a20f22dceddbad16855c8da89",
+  "lipVisemes": 7,
+  "browProfiles": 16,
+  "faceStackYOffset": -8,
+  "linkedFootChain": true,
+  "shoeSocketOverlapPx": 10,
+  "appendOnlyBaseCoordinates": true
+}

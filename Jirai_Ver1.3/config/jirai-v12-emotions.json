@@ -1,0 +1,18 @@
+{
+  "neutral": {"label":"기본","eyes":["E01","E02"],"brows":["B01","B02"],"mouth":"M01","arms":"down","legs":"straight","pose":{},"gesture":"settle"},
+  "happy": {"label":"행복","eyes":["E03","E04"],"brows":["B03","B04"],"mouth":"M02","arms":"open","legs":"straight","pose":{"headAngle":-1.5,"armL":-4,"armR":4,"blush":0.25,"energy":0.45},"gesture":"happy"},
+  "excited": {"label":"신남","eyes":["E11","E12"],"brows":["B03","B04"],"mouth":"M05","arms":"raised","legs":"straight","pose":{"headAngle":1.5,"armL":-6,"armR":6,"legL":-3,"legR":3,"energy":1},"gesture":"bounce"},
+  "teasing": {"label":"장난","eyes":["E01","E04"],"brows":["B05","B06"],"mouth":"M08","arms":"oneRaised","legs":"bentLeft","pose":{"headAngle":-4,"headTurn":0.08,"bodyLean":-2,"energy":0.55},"gesture":"tease"},
+  "pleading": {"label":"울망","eyes":["E09","E10"],"brows":["B03","B04"],"mouth":"M07","arms":"clasped","legs":"straight","pose":{"headAngle":3.5,"bodyLean":1,"blush":0.15,"energy":0.12},"gesture":"plead"},
+  "relaxed": {"label":"느긋","eyes":["E05","E06"],"brows":["B01","B02"],"mouth":"M02","arms":"down","legs":"straight","pose":{"headAngle":-2.5,"headTurn":-0.05,"bodyLean":1.2,"energy":0.05},"gesture":"slow"},
+  "sick": {"label":"아픔","eyes":["E05","E06"],"brows":["B03","B04"],"mouth":"M07","arms":"down","legs":"straight","pose":{"headAngle":4.5,"bodyLean":2.2,"bodySquash":0.02,"energy":0.02},"gesture":"sick"},
+  "angry": {"label":"화남","eyes":["E07","E08"],"brows":["B05","B06"],"mouth":"M07","arms":"crossed","legs":"straight","pose":{"headAngle":-1,"bodyLean":-2,"energy":0.85},"gesture":"angry"},
+  "annoyed": {"label":"삐짐","eyes":["E05","E06"],"brows":["B05","B06"],"mouth":"M07","arms":"crossed","legs":"straight","pose":{"headAngle":-5,"headTurn":-0.08,"bodyLean":1.5,"energy":0.12},"gesture":"huff"},
+  "sad": {"label":"슬픔","eyes":["E09","E10"],"brows":["B03","B04"],"mouth":"M07","arms":"down","legs":"straight","pose":{"headAngle":5,"bodyLean":1.4,"energy":0.03},"gesture":"sad"},
+  "surprised": {"label":"놀람","eyes":["E11","E12"],"brows":["B03","B04"],"mouth":"M06","arms":"palms","legs":"straight","pose":{"bodySquash":-0.02,"energy":0.85},"gesture":"startle"},
+  "embarrassed": {"label":"부끄러움","eyes":["E03","E04"],"brows":["B03","B04"],"mouth":"M03","arms":"cheek","legs":"straight","pose":{"headAngle":3,"headTurn":0.06,"blush":1,"energy":0.18},"gesture":"shy"},
+  "scared": {"label":"겁남","eyes":["E11","E12"],"brows":["B03","B04"],"mouth":"M06","arms":"clasped","legs":"straight","pose":{"headAngle":2,"bodySquash":0.025,"energy":0.72},"gesture":"shiver"},
+  "smug": {"label":"의기양양","eyes":["E05","E06"],"brows":["B05","B06"],"mouth":"M02","arms":"crossed","legs":"straight","pose":{"headAngle":-4.5,"headTurn":0.08,"bodyLean":-1.2,"energy":0.22},"gesture":"smug"},
+  "confused": {"label":"갸웃","eyes":["E01","E06"],"brows":["B03","B06"],"mouth":"M01","arms":"cheek","legs":"straight","pose":{"headAngle":7,"headTurn":-0.05,"energy":0.2},"gesture":"tilt"},
+  "love": {"label":"좋아!","eyes":["E13","E14"],"brows":["B03","B04"],"mouth":"M02","arms":"clasped","legs":"straight","pose":{"headAngle":-2,"blush":0.55,"energy":0.72},"gesture":"love"}
+}

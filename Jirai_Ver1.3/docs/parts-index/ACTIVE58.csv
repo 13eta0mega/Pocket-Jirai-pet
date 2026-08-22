@@ -1,0 +1,59 @@
+semantic_id,component_id,sheet,name,category,use,index_rect,runtime_rect,runtime_note
+H01,P2-003,2,hair_back_base,hair,neutral/base,"23 36 334 224","23 36 334 224",
+H02,P2-002,2,hair_front_base,hair,neutral/base,"963 49 261 243","963 49 261 243",
+H03,P2-021,2,twin_tail_left,hair,secondary_motion,"9 508 102 230","9 508 102 230",root-pivot motion
+H04,P2-022,2,twin_tail_right,hair,secondary_motion,"199 512 106 231","199 512 106 231",root-pivot motion
+H05,P2-007,2,bunny_clip_left,hair,static/head,"611 340 71 82","611 340 71 82",
+H06,P2-008,2,bunny_clip_right,hair,static/head,"715 341 71 81","715 341 71 81",
+F01,P3-002,3,face_base,face,neutral/base,"398 85 262 208","398 85 262 208",slight X/Y proportion correction
+F02,P3-020,3,blush_left,face,emotion overlay,"29 622 93 73","29 622 93 73",
+F03,P3-021,3,blush_right,face,emotion overlay,"161 623 96 72","161 623 96 72",
+E01,P4-004,4,eye_neutral_left,eyes,neutral,"238 28 77 87","238 28 77 87",
+E02,P4-005,4,eye_neutral_right,eyes,neutral,"376 28 79 87","376 28 79 87",
+E03,P4-002,4,eye_closed_left,eyes,blink,"492 42 76 53","492 42 76 53",actual blink sprite
+E04,P4-006,4,eye_closed_right,eyes,blink,"625 55 76 43","625 55 76 43",actual blink sprite
+E05,P4-013,4,eye_half_left,eyes,relaxed/sleepy,"250 156 77 85","250 156 77 85",
+E06,P4-014,4,eye_half_right,eyes,relaxed/sleepy,"382 155 80 86","382 155 80 86",
+E07,P4-017,4,eye_angry_left,eyes,angry,"740 161 80 78","740 161 80 78",
+E08,P4-018,4,eye_angry_right,eyes,angry,"881 161 77 74","881 161 77 74",
+E09,P4-025,4,eye_pleading_left,eyes,pleading,"14 274 72 92","14 274 72 92",
+E10,P4-026,4,eye_pleading_right,eyes,pleading,"138 270 74 92","138 270 74 92",
+E11,P4-021,4,eye_wide_left,eyes,surprised,"482 262 86 90","482 262 86 90",
+E12,P4-022,4,eye_wide_right,eyes,surprised,"624 260 88 92","624 260 88 92",
+E13,P4-029,4,eye_love_left,eyes,love,"12 382 82 86","12 382 82 86",
+E14,P4-030,4,eye_love_right,eyes,love,"132 380 82 85","132 380 82 85",
+B01,P5-001,5,brow_neutral_left,brows,neutral,"37 42 89 27","37 42 89 27",
+B02,P5-002,5,brow_neutral_right,brows,neutral,"186 42 89 27","186 42 89 27",
+B03,P5-003,5,brow_variant_a_left,brows,emotion,"356 41 84 29","356 41 84 29",
+B04,P5-004,5,brow_variant_a_right,brows,emotion,"507 49 83 25","507 49 83 25",
+B05,P5-005,5,brow_variant_b_left,brows,emotion,"669 44 82 31","669 44 82 31",
+B06,P5-006,5,brow_variant_b_right,brows,emotion,"820 51 83 26","820 51 83 26",
+M01,P6-002,6,mouth_neutral,mouth,neutral,"397 105 115 35","397 105 115 35",
+M02,P6-003,6,mouth_smile,mouth,happy,"557 101 126 40","557 101 126 40",
+M03,P6-030,6,mouth_lip_small,mouth,lip-sync small,"42 557 83 41","42 557 83 41",lip-sync state 1
+M04,P6-014,6,mouth_lip_medium,mouth,lip-sync medium,"48 351 81 80","48 351 81 80",lip-sync state 2
+M05,P6-017,6,mouth_lip_large,mouth,lip-sync large,"452 345 123 94","452 345 123 94",lip-sync state 3
+M06,P6-007,6,mouth_o,mouth,surprised/syllable,"372 200 76 113","372 200 76 113",
+M07,P6-011,6,mouth_frown,mouth,sad/annoyed,"580 248 103 33","580 248 103 33",
+M08,P6-010,6,mouth_tongue,mouth,teasing,"1120 227 109 77","1120 227 109 77",
+T01,P7-003,7,torso_core,torso,base,"584 137 201 175","624 137 121 175",center crop removes bare shoulder lobes; same semantic part
+T02,P7-006,7,chest_bib,torso,base,"833 372 164 104","833 372 164 104",
+T03,P7-007,7,chest_bow,torso,base,"1069 379 127 88","1069 379 127 88",
+T04,P7-011,7,neck_collar,torso,base,"1037 492 188 89","1037 492 188 89",
+A01,P8-009,8,arm_down_left,arms,neutral,"17 225 121 175","17 225 121 175",shoulder-pivot motion
+A02,P8-010,8,arm_down_right,arms,neutral,"207 225 121 175","207 225 121 175",shoulder-pivot motion
+A03,P8-011,8,arm_bent_fist_left,arms,open,"350 225 105 184","350 225 105 184",shoulder-pivot motion
+A04,P8-012,8,arm_bent_fist_right,arms,open,"538 224 105 185","538 224 105 185",shoulder-pivot motion
+A05,P8-013,8,arm_raise_left,arms,wave/excited,"822 397 177 159","822 397 177 159",largest alpha component mask removes detached neighbour; shoulder-pivot motion
+A06,P8-014,8,arm_raise_right,arms,wave/excited,"1069 390 169 163","1069 390 169 163",shoulder-pivot motion
+A07,P8-021,8,arms_crossed,arms,annoyed/smug,"44 637 247 123","44 637 247 123",composite actual-arm sprite
+A08,P8-022,8,arms_pleading,arms,cheek/pleading,"384 620 178 151","384 620 178 151",composite actual-arm sprite
+A09,P8-023,8,arms_pose_c,arms,palms/surprised,"658 646 208 121","658 646 208 121",composite actual-arm sprite
+A10,P8-024,8,arms_clasped,arms,love/scared,"935 624 206 145","935 624 206 145",composite actual-arm sprite
+L01,P9-004,9,skirt_base,legs,base,"543 40 240 151","543 40 240 151",micro-warp only for breathing
+L02,P9-016,9,leg_straight_left,legs,neutral,"36 391 80 251","36 391 80 251",hip-pivot motion
+L03,P9-017,9,leg_straight_right,legs,neutral,"118 392 82 249","118 392 82 249",hip-pivot motion
+L04,P9-046,9,shoe_left,legs,neutral,"18 893 74 96","18 893 74 96",follows left hip rotation
+L05,P9-047,9,shoe_right,legs,neutral,"98 895 74 94","98 895 74 94",follows right hip rotation
+L06,P9-018,9,leg_pose_b_left_candidate,legs,dynamic reserve,"244 396 131 235","244 396 131 235",indexed/allowed but not currently selected by an emotion
+L07,P9-010,9,leg_pose_b_right_candidate,legs,teasing bent leg,"411 391 84 231","411 391 84 231",hip-pivot bent-leg pose

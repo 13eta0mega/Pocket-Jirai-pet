@@ -1,0 +1,183 @@
+name: QA Jirai Ver1.3
+
+on:
+  push:
+    branches: [Jirai_Ver1.3]
+    paths:
+      - 'index.html'
+      - 'src/app.js'
+      - 'src/v13-runtime.js'
+      - 'src/v13-motion-corrections.js'
+      - 'config/jirai-v13-review.json'
+      - 'config/jirai-v13-emotions.json'
+      - 'tools/build_v13_active_atlas.py'
+      - '.github/workflows/qa-jirai-v13.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build Ver1.3 append-only Active77 atlas
+        id: build
+        run: |
+          mkdir -p qa/jirai-v13
+          python -m pip install --disable-pip-version-check pillow==11.3.0 numpy==2.3.2
+          python tools/build_v13_active_atlas.py | tee qa/jirai-v13/build.log
+
+      - name: Install browser QA
+        id: install
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          npm install --no-save playwright@1.55.0 2>&1 | tee qa/jirai-v13/install.log
+          npx playwright install --with-deps chromium 2>&1 | tee -a qa/jirai-v13/install.log
+
+      - name: Run Ver1.3 browser QA
+        id: browser
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          mkdir -p qa/jirai-v13
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/jirai-v13-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill $server_pid 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/index.html >/dev/null; then ready=1; break; fi
+            sleep .25
+          done
+          if [ "$ready" != 1 ]; then
+            cat /tmp/jirai-v13-http.log
+            exit 1
+          fi
+          cat > qa/jirai-v13/runner.mjs <<'EOF_JS'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1280,height:1100},deviceScaleFactor:1});
+          const consoleErrors=[];
+          page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
+          page.on('pageerror',e=>consoleErrors.push(String(e)));
+          await page.goto('http://127.0.0.1:8765/?qa=1&emotion=neutral',{waitUntil:'networkidle'});
+          await page.waitForFunction(()=>window.__JIRAI_QA__?.ready===true,{timeout:15000});
+          await page.waitForTimeout(550);
+          const neutral=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.locator('#rigCanvas').screenshot({path:'qa/jirai-v13/neutral.png'});
+
+          const emotionIds=['neutral','happy','excited','teasing','pleading','relaxed','sick','angry','annoyed','sad','surprised','embarrassed','scared','smug','confused','love'];
+          const emotion={};
+          for(const id of emotionIds){
+            await page.evaluate(id=>window.__JIRAI_QA__.setEmotion(id),id);
+            await page.waitForTimeout(620);
+            emotion[id]=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+            if(['neutral','happy','excited','teasing','pleading','relaxed','angry','annoyed','surprised','embarrassed','confused'].includes(id)) await page.locator('#rigCanvas').screenshot({path:`qa/jirai-v13/${id}.png`});
+          }
+
+          await page.evaluate(()=>window.__JIRAI_QA__.setEmotion('neutral'));
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
+          await page.waitForTimeout(700);
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(1));
+          await page.waitForTimeout(35);
+          const attackSample=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.waitForTimeout(230);
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
+          await page.waitForTimeout(35);
+          const releaseSample=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+          await page.waitForTimeout(700);
+
+          const levels=[.08,.21,.34,.50,.65,.80,.98];
+          const visemes=[];
+          const lipSamples=[];
+          for(const v of levels){
+            await page.evaluate(v=>window.__JIRAI_QA__.setMouth(v),v);
+            await page.waitForTimeout(430);
+            const sample=await page.evaluate(()=>window.__JIRAI_QA__.snapshot());
+            visemes.push(sample.mouthSprite);
+            lipSamples.push({input:v,mouthOpen:sample.params?.mouthOpen,mouthOpenRaw:sample.params?.mouthOpenRaw,sprite:sample.mouthSprite,index:sample.visemeIndex});
+          }
+          await page.evaluate(()=>window.__JIRAI_QA__.setMouth(0));
+          await page.waitForTimeout(750);
+
+          const browModel=await page.evaluate(()=>Object.fromEntries(Object.entries(window.JiraiRig.EMOTIONS).map(([id,d])=>[id,{brows:d.brows,browPose:d.browPose,bodySprite:d.bodySprite}])));
+          const attackOpen=attackSample.params?.mouthOpen??0, attackRaw=attackSample.params?.mouthOpenRaw??0;
+          const releaseOpen=releaseSample.params?.mouthOpen??0, releaseRaw=releaseSample.params?.mouthOpenRaw??0;
+          const checks={
+            ready:neutral.ready===true,
+            assetLoaded:neutral.assetLoaded===true,
+            configV13:String(neutral.configVersion).startsWith('1.3.'),
+            activeParts77:neutral.mesh?.activeParts===77,
+            lipVisemes7:neutral.mesh?.v13LipVisemes===7,
+            browProfiles16:neutral.mesh?.v13BrowProfiles===16,
+            explicitLayerMode:neutral.parts?.layerMode==='v13.1-integrated-body-linked-feet',
+            integratedBodies5:neutral.mesh?.v13IntegratedBodies===5,
+            linkedFootChain:neutral.mesh?.v13LinkedFootChain===true&&neutral.parts?.footChain==='linked',
+            faceStackTightened:neutral.mesh?.v13FaceStackYOffset===-8,
+            integratedBodyMapping:emotion.neutral?.parts?.body==='TB01'&&emotion.happy?.parts?.body==='TB03'&&emotion.angry?.parts?.body==='TB02'&&emotion.pleading?.parts?.body==='TB03'&&emotion.relaxed?.parts?.body==='TB04'&&emotion.excited?.parts?.body==='TB05'&&emotion.surprised?.parts?.body==='TB03',
+            oneRaisedSideCorrect:emotion.teasing?.armPose==='oneRaisedLeft',
+            reviewedEmotionMouths:emotion.angry?.mouthSprite==='M16'&&emotion.sad?.mouthSprite==='M17'&&emotion.scared?.mouthSprite==='M18',
+            reviewedEmotionArms:emotion.relaxed?.armPose==='cheek'&&emotion.sad?.armPose==='clasped'&&emotion.smug?.armPose==='cheek',
+            browsMeaningfullyDifferent:browModel.surprised.browPose.left.dy<=-8&&browModel.annoyed.browPose.left.angle!==browModel.annoyed.browPose.right.angle&&browModel.confused.browPose.left.dy!==browModel.confused.browPose.right.dy&&browModel.angry.brows.length===0,
+            visemeRange:visemes.includes('M09')&&visemes.includes('M15')&&new Set(visemes).size>=6,
+            lipSmoothingActive:attackRaw>.95&&attackOpen>.05&&attackOpen<.75&&releaseRaw<.01&&releaseOpen>.1,
+            noConsoleErrors:consoleErrors.length===0
+          };
+          const report={started:new Date().toISOString(),checks,visemes,lipSamples,transientLip:{attack:{mouthOpen:attackOpen,mouthOpenRaw:attackRaw,sprite:attackSample.mouthSprite},release:{mouthOpen:releaseOpen,mouthOpenRaw:releaseRaw,sprite:releaseSample.mouthSprite}},browModel,neutral,emotion,consoleErrors,pass:Object.values(checks).every(Boolean)};
+          fs.writeFileSync('qa/jirai-v13/report.json',JSON.stringify(report,null,2));
+          await browser.close();
+          if(!report.pass){console.error(JSON.stringify(report,null,2));process.exit(1);}
+          console.log(JSON.stringify({checks,visemes,transientLip:report.transientLip,pass:report.pass},null,2));
+          EOF_JS
+          node qa/jirai-v13/runner.mjs 2>&1 | tee qa/jirai-v13/browser.log
+          rm -f qa/jirai-v13/runner.mjs
+
+      - name: Record QA status
+        if: always()
+        run: |
+          rm -f qa/jirai-v13/runner.mjs
+          cp /tmp/jirai-v13-http.log qa/jirai-v13/http.log 2>/dev/null || true
+          if [ ! -f qa/jirai-v13/report.json ]; then
+            printf '{"stage":"browser-not-complete","build":"${{ steps.build.outcome }}","install":"${{ steps.install.outcome }}","browser":"${{ steps.browser.outcome }}","pass":false}\n' > qa/jirai-v13/report.json
+          fi
+          cat qa/jirai-v13/report.json
+
+      - name: Publish generated Ver1.3 runtime and QA
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/Jirai_Character_Active77_V13.png config/jirai-v13-atlas.json qa/jirai-v13
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build and validate Jirai Ver1.3 Active77 runtime [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.3
+              if git rebase origin/Jirai_Ver1.3 && git push origin HEAD:Jirai_Ver1.3; then exit 0; fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi
+
+      - name: Enforce browser QA result
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,sys
+          p=json.load(open('qa/jirai-v13/report.json',encoding='utf-8'))
+          if not p.get('pass'):
+              print(json.dumps(p,ensure_ascii=False,indent=2))
+              sys.exit(1)
+          print('Ver1.3 browser QA passed')
+          PY

@@ -1,0 +1,84 @@
+name: Build Jirai Ver1.2 ESP32 Pack
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths:
+      - 'config/jirai-v12-atlas.json'
+      - 'config/jirai-v12-emotions.json'
+      - 'src/Jirai_Character_Active58.png'
+      - 'src/rig-engine.js'
+      - 'tools/build_v12_esp32_pack.py'
+      - 'tools/build_v12_motion_tables.py'
+      - 'tools/verify_v12_emotions.mjs'
+      - 'firmware/jirai_pack_reader.c'
+      - 'firmware/jirai_pack_reader.h'
+      - 'firmware/jirai_anim.c'
+      - 'firmware/jirai_anim.h'
+      - 'firmware/tests/test_jirai_pack.c'
+      - 'firmware/tests/test_jirai_anim.c'
+      - '.github/workflows/build-v12-esp32-pack.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify browser emotion definitions
+        run: node tools/verify_v12_emotions.mjs
+      - name: Install pack dependencies
+        run: python -m pip install --disable-pip-version-check pillow==11.3.0 numpy==2.3.2
+      - name: Build fixed-point motion tables
+        run: python tools/build_v12_motion_tables.py
+      - name: Build and validate ESP32 package
+        run: python tools/build_v12_esp32_pack.py
+      - name: Compile portable pack reader and motion tables
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror -Ifirmware \
+            firmware/jirai_pack_reader.c firmware/tests/test_jirai_pack.c \
+            -o /tmp/test_jirai_pack
+      - name: Compile fixed-point animation core
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror -Ifirmware \
+            firmware/jirai_anim.c firmware/tests/test_jirai_anim.c \
+            -o /tmp/test_jirai_anim
+      - name: Validate generated pack through C reader
+        run: /tmp/test_jirai_pack firmware/generated/jirai_v12_active58_rgb565a8.jpak | tee /tmp/jirai-pack-test.txt
+      - name: Validate fixed-point animation core
+        run: /tmp/test_jirai_anim | tee /tmp/jirai-anim-test.txt
+      - name: Enforce firmware asset budget and write validation record
+        run: |
+          bytes=$(wc -c < firmware/generated/jirai_v12_active58_rgb565a8.jpak)
+          motion_bytes=$(wc -c < firmware/generated/jirai_v12_motion.h)
+          test "$bytes" -le 3145728
+          sha=$(sha256sum firmware/generated/jirai_v12_active58_rgb565a8.jpak | awk '{print $1}')
+          printf '{"format":"RGB565_PLANAR_A8","parts":58,"emotions":16,"packageBytes":%s,"limitBytes":3145728,"motionHeaderBytes":%s,"browserEmotionParity":true,"readerCompile":true,"readerCrcValidation":true,"motionTableValidation":true,"animationCoreCompile":true,"animationCoreTest":true,"sha256":"%s","pass":true}\n' "$bytes" "$motion_bytes" "$sha" > firmware/generated/validation.json
+          cat firmware/generated/validation.json
+      - name: Publish generated firmware assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add firmware/generated/jirai_v12_active58_rgb565a8.jpak firmware/generated/jirai_v12_active58_manifest.json firmware/generated/jirai_v12_pack.h firmware/generated/jirai_v12_motion.h firmware/generated/validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Validate Jirai Ver1.2 ESP32 pack, motion and anim core [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi

@@ -1,0 +1,45 @@
+name: Build Jirai Ver1.2 Active58 Atlas
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths:
+      - 'config/jirai-v12.json'
+      - 'src/Jirai_Character_Parts*.png'
+      - 'tools/build_v12_active58_atlas.py'
+      - '.github/workflows/build-v12-active58-atlas.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install atlas build dependencies
+        run: python -m pip install --disable-pip-version-check pillow==11.3.0 numpy==2.3.2
+      - name: Build and validate Active58 atlas
+        run: python tools/build_v12_active58_atlas.py
+      - name: Publish generated atlas
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/Jirai_Character_Active58.png config/jirai-v12-atlas.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build Jirai Ver1.2 Active58 atlas [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi

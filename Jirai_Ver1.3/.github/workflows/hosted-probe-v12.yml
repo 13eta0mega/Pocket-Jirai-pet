@@ -1,0 +1,95 @@
+name: Probe Jirai Ver1.2 Hosted Page
+# Verify the versioned Pages build and the single cleaned Active58 runtime atlas.
+
+on:
+  push:
+    branches: [Jirai_Ver1.2]
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'src/**'
+      - 'config/jirai-v12.json'
+      - 'config/jirai-v12-atlas.json'
+      - '.github/workflows/hosted-probe-v12.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe hosted page
+        run: |
+          rm -f qa/jirai-v12/hosted-probe.json
+          mkdir -p qa/jirai-v12
+          root='https://13eta0mega.github.io/Pocket-Jirai-pet/'
+          base='https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.2/'
+          raw='https://raw.githubusercontent.com/13eta0mega/Pocket-Jirai-pet/main/Jirai_Ver1.2/'
+          ok=0
+          root_code=0
+          raw_code=0
+          index_code=0
+          source_config_code=0
+          atlas_config_code=0
+          atlas_code=0
+          runtime_version_code=0
+          js_code=0
+          cleanup_code=0
+          pivot_code=0
+          root_code=$(curl -L -sS -o /tmp/root.html -w '%{http_code}' --max-time 15 "$root" || true)
+          raw_code=$(curl -L -sS -o /tmp/raw-v12-index.html -w '%{http_code}' --max-time 15 "${raw}index.html" || true)
+          for i in $(seq 1 50); do
+            index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
+            source_config_code=$(curl -L -sS -o /tmp/v12-source-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
+            atlas_config_code=$(curl -L -sS -o /tmp/v12-atlas-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12-atlas.json" || true)
+            atlas_code=$(curl -L -sS -o /tmp/v12-atlas.png -w '%{http_code}' --max-time 20 "${base}src/Jirai_Character_Active58.png" || true)
+            runtime_version_code=$(curl -L -sS -o /tmp/v12-runtime-version.txt -w '%{http_code}' --max-time 15 "${base}src/runtime-version.txt" || true)
+            js_code=$(curl -L -sS -o /tmp/v12-app.js -w '%{http_code}' --max-time 15 "${base}src/app.js" || true)
+            cleanup_code=$(curl -L -sS -o /tmp/v12-cleanup.js -w '%{http_code}' --max-time 15 "${base}src/part-cleanup.js" || true)
+            pivot_code=$(curl -L -sS -o /tmp/v12-pivot.js -w '%{http_code}' --max-time 15 "${base}src/pivot-motion.js" || true)
+            if [ "$index_code" = '200' ] && [ "$source_config_code" = '200' ] && [ "$atlas_config_code" = '200' ] && [ "$atlas_code" = '200' ] && [ "$runtime_version_code" = '200' ] && [ "$js_code" = '200' ] && [ "$cleanup_code" = '200' ] && [ "$pivot_code" = '200' ] \
+              && grep -q 'JIRAI VER1.2' /tmp/v12-index.html \
+              && grep -q '1.2.3-active58-atlas' /tmp/v12-atlas-config.json \
+              && grep -q '"sourcePartCount":58' /tmp/v12-atlas-config.json \
+              && grep -q '"offlineClean":true' /tmp/v12-atlas-config.json \
+              && grep -q '1.2.3-active58-atlas' /tmp/v12-runtime-version.txt \
+              && grep -q "jirai-v12-atlas.json" /tmp/v12-app.js \
+              && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js \
+              && grep -q 'pivotArmPose' /tmp/v12-pivot.js; then
+              png_sig=$(od -An -tx1 -N8 /tmp/v12-atlas.png | tr -d ' \n')
+              if [ "$png_sig" = '89504e470d0a1a0a' ]; then
+                ok=1
+                break
+              fi
+            fi
+            sleep 3
+          done
+          atlas_bytes=$(wc -c < /tmp/v12-atlas.png 2>/dev/null || echo 0)
+          printf '{"root_url":"%s","url":"%s","raw_main_url":"%s","root_status":%s,"raw_main_status":%s,"index_status":%s,"source_config_status":%s,"atlas_config_status":%s,"atlas_status":%s,"atlas_bytes":%s,"runtime_version_status":%s,"app_status":%s,"cleanup_status":%s,"pivot_status":%s,"pass":%s}\n' "$root" "$base" "$raw" "${root_code:-0}" "${raw_code:-0}" "${index_code:-0}" "${source_config_code:-0}" "${atlas_config_code:-0}" "${atlas_code:-0}" "${atlas_bytes:-0}" "${runtime_version_code:-0}" "${js_code:-0}" "${cleanup_code:-0}" "${pivot_code:-0}" "$([ "$ok" = '1' ] && echo true || echo false)" > qa/jirai-v12/hosted-probe.json
+          [ "$ok" = '1' ]
+      - name: Publish probe
+        if: always()
+        run: |
+          mkdir -p qa/jirai-v12
+          if [ ! -f qa/jirai-v12/hosted-probe.json ]; then
+            printf '%s\n' '{"stage":"probe-not-complete","pass":false}' > qa/jirai-v12/hosted-probe.json
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa/jirai-v12/hosted-probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update Jirai Ver1.2 hosted probe [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin Jirai_Ver1.2
+              if git rebase origin/Jirai_Ver1.2 && git push origin HEAD:Jirai_Ver1.2; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 2))
+            done
+            exit 1
+          fi
