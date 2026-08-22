@@ -23,28 +23,29 @@ jobs:
         run: |
           rm -f qa/jirai-v12/hosted-probe.json
           mkdir -p qa/jirai-v12
+          root='https://13eta0mega.github.io/Pocket-Jirai-pet/'
           base='https://13eta0mega.github.io/Pocket-Jirai-pet/Jirai_Ver1.2/'
           ok=0
+          root_code=0
           index_code=0
           config_code=0
           js_code=0
           cleanup_code=0
+          pivot_code=0
           for i in $(seq 1 25); do
+            root_code=$(curl -L -sS -o /tmp/root.html -w '%{http_code}' --max-time 15 "$root" || true)
             index_code=$(curl -L -sS -o /tmp/v12-index.html -w '%{http_code}' --max-time 15 "${base}index.html" || true)
             config_code=$(curl -L -sS -o /tmp/v12-config.json -w '%{http_code}' --max-time 15 "${base}config/jirai-v12.json" || true)
             js_code=$(curl -L -sS -o /tmp/v12-rig.js -w '%{http_code}' --max-time 15 "${base}src/rig-engine.js" || true)
             cleanup_code=$(curl -L -sS -o /tmp/v12-cleanup.js -w '%{http_code}' --max-time 15 "${base}src/part-cleanup.js" || true)
-            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$js_code" = '200' ] && [ "$cleanup_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js; then
+            pivot_code=$(curl -L -sS -o /tmp/v12-pivot.js -w '%{http_code}' --max-time 15 "${base}src/pivot-motion.js" || true)
+            if [ "$index_code" = '200' ] && [ "$config_code" = '200' ] && [ "$js_code" = '200' ] && [ "$cleanup_code" = '200' ] && [ "$pivot_code" = '200' ] && grep -q 'JIRAI VER1.2' /tmp/v12-index.html && grep -q 'part-rig' /tmp/v12-config.json && grep -q 'Sprite parts + micro-mesh' /tmp/v12-rig.js && grep -q 'keepLargestAlphaComponent' /tmp/v12-cleanup.js && grep -q 'pivotArmPose' /tmp/v12-pivot.js; then
               ok=1
               break
             fi
             sleep 3
           done
-          if [ "$ok" = '1' ]; then
-            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":true}\n' "$base" "$index_code" "$config_code" "$js_code" "$cleanup_code" > qa/jirai-v12/hosted-probe.json
-          else
-            printf '{"url":"%s","index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pass":false}\n' "$base" "${index_code:-0}" "${config_code:-0}" "${js_code:-0}" "${cleanup_code:-0}" > qa/jirai-v12/hosted-probe.json
-          fi
+          printf '{"root_url":"%s","url":"%s","root_status":%s,"index_status":%s,"config_status":%s,"renderer_status":%s,"cleanup_status":%s,"pivot_status":%s,"pass":%s}\n' "$root" "$base" "${root_code:-0}" "${index_code:-0}" "${config_code:-0}" "${js_code:-0}" "${cleanup_code:-0}" "${pivot_code:-0}" "$([ "$ok" = '1' ] && echo true || echo false)" > qa/jirai-v12/hosted-probe.json
       - name: Publish probe
         if: always()
         run: |
