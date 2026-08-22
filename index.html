@@ -3,36 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#120f18">
-<title>Pocket Jirai Pet · Jirai Ver1.3 Parts Rig</title>
+<meta name="theme-color" content="#0e0b13">
+<title>Pocket Jirai Pet · 3D Runtime Prototype</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="app-shell">
-<header class="topbar">
-  <div><div class="eyebrow">POCKET JIRAI PET · JIRAI VER1.3</div><h1>Jirai Sprite + Mesh Rig</h1><p>얼굴 결합·다리/신발 연결·일체형 몸통 포즈·7단계 립싱크를 보정한 Ver1.3.1 런타임입니다.</p></div>
-  <div class="chips"><span id="fpsChip">-- FPS</span><span id="rendererChip">Renderer --</span><span id="assetChip">Asset loading</span></div>
-</header>
-<section class="workspace">
-  <section class="stage-card">
-    <div class="stage-head"><div><strong id="emotionLabel">기본</strong><span id="motionLabel">settle</span></div><small id="statusText">로딩 중</small></div>
-    <div id="stageWrap" class="stage-wrap"><canvas id="rigCanvas" aria-label="Jirai character"></canvas><canvas id="fxCanvas" aria-hidden="true"></canvas><div class="stage-vignette"></div></div>
-    <div class="parts-now" id="partsNow">Eyes - · Brows - · Mouth - · Arms - · Legs -</div>
-    <div class="mouth-meter"><span>Lip Sync</span><div id="wave" class="wave"></div><output id="mouthValue">0.00</output></div>
+<main class="shell">
+  <header>
+    <div><span class="tag">POCKET JIRAI PET · 3D EXPERIMENT</span><h1>Jirai 3D Runtime</h1><p>업로드한 FBX를 직접 분석해 저폴리 3D 데이터로 변환하고 WebGL2에서 실시간 변형합니다.</p></div>
+    <div class="chips"><span id="fps">-- FPS</span><span id="meshInfo">Loading</span><span id="rigInfo">Procedural Rig</span></div>
+  </header>
+  <section class="grid">
+    <section class="stage-card">
+      <div class="stage-head"><strong id="emotionName">기본</strong><small id="status">모델 로딩 중</small></div>
+      <div class="stage"><canvas id="gl"></canvas><div class="hint">드래그: 회전 · 휠/핀치: 확대</div></div>
+      <div class="meters"><span>Head <b id="headVal">0</b>°</span><span>Mouth <b id="mouthVal">0.00</b></span><span>LOD <b id="lodVal">-</b></span></div>
+    </section>
+    <aside>
+      <section class="panel"><div class="title"><strong>감정 표현</strong><span>16 state</span></div><div id="emotions" class="emotions"></div></section>
+      <section class="panel"><div class="title"><strong>립싱크 / Idle</strong><span>procedural morph</span></div>
+        <div class="row"><label><input id="lipTest" type="checkbox"> 테스트 립싱크</label><button id="micBtn">마이크</button></div>
+        <label class="range"><span>수동 MouthOpenY</span><input id="mouth" type="range" min="0" max="1" step="0.01" value="0"></label>
+        <div class="row"><label><input id="autoBlink" type="checkbox" checked> 자동 눈깜빡임</label><label><input id="idle" type="checkbox" checked> Idle</label></div>
+      </section>
+      <section class="panel"><div class="title"><strong>렌더링</strong><span>J3D1 vertex color</span></div>
+        <label class="range"><span>LOD</span><select id="lod"><option value="2">LOD2 · ESP32 target / review</option></select></label>
+        <p id="sourceInfo" class="small"></p>
+      </section>
+    </aside>
   </section>
-  <aside class="controls">
-    <section class="panel emotion-panel"><div class="section-title"><strong>감정 표현</strong><span>16 state · eyebrow pose profile</span></div><div id="emotionGrid" class="emotion-grid"></div></section>
-    <section class="panel"><div class="section-title"><strong>립싱크</strong><span>M09 → M15 · 7-stage viseme + hold/smoothing</span></div><div class="toggle-grid"><label><input id="lipTest" type="checkbox"> 테스트 립싱크</label><button id="micBtn" type="button" class="mini">마이크 입력</button></div><label class="range-row"><span>수동 MouthOpenY</span><input id="mouthSlider" type="range" min="0" max="1" step="0.01" value="0"></label></section>
-    <section class="panel"><div class="section-title"><strong>Idle / QA</strong><span>explicit layer stages + micro-mesh</span></div><div class="toggle-grid checks"><label><input id="breathToggle" type="checkbox" checked> 숨쉬기</label><label><input id="blinkToggle" type="checkbox" checked> 눈 깜빡임</label><label><input id="meshToggle" type="checkbox"> 파츠 ID 표시</label></div></section>
-    <section class="actions"><button id="autoCycleBtn" type="button">감정 자동 순환</button><button id="neutralBtn" type="button" class="secondary">기본으로 복귀</button></section>
-  </aside>
-</section>
-<section class="tech-note"><strong>Ver1.3 renderer</strong><span>77개의 승인 파츠를 단일 아틀라스로 사용합니다. 트윈테일 → 하체 → 일체형 몸통/팔 → 얼굴/앞머리 → 얼굴 오버레이/눈썹/눈/입/장식 순으로 앞뒤 관계를 명시했고, F02/F03은 원래 의미대로 그림자 오버레이로만 사용합니다. 얼굴 스택은 머리 안쪽으로 8px 당겨 결합했고 신발은 다리와 동일한 골반 피벗 변환을 따라가도록 묶었습니다. 눈썹은 감정별 위치·각도·비대칭 프로파일을 적용하고, 립싱크는 M09~M15 7단계 실제 입 파츠에 attack/release 필터, hysteresis, minimum hold를 적용합니다.</span></section>
+  <section class="note"><strong>현재 모델 진단</strong><span>이 FBX는 스켈레톤/본/애니메이션이 없는 단일 welded mesh입니다. 따라서 이번 프로토타입은 FBX 형상을 자동 저폴리화하고 공간 기반 pseudo-rig으로 머리·팔·다리·눈·입을 변형합니다. 최종 품질 단계에서는 같은 런타임 구조에 rigged FBX/GLB를 넣는 방식을 권장합니다.</span></section>
 </main>
-<script src="src/rig-engine.js"></script>
-<script src="src/part-cleanup.js"></script>
-<script src="src/pivot-motion.js"></script>
-<script src="src/v13-runtime.js"></script>
-<script src="src/v13-motion-corrections.js"></script>
-<script src="src/app.js"></script>
-</body></html>
+<script src="src/model_chunk_0.js"></script>
+<script src="src/model_chunk_1.js"></script>
+<script src="src/model_chunk_2.js"></script>
+<script src="src/model_chunk_3.js"></script>
+<script src="src/app3d.js"></script>
+</body>
+</html>
